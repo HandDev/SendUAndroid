@@ -6,12 +6,12 @@
 ###안드로이드 Activity/Context/Fragment
 --> mActivity / mContext / mFragment 의 형식으로 작성한다.
 
-\`Activity mActivity;\`
+    Activity mActivity;
 
 ###안드로이드 버튼/텍스트 뷰 등등
 --> mLoginButton == m+역할+객체이름 으로 작성한다.
 
-\`Button mLoginButton;\`
+    Button mLoginButton;
 
 ###레이아웃 리소스 버튼/텍스트뷰 등
 --> 역할_button / 역할_textview 으로 작성한다.
@@ -22,7 +22,7 @@
 
 --> "역할 + '_' + 각 개체 이름 소문자 + 숫자" 의 형식으로 작성한다.
 
-\`android:name = "@+id/button01";\`
+    android:name = "@+id/button01";
 
 ##패키지 관리
 --> Activity/Fragment/etc 등 모두 나누어 관리한다.
