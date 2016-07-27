@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kr.hs.dimigo.dudgns0507.canvas_test.MainActivity"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Text"
+            android:id="@+id/add_text" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Image"
+            android:id="@+id/add_image" />
+    </LinearLayout>
+
+    <kr.hs.dimigo.dudgns0507.canvas_test.DragDropLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </kr.hs.dimigo.dudgns0507.canvas_test.DragDropLayout>
+</LinearLayout>
