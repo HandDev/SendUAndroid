@@ -18,6 +18,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+
+import com.manuelpeinado.fadingactionbar.FadingActionBarHelper;
 
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
 import biz.sendyou.senduandroid.Fragment.SelectServiceFragment;
@@ -47,14 +50,19 @@ public class NavigationDrawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getSupportActionBar().setTitle("");
 
         //mainFrameLayout에 맨 처음으로 들어갈 부분 선언
         if(savedInstanceState == null) {
             FrontFragment mFrontFragment = FrontFragment.newInstance();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.mainFrameLayout,mFrontFragment);
+           fragmentTransaction.replace(R.id.mainFrameLayout,mFrontFragment);
             fragmentTransaction.commit();
         }
+
+        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        View toolbarview = (View)findViewById(R.id.toolbar);
+        toolbarview.bringToFront();
     }
 
     @Override
