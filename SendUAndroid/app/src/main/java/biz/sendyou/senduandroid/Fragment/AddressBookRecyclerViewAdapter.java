@@ -6,22 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import biz.sendyou.senduandroid.Fragment.ItemFragment.OnListFragmentInteractionListener;
 import biz.sendyou.senduandroid.Fragment.dummy.DummyContent.DummyItem;
+import biz.sendyou.senduandroid.R;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class AddressBookRecyclerViewAdapter extends RecyclerView.Adapter<AddressBookRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final AddressBookFragment.OnListFragmentInteractionListener mListener;
 
-    public AddressBookRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public AddressBookRecyclerViewAdapter(List<DummyItem> items, AddressBookFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -29,7 +24,7 @@ public class AddressBookRecyclerViewAdapter extends RecyclerView.Adapter<Address
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.fragment_address, parent, false);
         return new ViewHolder(view);
     }
 
