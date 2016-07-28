@@ -11,7 +11,7 @@ public class BaseActivity extends Application {
 
     @Override
     public void onCreate() {
-        TypefaceUtil.overrideFont(getApplicationContext(),"SERIF","fonts/");
+        TypefaceUtil.overrideFont(getApplicationContext(),"SERIF","Roboto-Medium");
     }
 
 }
