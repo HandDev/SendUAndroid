@@ -1,14 +1,40 @@
 package biz.sendyou.senduandroid.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Util.HttpUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,15 +44,16 @@ import biz.sendyou.senduandroid.R;
  * Use the {@link SignInFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SignInFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class SignInFragment extends Fragment implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    String URL = "http://sendyou.biz/userAuth/signup/insertData";
+    String res = "";
+
+    private int mSignInRequestCode = 0;
+    private GoogleApiClient mGoogleApiClient;
+    private LoginButton mFacebookSignInButton;
+    private CallbackManager mCallBackManager;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -34,31 +61,17 @@ public class SignInFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SignInFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SignInFragment newInstance(String param1, String param2) {
+    public static SignInFragment newInstance() {
         SignInFragment fragment = new SignInFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+        mCallBackManager = CallbackManager.Factory.create();
     }
 
     @Override
@@ -68,11 +81,55 @@ public class SignInFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_sign_in, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().findViewById(R.id.googleSignIn_button).setOnClickListener(this);
+        getActivity().findViewById(R.id.googleSignOut_button).setOnClickListener(this);
+        getActivity().findViewById(R.id.faceBookSignIn_button).setOnClickListener(this);
+
+        mFacebookSignInButton = (LoginButton) getActivity().findViewById(R.id.faceBookSignIn_button);
+        mFacebookSignInButton.setReadPermissions("user_friends");
+        mFacebookSignInButton.setFragment(this);
+
+        mFacebookSignInButton.registerCallback(mCallBackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(final LoginResult loginResult) {
+                final Profile mProfile = Profile.getCurrentProfile();
+                Snackbar.make(getView(), mProfile.getName(), Snackbar.LENGTH_SHORT).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Looper.prepare();
+
+                        try {
+                            Map<String, String> params = new HashMap();
+                            params.put("username", "하준혁하아하아");
+                            params.put("password", loginResult.getAccessToken().getUserId());
+                            res = HttpUtil.postForm(URL, params);
+                            Log.w("Log",res);
+                        } catch (Exception e){
+                            Log.w("Log",e);
+                            Toast.makeText(getActivity().getBaseContext(),e+"",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                }).start();
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(getContext(),"Canceled",Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.w("Log",error);
+            }
+        });
+
+        updateUI(false);
     }
 
     @Override
@@ -90,6 +147,77 @@ public class SignInFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    // UI 변경
+    private void updateUI(boolean bool) {
+        if (bool) {
+            getActivity().findViewById(R.id.googleSignOut_button).setVisibility(View.VISIBLE);
+            getActivity().findViewById(R.id.googleSignIn_button).setVisibility(View.GONE);
+        } else {
+            getActivity().findViewById(R.id.googleSignOut_button).setVisibility(View.GONE);
+            getActivity().findViewById(R.id.googleSignIn_button).setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.googleSignIn_button:
+            case R.id.googleSignOut_button:
+                if (mGoogleApiClient == null) {
+                    GoogleSignInOptions mGoogleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                            .requestEmail()
+                            .build();
+
+                    mGoogleApiClient = new GoogleApiClient.Builder(view.getContext())
+                            .enableAutoManage((FragmentActivity) getActivity(), this)
+                            .addApi(Auth.GOOGLE_SIGN_IN_API, mGoogleSignInOptions)
+                            .build();
+                }
+
+                if (view.getId() == R.id.googleSignIn_button) {
+                    googleSignIn();
+                } else {
+                    googleSignOut();
+                }
+                break;
+        }
+    }
+
+    private void googleSignOut() {
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(Status status) {
+                Snackbar.make(getView(), "SignOut", Snackbar.LENGTH_SHORT).show();
+                updateUI(false);
+            }
+        });
+    }
+
+    private void googleSignIn() {
+        Intent mSignIn = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(mSignIn, mSignInRequestCode);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == mSignInRequestCode) {
+            GoogleSignInResult mGoogleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            if (mGoogleSignInResult.isSuccess()) {
+                GoogleSignInAccount mGoogleSignInAccount = mGoogleSignInResult.getSignInAccount();
+                Snackbar.make(getView(), mGoogleSignInAccount.getDisplayName(), Snackbar.LENGTH_SHORT).show();
+
+                updateUI(true);
+            }
+        }
+        mCallBackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
     }
 
     /**
