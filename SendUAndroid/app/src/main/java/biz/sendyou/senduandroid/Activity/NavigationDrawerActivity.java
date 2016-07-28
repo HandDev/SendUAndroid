@@ -22,14 +22,16 @@ import android.view.Window;
 
 import com.manuelpeinado.fadingactionbar.FadingActionBarHelper;
 
+import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
 import biz.sendyou.senduandroid.Fragment.SelectServiceFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
 import biz.sendyou.senduandroid.Fragment.SignUpFragment;
+import biz.sendyou.senduandroid.Fragment.dummy.DummyContent;
 import biz.sendyou.senduandroid.R;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +56,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         //mainFrameLayout에 맨 처음으로 들어갈 부분 선언
         if(savedInstanceState == null) {
-            FrontFragment mFrontFragment = FrontFragment.newInstance();
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-           fragmentTransaction.replace(R.id.mainFrameLayout,mFrontFragment);
-            fragmentTransaction.commit();
+            changeFragmentToFront();
         }
 
-        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         View toolbarview = (View)findViewById(R.id.toolbar);
         toolbarview.bringToFront();
     }
@@ -105,8 +103,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_order) {
             // Handle the camera action
+            changeFragmentToFront();
         } else if (id == R.id.nav_address) {
-
+            changeFragmentToAddressBook();
         } else if (id == R.id.nav_storage) {
 
         } else if (id == R.id.nav_sendcheck) {
@@ -122,6 +121,27 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    private void changeFragmentToAddressBook(){
+        AddressBookFragment addressBookFragment = AddressBookFragment.newInstance(1);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainFrameLayout,addressBookFragment);
+        fragmentTransaction.commit();
+
+    }
+
+    private void changeFragmentToFront(){
+        FrontFragment mFrontFragment = FrontFragment.newInstance();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainFrameLayout,mFrontFragment);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
     }
 }
