@@ -4,121 +4,28 @@
     android:layout_height="match_parent"
     tools:context="biz.sendyou.senduandroid.Fragment.FrontFragment">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <!-- First row. -->
 
-        <LinearLayout
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:src="@drawable/la_wallpaper2"
+            android:scaleType="fitStart">
+        </ImageView>
 
-            <!-- Equal weights cause two columns of equal width. -->
+        <ImageView
+            android:id="@+id/startImageView"
+            android:layout_marginTop="80dp"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:src="@drawable/la_plane"
+            android:layout_gravity="center"
+            />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="A" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="B" />
-        </LinearLayout>
-
-        <!-- Second row. -->
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="C" />
-        <!-- Third row. -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- Equal weights cause two columns of equal width. -->
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="D" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="E" />
-        </LinearLayout>
-
-        <!-- Uneven fourth and fifth rows. -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:baselineAligned="false">
-
-            <!-- Left column. Equal weight with right column gives them equal width. -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <!--
-                     The use of weights below assigns all extra space to G. There
-                     are other choices. LinearLayout computes sizes along its
-                         axis as given, then divides the remaining extra space using
-                     weights.  If a component doesn't have a weight, it keeps
-                     the specified size exactly.
-                -->
-
-
-                <!-- Fill width of layout and use wrap height (because there's no weight). -->
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="F" />
-
-                <!-- Fill width of layout and put all the extra space here. -->
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="G" />
-            </LinearLayout>
-
-            <!-- Right column. Equal weight with left column gives them equal width. -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <!-- Same as above except top button gets all the extra space. -->
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="H" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="I" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 </FrameLayout>

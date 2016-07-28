@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import biz.sendyou.senduandroid.R;
 
@@ -56,7 +58,19 @@ public class FrontFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_front, container, false);
+        View view = inflater.inflate(R.layout.fragment_front, container, false);
+
+        //Event Handling
+        ImageView startImageView = (ImageView) view.findViewById(R.id.startImageView);
+        startImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"start!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
