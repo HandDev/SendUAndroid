@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/send_check"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
+        <ImageView
+            android:id="@+id/sendcheck_status_img"
+            android:src="@drawable/doing"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+        <LinearLayout
+            android:paddingTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="#f2517a"
+                        android:text="주문일:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/sendcheck_date"
+                        android:textColor="#a0a0a0"
+                        android:text="2016.07.25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="발송예정일:"
+                        android:textColor="#f2517a"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/sendcheck_due_date"
+                        android:textColor="#a0a0a0"
+                        android:text="2016.07.26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/sendcheck_address"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/send_check_list"
+                android:textColor="#505050"
+                android:text="(15255) 경기도 안산시 단원구 사세충열로 94 한국디지털미디어고등학교"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/sendcheck_receiver"
+                    android:text="김수아"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="#505050"
+                    android:text="님께 보내는 편지"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:paddingTop="20dp"-->
+        <!--android:paddingBottom="20dp"-->
+        <!--android:paddingLeft="25dp"-->
+        <!--android:background="@drawable/send_check_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+            <!--android:id="@+id/sendcheck_code"-->
+            <!--android:text="#E7C5AD"-->
+            <!--android:textColor="@color/colorAccent"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
+    <!--</LinearLayout>-->
+    <!--<LinearLayout-->
+        <!--android:paddingLeft="25dp"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<LinearLayout-->
+            <!--android:paddingTop="10dp"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<TextView-->
+                <!--android:text="받는사람"-->
+                <!--android:textColor="#808080"-->
+                <!--android:layout_width="170dp"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<TextView-->
+                <!--android:id="@+id/sendcheck_receiver"-->
+                <!--android:text="권소현"-->
+                <!--android:textColor="#000000"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:paddingTop="10dp"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:background="@drawable/send_check_list"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<TextView-->
+                <!--android:text="주문일"-->
+                <!--android:textColor="#808080"-->
+                <!--android:layout_width="170dp"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<TextView-->
+                <!--android:id="@+id/sendcheck_date"-->
+                <!--android:text="2016.07.25"-->
+                <!--android:textColor="#000000"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:paddingTop="10dp"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:background="@drawable/send_check_list"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<TextView-->
+                <!--android:text="상태"-->
+                <!--android:textColor="#808080"-->
+                <!--android:layout_width="170dp"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<ImageView-->
+                <!--android:id="@+id/sendcheck_status_img"-->
+                <!--android:src="@drawable/doing"-->
+                <!--android:padding="1dp"-->
+                <!--android:layout_width="25dp"-->
+                <!--android:layout_height="match_parent" />-->
+            <!--<TextView-->
+                <!--android:id="@+id/sendcheck_status"-->
+                <!--android:text="배송중"-->
+                <!--android:textColor="#000000"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+</LinearLayout>
