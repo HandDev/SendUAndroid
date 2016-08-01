@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
+    android:id="@+id/address_list"
     android:name="biz.sendyou.senduandroid.Fragment.AddressBookFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,3 +15,15 @@
     app:layoutManager="LinearLayoutManager"
     tools:context="biz.sendyou.senduandroid.Fragment.AddressBookFragment"
     tools:listitem="@layout/fragment_address" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/address_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:src="@drawable/la_plane" />
+
+</RelativeLayout>
+

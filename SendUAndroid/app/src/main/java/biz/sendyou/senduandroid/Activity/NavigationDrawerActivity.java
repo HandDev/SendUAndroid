@@ -4,11 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,17 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-
-import com.manuelpeinado.fadingactionbar.FadingActionBarHelper;
 
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
-import biz.sendyou.senduandroid.Fragment.SelectServiceFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
-import biz.sendyou.senduandroid.Fragment.SignUpFragment;
 import biz.sendyou.senduandroid.Fragment.dummy.DummyContent;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.datatype.Address;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener {
@@ -141,7 +133,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(Address item) {
 
     }
 }
