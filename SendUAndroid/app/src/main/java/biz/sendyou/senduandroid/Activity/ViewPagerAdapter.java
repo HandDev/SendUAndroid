@@ -1,5 +1,7 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,7 @@ import biz.sendyou.senduandroid.R;
 /**
  * Created by Chan_Woo_Kim on 2016-07-28.
  */
-public class ViewPagerAdapter extends PagerAdapter {
+public class ViewPagerAdapter extends PagerAdapter implements View.OnClickListener {
 
     LayoutInflater mLayoutInflater;
 
@@ -31,6 +33,8 @@ public class ViewPagerAdapter extends PagerAdapter {
         ImageView mArrowImageView = (ImageView) mView.findViewById(R.id.arrow_imageview);
         TextView mTitleTextView = (TextView) mView.findViewById(R.id.title_textview);
         TextView mDescriptionTextView = (TextView) mView.findViewById(R.id.description_textview);
+
+        mArrowImageView.setOnClickListener(this);
 
         mStageImageView.setImageResource(R.drawable.stage_1+position);
 
@@ -55,5 +59,16 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view==object;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.arrow_imageview:
+                Intent mConvertIntent = new Intent(view.getContext(), LoginActivity.class);
+                view.getContext().startActivity(mConvertIntent);
+
+                ((Activity)view.getContext()).finish();
+        }
     }
 }
