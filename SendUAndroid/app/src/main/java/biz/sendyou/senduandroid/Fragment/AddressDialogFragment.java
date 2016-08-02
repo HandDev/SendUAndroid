@@ -8,10 +8,13 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import com.rey.material.widget.Button;
 
 import biz.sendyou.senduandroid.Fragment.InteractInterface.AddressDialogInteract;
 import biz.sendyou.senduandroid.R;
@@ -42,10 +45,18 @@ public class AddressDialogFragment extends DialogFragment {
 
         View view = inflater.inflate(R.layout.fragment_address_dialog, container);
 
-        TextInputEditText nameEditText = (TextInputEditText)view.findViewById(R.id.address_dialog_name_edittext);
-        TextInputEditText addressEditText = (TextInputEditText)view.findViewById(R.id.address_dialog_address_edittext);
+        final AppCompatEditText nameEditText = (AppCompatEditText) view.findViewById(R.id.address_dialog_name_edittext);
+        final AppCompatEditText addressEditText = (AppCompatEditText) view.findViewById(R.id.address_dialog_address_edittext);
 
-        ((AddressDialogInteract)getFragmentManager().findFragmentById(R.id.mainFrameLayout)).addressSaveButtonClick(nameEditText.getText().toString(), addressEditText.getText().toString());
+        Button saveButton = (Button)view.findViewById(R.id.address_dialog_save_button);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((AddressDialogInteract)getFragmentManager().findFragmentById(R.id.mainFrameLayout)).addressSaveButtonClick(nameEditText.getText().toString(), addressEditText.getText().toString());
+            }
+        });
+
         return  view;
     }
 
