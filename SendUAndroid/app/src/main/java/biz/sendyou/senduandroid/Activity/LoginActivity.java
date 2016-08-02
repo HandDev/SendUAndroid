@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import biz.sendyou.senduandroid.R;
 
 
@@ -43,7 +45,20 @@ public class LoginActivity extends AppCompatActivity {
         mTextView02.setTypeface(Light);
         mTextView03.setTypeface(Bold);
 
+        mTextView03.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveSignupActivity();
+            }
+        });
 
+
+    }
+
+
+    public void moveSignupActivity(){
+        Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+        startActivity(intent);
     }
 
 
