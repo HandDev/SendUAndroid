@@ -37,7 +37,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,16 +50,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getSupportActionBar().setTitle("");
-
-        //mainFrameLayout에 맨 처음으로 들어갈 부분 선언
         if(savedInstanceState == null) {
-            changeFragmentToFront();
-        }
 
-        View toolbarview = (View)findViewById(R.id.toolbar);
-        toolbarview.bringToFront();
+        }
     }
 
     @Override
