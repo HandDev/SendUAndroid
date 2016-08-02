@@ -1,22 +1,25 @@
 package biz.sendyou.senduandroid.Fragment;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import biz.sendyou.senduandroid.Fragment.dummy.DummyContent.DummyItem;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.datatype.Address;
 
 import java.util.List;
 
 public class AddressBookRecyclerViewAdapter extends RecyclerView.Adapter<AddressBookRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Address> mValues;
     private final AddressBookFragment.OnListFragmentInteractionListener mListener;
 
-    public AddressBookRecyclerViewAdapter(List<DummyItem> items, AddressBookFragment.OnListFragmentInteractionListener listener) {
+    private String LOGTAG = "AddressBookRecyclerAdapter";
+
+    public AddressBookRecyclerViewAdapter(List<Address> items, AddressBookFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -31,8 +34,8 @@ public class AddressBookRecyclerViewAdapter extends RecyclerView.Adapter<Address
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mNameView.setText(mValues.get(position).getName());
+        holder.mAddressView.setText(mValues.get(position).getAddress());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +47,7 @@ public class AddressBookRecyclerViewAdapter extends RecyclerView.Adapter<Address
                 }
             }
         });
+
     }
 
     @Override
@@ -53,20 +57,27 @@ public class AddressBookRecyclerViewAdapter extends RecyclerView.Adapter<Address
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public final TextView mNameView;
+        public final TextView mAddressView;
+        public Address mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mNameView = (TextView) view.findViewById(R.id.address_list_name);
+            mAddressView = (TextView) view.findViewById(R.id.address_list_address);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mAddressView.getText() + "'";
         }
     }
+
+    public void refreshList() {
+        this.notifyDataSetChanged();
+
+        Log.i(LOGTAG, "refreshList");
+    }
+
 }

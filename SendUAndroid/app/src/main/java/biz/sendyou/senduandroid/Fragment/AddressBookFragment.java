@@ -2,19 +2,28 @@ package biz.sendyou.senduandroid.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import biz.sendyou.senduandroid.R;
-import biz.sendyou.senduandroid.Fragment.dummy.DummyContent;
-import biz.sendyou.senduandroid.Fragment.dummy.DummyContent.DummyItem;
-
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import biz.sendyou.senduandroid.Fragment.InteractInterface.AddressDialogInteract;
+import biz.sendyou.senduandroid.Fragment.dummy.DummyContent;
+import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.datatype.Address;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 /**
  * A fragment representing a list of Items.
@@ -22,13 +31,20 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class AddressBookFragment extends Fragment {
+public class AddressBookFragment extends Fragment implements AddressDialogInteract {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private AddressBookRecyclerViewAdapter mViewAdapter;
+
+    private Realm realm;
+    private RealmConfiguration realmConfig;
+    private RealmResults<Address> addressRealmResults;
+
+    private String LOGTAG = "AddressBookFragment";
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -59,19 +75,44 @@ public class AddressBookFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.i("AddressBookFragment", "onCreateView");
         View view = inflater.inflate(R.layout.fragment_address_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
+        //Create Realm Configuration
+        realmConfig = new RealmConfiguration.Builder(getContext()).build();
+        realm = Realm.getInstance(realmConfig);
+
+        addressRealmResults = realm.where(Address.class).findAll();
+
+        List<Address> items = new ArrayList<>();
+
+        for (Object addressRealmResult : addressRealmResults) {
+            Log.i(LOGTAG, "addItems");
+            items.add((Address)addressRealmResult);
+        }
+
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.address_list);
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new AddressBookRecyclerViewAdapter(DummyContent.ITEMS, mListener));
-        }
+            mViewAdapter = new AddressBookRecyclerViewAdapter(items, mListener);
+            recyclerView.setAdapter(mViewAdapter);
+
+            Log.i(LOGTAG, "setAdapter");
+
+        final FloatingActionButton addFloatingActionButton = (FloatingActionButton)view.findViewById(R.id.address_fab);
+        addFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                AddressDialogFragment addressDialogFragment = new AddressDialogFragment();
+                addressDialogFragment.show(fm, "test");
+            }
+        });
+
         return view;
     }
 
@@ -93,6 +134,13 @@ public class AddressBookFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void addressSaveButtonClick(String name, String address) {
+        addAddress(name, address);
+        mViewAdapter.refreshList();
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -105,6 +153,25 @@ public class AddressBookFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Address item);
+
     }
+
+    public void addAddress(final String inputName, final String inputAddress){
+
+        realm.executeTransaction(new Realm.Transaction(){
+
+            @Override
+            public void execute(Realm realm) {
+                Address address = realm.createObject(Address.class);
+
+                address.setAddress(inputAddress);
+                address.setName(inputName);
+            }
+        });
+
+        Log.i("AddressBookFragment", "saved name : " + inputName + "saved Address : " + inputAddress);
+    }
+
+
 }
