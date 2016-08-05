@@ -33,10 +33,12 @@ public class AddressBookRecyclerViewAdapter extends RecyclerView.Adapter<Address
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        Log.i(LOGTAG, "onBindViewHolder");
         holder.mItem = mValues.get(position);
-        holder.mNameView.setText(mValues.get(position).getName());
-        holder.mAddressView.setText(mValues.get(position).getAddress());
-
+        holder.mNameView.setText(holder.mItem.getName());
+        Log.i(LOGTAG, "name : "+ holder.mItem.getName());
+        holder.mAddressView.setText(holder.mItem.getAddress());
+        Log.i(LOGTAG, "addresss : "+ holder.mItem.getAddress());
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

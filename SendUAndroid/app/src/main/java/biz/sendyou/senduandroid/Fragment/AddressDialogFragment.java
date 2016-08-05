@@ -54,6 +54,7 @@ public class AddressDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 ((AddressDialogInteract)getFragmentManager().findFragmentById(R.id.mainFrameLayout)).addressSaveButtonClick(nameEditText.getText().toString(), addressEditText.getText().toString());
+                dismiss();
             }
         });
 

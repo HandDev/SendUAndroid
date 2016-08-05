@@ -14,7 +14,8 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="biz.sendyou.senduandroid.Fragment.AddressBookFragment"
-    tools:listitem="@layout/fragment_address" />
+    tools:listitem="@layout/fragment_address"
+    />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/address_fab"
         android:layout_width="wrap_content"
