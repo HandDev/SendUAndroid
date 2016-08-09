@@ -19,6 +19,10 @@ import biz.sendyou.senduandroid.R;
  */
 public class SendCheckFragment extends Fragment {
 
+    public static SendCheckFragment newInstance(){
+        return new SendCheckFragment();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_send_check_list, container, false);
