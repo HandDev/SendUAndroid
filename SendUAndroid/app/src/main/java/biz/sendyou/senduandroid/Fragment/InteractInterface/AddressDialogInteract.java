@@ -6,4 +6,5 @@ package biz.sendyou.senduandroid.Fragment.InteractInterface;
 public interface AddressDialogInteract {
 
     public void addressSaveButtonClick(String name, String address);
+
 }

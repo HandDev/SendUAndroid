@@ -49,11 +49,19 @@ public class AddressDialogFragment extends DialogFragment {
         final AppCompatEditText addressEditText = (AppCompatEditText) view.findViewById(R.id.address_dialog_address_edittext);
 
         Button saveButton = (Button)view.findViewById(R.id.address_dialog_save_button);
+        Button cancelButton = (Button)view.findViewById(R.id.address_dialog_cancel_button);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((AddressDialogInteract)getFragmentManager().findFragmentById(R.id.mainFrameLayout)).addressSaveButtonClick(nameEditText.getText().toString(), addressEditText.getText().toString());
+                dismiss();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 dismiss();
             }
         });

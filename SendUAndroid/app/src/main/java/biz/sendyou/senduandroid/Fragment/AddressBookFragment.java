@@ -39,6 +39,7 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private AddressBookRecyclerViewAdapter mViewAdapter;
+    private AddressDialogFragment addressDialogFragment;
 
     private Realm realm;
     private RealmConfiguration realmConfig;
@@ -110,8 +111,8 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getFragmentManager();
-                AddressDialogFragment addressDialogFragment = new AddressDialogFragment();
-                addressDialogFragment.show(fm, "test");
+                addressDialogFragment = new AddressDialogFragment();
+                addressDialogFragment.show(fm, "Add Address");
             }
         });
 
@@ -178,6 +179,8 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
     }
 
     private void resetAdapter(){
+
+        Log.i(LOGTAG, "resetAdapter");
         items.clear();
 
         addressRealmResults = realm.where(Address.class).findAll();
