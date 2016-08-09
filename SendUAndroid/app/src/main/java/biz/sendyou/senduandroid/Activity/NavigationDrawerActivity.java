@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
+import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
 import biz.sendyou.senduandroid.Fragment.dummy.DummyContent;
 import biz.sendyou.senduandroid.R;
@@ -93,7 +94,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_storage) {
 
         } else if (id == R.id.nav_sendcheck) {
-
+            changeFragmentToSendCheck();
         } else if (id == R.id.nav_settings) {
 
         }
@@ -108,6 +109,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
     }
 
+    //TODO Refactor methods
     private void changeFragmentToAddressBook(){
         AddressBookFragment addressBookFragment = AddressBookFragment.newInstance(1);
 
@@ -122,6 +124,14 @@ public class NavigationDrawerActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,mFrontFragment);
         fragmentTransaction.commit();
+    }
+
+    private void changeFragmentToSendCheck(){
+        SendCheckFragment mSendCheckFragment = SendCheckFragment.newInstance();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainFrameLayout,mSendCheckFragment);
+        fragmentTransaction.commit();
+
     }
 
     @Override
