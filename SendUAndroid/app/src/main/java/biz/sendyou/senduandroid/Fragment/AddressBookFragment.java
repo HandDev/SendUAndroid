@@ -43,6 +43,8 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
     private Realm realm;
     private RealmConfiguration realmConfig;
     private RealmResults<Address> addressRealmResults;
+    private List<Address> items;
+    private RecyclerView recyclerView;
 
     private String LOGTAG = "AddressBookFragment";
 
@@ -78,21 +80,21 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
         Log.i("AddressBookFragment", "onCreateView");
         View view = inflater.inflate(R.layout.fragment_address_list, container, false);
 
+        Context context = view.getContext();
+        recyclerView = (RecyclerView) view.findViewById(R.id.address_list);
+        items = new ArrayList<>();
+
         //Create Realm Configuration
         realmConfig = new RealmConfiguration.Builder(getContext()).build();
         realm = Realm.getInstance(realmConfig);
 
         addressRealmResults = realm.where(Address.class).findAll();
 
-        List<Address> items = new ArrayList<>();
-
         for (Object addressRealmResult : addressRealmResults) {
             Log.i(LOGTAG, "addItems");
             items.add((Address)addressRealmResult);
         }
 
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.address_list);
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -171,7 +173,21 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
         });
 
         Log.i("AddressBookFragment", "saved name : " + inputName + "saved Address : " + inputAddress);
+
+        resetAdapter();
     }
 
+    private void resetAdapter(){
+        items.clear();
+
+        addressRealmResults = realm.where(Address.class).findAll();
+        for (Object addressRealmResult : addressRealmResults) {
+            Log.i(LOGTAG, "addItems");
+            items.add((Address)addressRealmResult);
+        }
+
+        mViewAdapter = new AddressBookRecyclerViewAdapter(items, mListener);
+        recyclerView.setAdapter(mViewAdapter);
+    }
 
 }
