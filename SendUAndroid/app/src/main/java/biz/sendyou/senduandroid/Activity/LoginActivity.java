@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.drivemode.android.typeface.TypefaceHelper;
+
 import org.w3c.dom.Text;
 
 import biz.sendyou.senduandroid.R;
@@ -37,13 +39,10 @@ public class LoginActivity extends AppCompatActivity {
         TextView mTextView02 = (TextView)findViewById(R.id.SignUp1);
         TextView mTextView03 = (TextView)findViewById(R.id.SignUp2);
 
-        Typeface Regular = Typeface.createFromAsset(getAssets(),"NotoSansCJKkr-Regular.otf");
-        Typeface Bold = Typeface.createFromAsset(getAssets(),"NotoSansCJKkr-Bold.otf");
-        Typeface Light = Typeface.createFromAsset(getAssets(),"NotoSansCJKkr-Light.otf");
 
-        mTextView01.setTypeface(Regular);
-        mTextView02.setTypeface(Light);
-        mTextView03.setTypeface(Bold);
+        TypefaceHelper.getInstance().setTypeface(mTextView01,"NotoSansCJKkr-Regular.otf");
+        TypefaceHelper.getInstance().setTypeface(mTextView02,"NotoSansCJKkr-Light.otf");
+        TypefaceHelper.getInstance().setTypeface(mTextView03,"NotoSansCJKkr-Bold.otf");
 
         mTextView03.setOnClickListener(new View.OnClickListener() {
             @Override
