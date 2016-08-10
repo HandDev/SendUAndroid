@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activity.NavigationDrawerActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Activity.OnBoardingActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.SplashActivity">
