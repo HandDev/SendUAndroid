@@ -60,14 +60,7 @@ public class FrontFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_front, container, false);
 
-        //Event Handling
-        ImageView startImageView = (ImageView) view.findViewById(R.id.startImageView);
-        startImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"start!", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
 
         return view;
