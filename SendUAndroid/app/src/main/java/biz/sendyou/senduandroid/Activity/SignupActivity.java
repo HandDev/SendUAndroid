@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.drivemode.android.typeface.TypefaceHelper;
+
 import biz.sendyou.senduandroid.R;
 
 public class SignupActivity extends AppCompatActivity {
@@ -21,10 +23,8 @@ public class SignupActivity extends AppCompatActivity {
         TextView mTextView01 = (TextView)findViewById(R.id.sendu);
         TextView mTextView02 = (TextView)findViewById(R.id.Select);
 
-        Typeface Regular = Typeface.createFromAsset(getAssets(),"NotoSansCJKkr-Regular.otf");
-
-        mTextView01.setTypeface(Regular);
-        mTextView02.setTypeface(Regular);
+        TypefaceHelper.getInstance().setTypeface(mTextView01,"NotoSansCJKkr-Regular.otf");
+        TypefaceHelper.getInstance().setTypeface(mTextView02,"NotoSansCJKkr-Regular.otf");
 
     }
 }
