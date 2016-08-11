@@ -18,6 +18,7 @@
                 android:background="#F2517A"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 android:contextClickable="true" />
+
         <FrameLayout
             android:id="@+id/mainFrameLayout"
             android:layout_width="match_parent"

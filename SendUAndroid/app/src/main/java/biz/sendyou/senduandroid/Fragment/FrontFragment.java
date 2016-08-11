@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Fragment;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.youth.banner.Banner;
 
 import biz.sendyou.senduandroid.R;
 
@@ -59,10 +62,15 @@ public class FrontFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_front, container, false);
+        Banner mBanner;
 
 
-
-
+        String[] images = getResources().getStringArray(R.array.url);
+        String[] titles = getResources().getStringArray(R.array.title);
+        mBanner = (Banner)view.findViewById(R.id.Banner);
+        mBanner.setImages(images);
+        mBanner.setBannerTitle(titles);
+        mBanner.setDelayTime(3000);
         return view;
     }
 
