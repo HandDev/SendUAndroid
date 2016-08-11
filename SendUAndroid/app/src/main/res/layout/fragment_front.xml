@@ -1,15 +1,18 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context="biz.sendyou.senduandroid.Fragment.FrontFragment"
-    android:id="@+id/Bb">
+    android:id="@+id/Bb"
+    android:orientation="horizontal"
+    android:background="#FFFFFF">
 
     <com.youth.banner.Banner
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/Banner"
         android:layout_width="match_parent"
         android:layout_height="190dp"
+        app:default_image="@drawable/doing"
         app:indicator_margin="8dp"
         app:indicator_drawable_selected="@drawable/dot_focused"
         app:indicator_drawable_unselected="@drawable/dot_normal"
@@ -18,8 +21,42 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="45dp"
+        android:layout_below="@+id/Banner"
+        android:background="#FFFFFF">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="[이벤트]"
+            android:id="@+id/event_name"
+            android:layout_gravity="left|center_vertical"
+            android:textColor="#F13968"
+            android:layout_marginLeft="15dp"
+            android:textSize="16.725sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="SendU 출시기념 이벤트"
+            android:id="@+id/event_text1"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="16.725sp"
+            android:textColor="#363535"
+            android:layout_marginLeft="85dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="2016-07-30"
+            android:id="@+id/event_date"
+            android:layout_gravity="right|center_vertical"
+            android:textColor="#F13968"
+            android:textSize="14.725sp"
+            android:layout_marginRight="10dp" />
     </FrameLayout>
 
-</FrameLayout>
+</RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
 
 import biz.sendyou.senduandroid.R;
 
@@ -66,11 +67,10 @@ public class FrontFragment extends Fragment {
 
 
         String[] images = getResources().getStringArray(R.array.url);
-        String[] titles = getResources().getStringArray(R.array.title);
         mBanner = (Banner)view.findViewById(R.id.Banner);
         mBanner.setImages(images);
-        mBanner.setBannerTitle(titles);
         mBanner.setDelayTime(3000);
+        //mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);  API 고장남 ㅅㅂ
         return view;
     }
 

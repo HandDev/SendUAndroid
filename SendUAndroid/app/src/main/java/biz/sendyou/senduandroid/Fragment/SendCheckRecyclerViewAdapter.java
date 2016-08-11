@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.drivemode.android.typeface.TypefaceHelper;
+
 import java.util.List;
 
 import biz.sendyou.senduandroid.Fragment.item.SendCheckItem;
@@ -49,6 +51,13 @@ public class SendCheckRecyclerViewAdapter extends RecyclerView.Adapter<SendCheck
         holder.mDate_num.setText(mItems.get(position).getDate());
         holder.mDueDate_num.setText(mItems.get(position).getDueDate());
         holder.mStatusImg.setImageResource(mItems.get(position).getStatus_img());
+        TypefaceHelper.getInstance().setTypeface(holder.mReceiver_bold,"NotoSansCJKkr-Bold.otf");
+        TypefaceHelper.getInstance().setTypeface(holder.mReceiver_regular,"NotoSansCJKkr-Regular.otf");
+        TypefaceHelper.getInstance().setTypeface(holder.mAddress,"NotoSansCJKkr-Regular.otf");
+        TypefaceHelper.getInstance().setTypeface(holder.mDate,"NotoSansCJKkr-Regular.otf");
+        TypefaceHelper.getInstance().setTypeface(holder.mDate_num,"NotoSansCJKkr-Regular.otf");
+        TypefaceHelper.getInstance().setTypeface(holder.mDueDate,"NotoSansCJKkr-Regular.otf");
+        TypefaceHelper.getInstance().setTypeface(holder.mDueDate_num,"NotoSansCJKkr-Regular.otf");
     }
 
     @Override
@@ -69,8 +78,6 @@ public class SendCheckRecyclerViewAdapter extends RecyclerView.Adapter<SendCheck
 
         public ViewHolder(View item) {
             super(item);
-//            mTypeface_bold  = Typeface.createFromAsset(item.getContext().getAssets(), "NotoSansCJKkr-Bold.otf");
-//            mTypeface_regular  = Typeface.createFromAsset(item.getContext().getAssets(), "NotoSansCJKkr-Regular.otf");
             mAddress = (TextView) item.findViewById(R.id.sendcheck_address);
             mReceiver_bold = (TextView) item.findViewById(R.id.sendcheck_receiver_bold);
             mReceiver_regular = (TextView) item.findViewById(R.id.sendcheck_receiver_regular);
