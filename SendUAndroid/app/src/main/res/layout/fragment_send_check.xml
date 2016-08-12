@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -23,13 +23,14 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout">
                     <TextView
                         android:id="@+id/sendcheck_date"
                         android:textColor="#f13968"
@@ -46,21 +47,28 @@
                 <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/sendcheck_due_date"
-                        android:text="발송예정일:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#f13968" />
-                    <TextView
-                        android:id="@+id/sendcheck_due_date_num"
-                        android:textColor="#aaaaaa"
-                        android:text="2016.07.26"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </LinearLayout>
+                    android:layout_height="wrap_content"></LinearLayout>
+
+                <TextView
+                    android:id="@+id/sendcheck_due_date_num"
+                    android:textColor="#aaaaaa"
+                    android:text="2016.07.26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/sendcheck_due_date"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/sendcheck_due_date"
+                    android:text="발송예정일:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f13968"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/linearLayout"
+                    android:layout_marginLeft="15dp" />
+            </RelativeLayout>
             <TextView
                 android:id="@+id/sendcheck_address"
                 android:paddingTop="10dp"
@@ -68,8 +76,10 @@
                 android:background="@drawable/send_check_list"
                 android:textColor="#565656"
                 android:text="(15255) 경기도 안산시 단원구 사세충열로 94 한국디지털미디어고등학교"
+                android:layout_toEndOf="@+id/sendcheck_date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp" />
             <LinearLayout
                 android:paddingTop="10dp"
                 android:orientation="horizontal"
@@ -174,4 +184,4 @@
     <!--android:layout_height="wrap_content" />-->
     <!--</LinearLayout>-->
     <!--</LinearLayout>-->
-</LinearLayout>
+</RelativeLayout>

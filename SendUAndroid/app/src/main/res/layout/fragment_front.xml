@@ -12,7 +12,6 @@
         android:id="@+id/Banner"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        app:default_image="@drawable/doing"
         app:indicator_margin="8dp"
         app:indicator_drawable_selected="@drawable/dot_focused"
         app:indicator_drawable_unselected="@drawable/dot_normal"
@@ -57,6 +56,14 @@
             android:textColor="#F13968"
             android:textSize="14.725sp"
             android:layout_marginRight="10dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
     </FrameLayout>
 
 </RelativeLayout>
