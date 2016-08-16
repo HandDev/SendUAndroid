@@ -35,4 +35,5 @@ dependencies {
     compile 'com.drivemode:TypefaceHelper:1.2.0@aar'
     compile 'com.youth.banner:banner:1.2.3'
     compile 'com.youth.banner:banner:+'
+    compile 'com.infstory:switch-preference-compat:1.0.+'
 }
