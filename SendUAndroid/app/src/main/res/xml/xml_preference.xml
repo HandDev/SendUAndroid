@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="시스템 설정">
+        <com.cgollner.unclouded.preferences.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="setting_alarm"
+            android:title="알림 설정"/>
+        <Preference
+            android:key="setting"
+            android:title="설정"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="기타 설정">
+        <Preference
+            android:key="setting_sns"
+            android:title="SNS 연동 설정"/>
+        <Preference
+            android:key="cash_delete"
+            android:title="캐시 삭제"/>
+        <Preference
+            android:key="member_left"
+            android:title="회원 탈퇴"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
