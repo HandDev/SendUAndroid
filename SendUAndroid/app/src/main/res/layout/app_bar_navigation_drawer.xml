@@ -18,6 +18,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="#F2517A"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
+                android:titleTextColor="#FFFFFFFF"
+                app:titleTextColor="#FFFFFFFF"
                 android:contextClickable="true" />
 
         <FrameLayout
