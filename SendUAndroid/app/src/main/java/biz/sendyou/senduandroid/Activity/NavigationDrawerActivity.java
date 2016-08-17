@@ -1,12 +1,8 @@
 package biz.sendyou.senduandroid.Activity;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,8 +15,8 @@ import android.view.MenuItem;
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
 import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
+import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
-import biz.sendyou.senduandroid.Fragment.dummy.DummyContent;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.datatype.Address;
 
@@ -102,7 +98,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_sendcheck) {
             changeFragmentToSendCheck();
         } else if (id == R.id.nav_settings) {
-
+            changeFragmentToSetting();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -136,6 +132,14 @@ public class NavigationDrawerActivity extends AppCompatActivity
         SendCheckFragment mSendCheckFragment = SendCheckFragment.newInstance();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,mSendCheckFragment);
+        fragmentTransaction.commit();
+
+    }
+
+    private void changeFragmentToSetting() {
+        SettingFragment mSettingFragment = SettingFragment.newInstance();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainFrameLayout,mSettingFragment);
         fragmentTransaction.commit();
 
     }
