@@ -67,6 +67,11 @@ public class CreateCardFragment extends Fragment {
         }
     }
 
+    public void showDialog() {
+        InputDialogFragment Dialog = new InputDialogFragment();
+        Dialog.show(getFragmentManager(), "DialogFragment");
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -83,6 +88,7 @@ public class CreateCardFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
