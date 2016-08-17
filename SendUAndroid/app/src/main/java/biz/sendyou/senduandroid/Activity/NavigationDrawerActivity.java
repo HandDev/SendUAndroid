@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
+import biz.sendyou.senduandroid.Fragment.SelectTemplateFragment;
 import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
@@ -114,7 +115,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
     //TODO Refactor methods
     private void changeFragmentToAddressBook(){
         AddressBookFragment addressBookFragment = AddressBookFragment.newInstance(1);
-
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,addressBookFragment);
         fragmentTransaction.commit();
@@ -133,13 +133,20 @@ public class NavigationDrawerActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,mSendCheckFragment);
         fragmentTransaction.commit();
-
     }
 
     private void changeFragmentToSetting() {
         SettingFragment mSettingFragment = SettingFragment.newInstance();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,mSettingFragment);
+        fragmentTransaction.commit();
+
+    }
+
+    private void changeFragmentToSelectTemplate() {
+        SelectTemplateFragment mSelectTemplateFragment = SelectTemplateFragment.newInstance();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainFrameLayout, mSelectTemplateFragment);
         fragmentTransaction.commit();
 
     }
