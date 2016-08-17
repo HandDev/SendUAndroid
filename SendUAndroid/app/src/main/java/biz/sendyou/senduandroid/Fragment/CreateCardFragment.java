@@ -20,6 +20,8 @@ import biz.sendyou.senduandroid.R;
  */
 public class CreateCardFragment extends Fragment {
 
+    CanvasLayout canvasLayout;
+
     private OnFragmentInteractionListener mListener;
 
     public CreateCardFragment() {
@@ -29,7 +31,7 @@ public class CreateCardFragment extends Fragment {
 
     public static CreateCardFragment newInstance() {
         CreateCardFragment fragment = new CreateCardFragment();
-
+        fragment.setRetainInstance(true);
         return fragment;
     }
 
@@ -39,9 +41,11 @@ public class CreateCardFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_create_crad, container, false);
+        canvasLayout = (CanvasLayout)view.findViewById(R.id.canvas);
+
         return inflater.inflate(R.layout.fragment_create_crad, container, false);
     }
 
