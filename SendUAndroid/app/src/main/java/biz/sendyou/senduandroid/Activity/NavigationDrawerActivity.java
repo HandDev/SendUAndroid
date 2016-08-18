@@ -14,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
+import biz.sendyou.senduandroid.Fragment.CreateCardFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
+import biz.sendyou.senduandroid.Fragment.SelectTemplateFragment;
 import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
@@ -22,7 +24,7 @@ import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.datatype.Address;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +99,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_order) {
             // Handle the camera action
-            changeFragmentToFront();
+            changeFragmentToSelectTemplate();
         } else if (id == R.id.nav_address) {
             changeFragmentToAddressBook();
         } else if (id == R.id.nav_storage) {
@@ -121,7 +123,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
     //TODO Refactor methods
     private void changeFragmentToAddressBook(){
         AddressBookFragment addressBookFragment = AddressBookFragment.newInstance(1);
-
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,addressBookFragment);
         fragmentTransaction.commit();
@@ -140,13 +141,20 @@ public class NavigationDrawerActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,mSendCheckFragment);
         fragmentTransaction.commit();
-
     }
 
     private void changeFragmentToSetting() {
         SettingFragment mSettingFragment = SettingFragment.newInstance();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,mSettingFragment);
+        fragmentTransaction.commit();
+
+    }
+
+    private void changeFragmentToSelectTemplate() {
+        CreateCardFragment mSelectTemplateFragment = CreateCardFragment.newInstance();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainFrameLayout, mSelectTemplateFragment);
         fragmentTransaction.commit();
 
     }
