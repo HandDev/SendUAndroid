@@ -25,6 +25,7 @@ import biz.sendyou.senduandroid.datatype.Address;
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener {
 
+    private FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
             mFragmentTransaction.replace(R.id.mainFrameLayout,mFrontFragment);
             mFragmentTransaction.commit();
         }
+
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
     }
 
     @Override
@@ -116,7 +119,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
     //TODO Refactor methods
     private void changeFragmentToAddressBook(){
         AddressBookFragment addressBookFragment = AddressBookFragment.newInstance(1);
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,addressBookFragment);
         fragmentTransaction.commit();
 
@@ -124,21 +126,18 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
     private void changeFragmentToFront(){
         FrontFragment mFrontFragment = FrontFragment.newInstance();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,mFrontFragment);
         fragmentTransaction.commit();
     }
 
     private void changeFragmentToSendCheck(){
         SendCheckFragment mSendCheckFragment = SendCheckFragment.newInstance();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,mSendCheckFragment);
         fragmentTransaction.commit();
     }
 
     private void changeFragmentToSetting() {
         SettingFragment mSettingFragment = SettingFragment.newInstance();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,mSettingFragment);
         fragmentTransaction.commit();
 
@@ -146,7 +145,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
     private void changeFragmentToSelectTemplate() {
         CreateCardFragment mSelectTemplateFragment = CreateCardFragment.newInstance();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout, mSelectTemplateFragment);
         fragmentTransaction.commit();
 
