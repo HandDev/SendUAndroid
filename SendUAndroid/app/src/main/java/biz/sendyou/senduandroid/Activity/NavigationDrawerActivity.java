@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -30,6 +31,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("                     SendU");
+        toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
 
@@ -48,6 +50,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
             mFragmentTransaction.replace(R.id.mainFrameLayout,mFrontFragment);
             mFragmentTransaction.commit();
         }
+    }
+
+    public void setToolBarTitle(String title) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(title);
     }
 
     @Override
