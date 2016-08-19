@@ -22,10 +22,6 @@ public class InputDialogFragment extends DialogFragment {
 
     public InputDialogFragment() { }
 
-    private static FragmentManager fragmentManager = getSupportFragmentManager();
-    public static FragmentManager getSupportFragmentManager(){
-        return getSupportFragmentManager();
-    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

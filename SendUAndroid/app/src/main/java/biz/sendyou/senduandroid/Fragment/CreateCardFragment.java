@@ -1,6 +1,7 @@
 package biz.sendyou.senduandroid.Fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +11,9 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import biz.sendyou.senduandroid.R;
 
@@ -22,7 +25,7 @@ import biz.sendyou.senduandroid.R;
  * Use the {@link CreateCardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateCardFragment extends Fragment {
+public class CreateCardFragment extends Fragment implements View.OnClickListener {
 
 
     private OnFragmentInteractionListener mListener;
@@ -47,17 +50,13 @@ public class CreateCardFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_create_crad, container, false);
 
-        TextView tv = (TextView) view.findViewById(R.id.card_text);
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                InputDialogFragment Dialog = new InputDialogFragment();
-                Dialog.show(getFragmentManager(), "DialogFragment");
-            }
-        });
+        TextView card_text = (TextView)view.findViewById(R.id.card_text);
+        ImageView card_image = (ImageView)view.findViewById(R.id.card_image);
+
+        card_text.setOnClickListener(this);
+        card_image.setOnClickListener(this);
 
         return view;
     }
@@ -69,7 +68,19 @@ public class CreateCardFragment extends Fragment {
         }
     }
 
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.card_image :
+                Toast.makeText(getContext(), "card_image Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.card_text :
+                Toast.makeText(getContext(), "card_text Clicked", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
+                alertBuilder.show();
+                break;
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
