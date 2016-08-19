@@ -1,12 +1,16 @@
 package biz.sendyou.senduandroid.Fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import biz.sendyou.senduandroid.R;
 
@@ -20,7 +24,6 @@ import biz.sendyou.senduandroid.R;
  */
 public class CreateCardFragment extends Fragment {
 
-    CanvasLayout canvasLayout;
 
     private OnFragmentInteractionListener mListener;
 
@@ -32,6 +35,8 @@ public class CreateCardFragment extends Fragment {
     public static CreateCardFragment newInstance() {
         CreateCardFragment fragment = new CreateCardFragment();
         fragment.setRetainInstance(true);
+
+        //set suportFragment Manager
         return fragment;
     }
 
@@ -44,9 +49,17 @@ public class CreateCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_create_crad, container, false);
-        canvasLayout = (CanvasLayout)view.findViewById(R.id.canvas);
 
-        return inflater.inflate(R.layout.fragment_create_crad, container, false);
+        TextView tv = (TextView) view.findViewById(R.id.card_text);
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputDialogFragment Dialog = new InputDialogFragment();
+                Dialog.show(getFragmentManager(), "DialogFragment");
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -55,6 +68,8 @@ public class CreateCardFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
+
 
     @Override
     public void onAttach(Context context) {
@@ -65,11 +80,6 @@ public class CreateCardFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
-
-    public void showDialog() {
-        InputDialogFragment Dialog = new InputDialogFragment();
-        Dialog.show(getFragmentManager(), "DialogFragment");
     }
 
     @Override
