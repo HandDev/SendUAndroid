@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_stageone"
+        android:src="@drawable/stage_1"
+        android:layout_marginTop="61dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/templatelist"
+    android:name="biz.sendyou.senduandroid.Fragment.SelectTemplateFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    app:layoutManager="LinearLayoutManager"
+    tools:context="biz.sendyou.senduandroid.Fragment.SelectTemplateFragment"
+    tools:listitem="@layout/fragment_template"
+    android:layout_below="@+id/card_stageone"
+    android:layout_centerHorizontal="true" />
+    <ImageView
+        android:id="@+id/nextstep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/nextbutton"
+        android:scaleType="fitCenter"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/templatelist"
+        android:layout_toEndOf="@+id/card_stageone"
+        android:clickable="true"/>
+
+    <ImageView
+        android:id="@+id/previousstep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/backbutton"
+        android:scaleType="fitCenter"
+
+        android:layout_alignBottom="@+id/templatelist"
+        android:layout_alignStart="@+id/templatelist"
+        android:layout_toStartOf="@+id/card_stageone" />
+</RelativeLayout>
