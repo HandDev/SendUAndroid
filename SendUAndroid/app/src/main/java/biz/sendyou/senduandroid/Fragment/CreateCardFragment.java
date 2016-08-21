@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +24,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import biz.sendyou.senduandroid.R;
 
@@ -77,11 +84,26 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
         }
     }
 
+    public Bitmap viewToBitmap(View view) {
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        return bitmap;
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.card_image :
                 Toast.makeText(getContext(), "card_image Clicked", Toast.LENGTH_SHORT).show();
+                try {
+                    FileOutputStream output = new FileOutputStream(Environment.getExternalStorageDirectory() + "/path/to/file.jpg");
+                    viewToBitmap(view).compress(Bitmap.CompressFormat.JPEG, 100, output);
+                }catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.card_text :
                 Toast.makeText(getContext(), "card_text Clicked", Toast.LENGTH_SHORT).show();
