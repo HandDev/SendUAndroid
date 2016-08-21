@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
@@ -80,6 +81,29 @@ public class SelectTemplateFragment extends Fragment {
             }
             recyclerView.setAdapter(new TemplateRecyclerViewAdapter(dummyTemplates, mListener));
             Log.i(LOGTAG, "setRecyclerViewAdapter");
+
+        ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);
+        ImageView nextButton = (ImageView)view.findViewById(R.id.nextstep);
+
+        //Evnet handling
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FrontFragment frontFragment = FrontFragment.newInstance();
+
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, frontFragment).commit();
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(LOGTAG, "nextButton Clicked");
+                CreateCardFragment createCardFragment = CreateCardFragment.newInstance();
+
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, createCardFragment).commit();
+            }
+        });
 
         return view;
     }
