@@ -1,10 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.CreateCardFragment"
-    android:id="@+id/fragment_create_card">
-
+    >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_stagetwo"
+        android:src="@drawable/stage_1"
+        android:layout_marginTop="61dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <FrameLayout
+        android:id="@+id/fragment_create_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <!-- TODO: Update blank fragment layout -->
 
     <ImageView
@@ -41,4 +52,25 @@
             android:onClick="imageClicked" />
     </LinearLayout>
 
-</FrameLayout>
+        <ImageView
+            android:layout_margin="15dp"
+            android:id="@+id/nextstep"
+            android:layout_width="170dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/nextbutton"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            android:clickable="true"
+            android:layout_gravity="right|bottom" />
+
+        <ImageView
+            android:layout_margin="15dp"
+            android:id="@+id/previousstep"
+            android:layout_width="170dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/backbutton"
+            android:scaleType="fitCenter"
+            android:layout_gravity="left|bottom" />
+    </FrameLayout>
+
+</RelativeLayout>
