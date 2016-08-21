@@ -15,7 +15,9 @@
     <FrameLayout
         android:id="@+id/fragment_create_card"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/card_stageone"
+        android:layout_marginTop="20dp">
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -32,7 +34,7 @@
     android:layout_centerHorizontal="true" />
     <ImageView
         android:id="@+id/nextstep"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:layout_width="170dp"
         android:layout_height="45dp"
         android:src="@mipmap/nextbutton"
@@ -42,7 +44,7 @@
 
     <ImageView
         android:id="@+id/previousstep"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:layout_width="170dp"
         android:layout_height="45dp"
         android:src="@mipmap/backbutton"
