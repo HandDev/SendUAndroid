@@ -1,28 +1,23 @@
 package biz.sendyou.senduandroid.Fragment;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.datatype.CardTemplate;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,13 +54,45 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_create_crad, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_card, container, false);
 
         card_text = (TextView)view.findViewById(R.id.card_text);
         card_image = (ImageView)view.findViewById(R.id.card_image);
 
         card_text.setOnClickListener(this);
         card_image.setOnClickListener(this);
+
+        ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);
+        ImageView nextButton = (ImageView)view.findViewById(R.id.nextstep);
+
+        //Event handling
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO Remove Creating DummyData code
+                List<CardTemplate> templates = new ArrayList<>();
+
+                CardTemplate dummy1 = new CardTemplate();
+                dummy1.setDrawable(getResources().getDrawable(R.drawable.arrow));
+
+                templates.add(dummy1);
+
+                SelectTemplateFragment selectTemplateFragment = SelectTemplateFragment.newInstance(templates,2);
+
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, selectTemplateFragment).commit();
+
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OrderCardFragment orderCardFragment = OrderCardFragment.newInstance();
+
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, orderCardFragment).commit();
+
+            }
+        });
 
         return view;
     }
