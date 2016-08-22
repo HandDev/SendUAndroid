@@ -29,7 +29,7 @@ public class Http extends Thread {
     private static String TAG = "Http";
 
     /**********  File Path *************/
-    final String uploadFile = "storage/emulated/0/file.jpg";//경로를 모르겠으면, 갤러리 어플리케이션 가서 메뉴->상세 정보
+    final String uploadFile = "/template/file.jpg";//경로를 모르겠으면, 갤러리 어플리케이션 가서 메뉴->상세 정보
 
     @Override
     public void run() {
