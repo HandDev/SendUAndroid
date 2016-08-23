@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     <FrameLayout
-        android:id="@+id/fragment_create_card"
+        android:id="@+id/order_input_relativelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <!-- TODO: Update blank fragment layout -->

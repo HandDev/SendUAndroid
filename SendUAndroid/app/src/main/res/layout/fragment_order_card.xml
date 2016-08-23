@@ -1,13 +1,137 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="biz.sendyou.senduandroid.Fragment.OrderCardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_stagethree"
+        android:src="@drawable/stage_3"
+        android:layout_marginTop="61dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
-</FrameLayout>
+    <TextView
+        android:textColor="#f25175"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="받으시는 분의 주소지를 입력하세요"
+        android:layout_below="@+id/card_stagethree"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:id="@+id/order_input_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_stagethree"
+        android:layout_marginTop="35dp">
+
+        <TextView
+            android:id="@+id/order_textview_name"
+            android:text="수신자 이름"
+            android:textColor="#f25175"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"/>
+
+        <EditText
+            android:id="@+id/order_edittext_name"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_alignTop="@+id/order_textview_name"
+            android:layout_toEndOf="@+id/order_textview_address_one" />
+
+        <TextView
+            android:id="@+id/order_textview_address_one"
+            android:text="배송 주소"
+            android:textSize="15sp"
+            android:textColor="#f25175"
+            android:layout_below="@id/order_textview_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"/>
+
+        <EditText
+            android:id="@+id/order_edittext_address_one"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/order_textview_address_one"
+            android:layout_alignStart="@+id/order_edittext_name"
+            android:layout_alignEnd="@+id/order_edittext_name" />
+
+        <TextView
+            android:id="@+id/order_textview_address_two"
+            android:text="상세 주소"
+            android:textColor="#f25175"
+            android:textSize="15sp"
+            android:layout_below="@id/order_textview_address_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"/>
+
+        <EditText
+            android:textSize="15sp"
+            android:id="@+id/order_edittext_address_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/order_textview_address_two"
+            android:layout_alignStart="@+id/order_edittext_name"
+            android:layout_alignEnd="@+id/order_edittext_address_one" />
+
+        <TextView
+            android:id="@+id/order_textview_phone"
+            android:text="전화번호"
+            android:textColor="#f25175"
+            android:textSize="15sp"
+            android:layout_below="@id/order_textview_address_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            />
+
+        <EditText
+            android:id="@+id/order_edittext_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/order_textview_phone"
+            android:layout_alignStart="@+id/order_edittext_name"
+            android:layout_alignEnd="@+id/order_edittext_address_two" />
+
+
+        </RelativeLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+            <ImageView
+                android:layout_margin="10dp"
+                android:id="@+id/completeorder"
+                android:layout_width="170dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ordercomplete"
+                android:scaleType="fitCenter"
+                android:layout_alignParentBottom="true"
+                android:clickable="true"
+                android:layout_gravity="right|bottom" />
+
+            <ImageView
+                android:layout_margin="10dp"
+                android:id="@+id/previousstep"
+                android:layout_width="170dp"
+                android:layout_height="45dp"
+                android:src="@mipmap/backbutton"
+                android:scaleType="fitCenter"
+                android:layout_gravity="left|bottom" />
+        </FrameLayout>
+</RelativeLayout>
