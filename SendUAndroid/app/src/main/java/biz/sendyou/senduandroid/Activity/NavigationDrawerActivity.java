@@ -13,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.CreateCardFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
@@ -22,9 +25,10 @@ import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.datatype.Address;
+import biz.sendyou.senduandroid.datatype.CardTemplate;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +127,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout,addressBookFragment);
         fragmentTransaction.commit();
-
     }
 
     private void changeFragmentToFront(){
@@ -149,15 +152,34 @@ public class NavigationDrawerActivity extends AppCompatActivity
     }
 
     private void changeFragmentToSelectTemplate() {
-        CreateCardFragment mSelectTemplateFragment = CreateCardFragment.newInstance();
+        //TODO Remove Creating DummyData code
+        List<CardTemplate> templates = new ArrayList<>();
+
+        CardTemplate dummy1 = new CardTemplate();
+        dummy1.setDrawable(getResources().getDrawable(R.drawable.arrow));
+
+        templates.add(dummy1);
+
+        SelectTemplateFragment mSelectTemplateFragment = SelectTemplateFragment.newInstance(templates ,2);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFrameLayout, mSelectTemplateFragment);
         fragmentTransaction.commit();
+    }
 
+    private void changeFragmentToCreateCrad() {
+        CreateCardFragment mCreateCardFragment = CreateCardFragment.newInstance();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainFrameLayout, mCreateCardFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onListFragmentInteraction(Address item) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(CardTemplate item) {
 
     }
 }
