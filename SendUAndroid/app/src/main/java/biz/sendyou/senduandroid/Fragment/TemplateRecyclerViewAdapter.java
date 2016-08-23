@@ -76,6 +76,8 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
            // mContentView = (TextView) view.findViewById(R.id.content);
 
             mImageView = (ImageView)view.findViewById(R.id.templateimage);
+
+
         }
 
         //TODO ReWrite toString method
