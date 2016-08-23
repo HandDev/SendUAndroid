@@ -62,6 +62,7 @@ public class SettingFragment extends Fragment {
         getActivity().getFragmentManager().beginTransaction()
                 .replace(R.id.content, new SettingsFragment())
                 .commit();
+        getActivity().setTitle("설정");
     }
 
     public static SettingFragment newInstance() {

@@ -18,21 +18,15 @@
         android:layout_height="match_parent">
     <!-- TODO: Update blank fragment layout -->
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/imageView12"
-        android:layout_gravity="center"
-        android:src="@drawable/mn_wallpaper"
-        android:scaleType="fitXY" />
-
-    <LinearLayout
+        <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/main_view"
+            android:background="@drawable/mn_wallpaper">
 
-        <TextView
+            <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -50,7 +44,8 @@
             android:src="@drawable/sample_image"
             android:scaleType="fitXY"
             android:onClick="imageClicked" />
-    </LinearLayout>
+
+        </LinearLayout>
 
         <ImageView
             android:layout_margin="10dp"

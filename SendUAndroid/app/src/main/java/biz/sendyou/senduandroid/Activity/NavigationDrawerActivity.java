@@ -52,10 +52,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         if(savedInstanceState == null) {
-            FrontFragment mFrontFragment = FrontFragment.newInstance();
-            FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-            mFragmentTransaction.replace(R.id.mainFrameLayout,mFrontFragment);
-            mFragmentTransaction.commit();
+            changeFragmentToFront();
         }
     }
 

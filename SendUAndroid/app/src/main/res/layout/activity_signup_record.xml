@@ -23,7 +23,7 @@
         android:layout_height="0.3dp"
         android:id="@+id/imageView3"
         android:src="@drawable/la_line1"
-        android:layout_above="@+id/autoLogin"
+        android:layout_above="@+id/checkBox2"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp" />
 
@@ -42,7 +42,7 @@
         android:id="@+id/imageView5"
         android:src="@drawable/la_pwicon"
         android:layout_above="@+id/imageView3"
-        android:layout_alignStart="@+id/loginButton"
+        android:layout_alignStart="@+id/copybutton"
         android:layout_marginBottom="5dp" />
 
     <ImageView
@@ -54,8 +54,8 @@
         android:layout_alignStart="@+id/imageView5" />
 
     <Button
-        android:id="@+id/loginButton"
-        android:text = "로그인"
+        android:id="@+id/copybutton"
+        android:text = "회원가입"
         android:background="@drawable/la_loginbutton3"
         android:layout_width="287.5dp"
         android:layout_height="42.5dp"
@@ -64,8 +64,7 @@
         android:textColor="@color/abc_background_cache_hint_selector_material_light"
         android:layout_marginBottom="74dp"
         android:layout_above="@+id/SignUp1"
-        android:layout_centerHorizontal="true"
-        android:onClick="loginBtn" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,9 +87,10 @@
         android:letterSpacing="0"
         android:textColor="#000000"
         android:id="@+id/autologin"
+        android:visibility="invisible"
         android:textSize="12.8225sp"
         android:layout_gravity="center_horizontal|top"
-        android:layout_above="@+id/loginButton"
+        android:layout_above="@+id/copybutton"
         android:layout_alignStart="@+id/imageView5"
         android:layout_marginBottom="15dp" />
 
@@ -105,7 +105,8 @@
         android:textSize="12.8225sp"
         android:letterSpacing="0"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/SendU" />
+        android:layout_alignEnd="@+id/SendU"
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -118,38 +119,42 @@
         android:textSize="12.8225sp"
         android:layout_alignTop="@+id/SignUp1"
         android:layout_toEndOf="@+id/plane"
-        android:textColor="#F13968" />
+        android:textColor="#F13968"
+        android:visibility="invisible" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme = "@style/checkBoxStyle"
-        android:id="@+id/autoLogin"
+        android:visibility="invisible"
+        android:id="@+id/checkBox2"
         android:checked="true"
-        android:layout_alignBottom="@+id/loginButton"
+        android:layout_alignBottom="@+id/copybutton"
         android:layout_toEndOf="@+id/autologin"
         android:layout_marginBottom="50dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/idedit"
+        android:id="@+id/editText"
+        android:hint="e-mail"
         android:layout_alignBottom="@+id/imageView2"
         android:layout_alignStart="@+id/SignUp1"
         android:layout_below="@+id/SendU"
         android:background="@android:color/transparent"
-        android:layout_alignEnd="@+id/loginButton" />
+        android:layout_alignEnd="@+id/copybutton" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/pwedit"
+        android:hint="password"
+        android:id="@+id/editText2"
         android:background="@android:color/transparent"
-        android:layout_above="@+id/autoLogin"
-        android:layout_alignStart="@+id/idedit"
+        android:layout_above="@+id/checkBox2"
+        android:layout_alignStart="@+id/editText"
         android:layout_alignTop="@+id/imageView5"
-        android:layout_alignEnd="@+id/idedit" />
+        android:layout_alignEnd="@+id/editText" />
 
 </RelativeLayout>

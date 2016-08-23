@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Util.Http;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 
 /**
@@ -37,6 +38,8 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
     private ImageView card_image;
 
     private OnFragmentInteractionListener mListener;
+
+    private final String upLoadServerUri = "sendukor7833.cloudapp.net:8080/PostCardManageSystem_war/file/upload";//서버컴퓨터의 ip주소
 
     public CreateCardFragment() {
         // Required empty public constructor
@@ -120,9 +123,20 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
         switch (view.getId()) {
             case R.id.card_image :
                 Toast.makeText(getContext(), "card_image Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), Environment.getExternalStorageDirectory().toString(), Toast.LENGTH_SHORT).show();
                 try {
-                    FileOutputStream output = new FileOutputStream(Environment.getExternalStorageDirectory() + "/path/to/file.jpg");
-                    viewToBitmap(view).compress(Bitmap.CompressFormat.JPEG, 100, output);
+                    FileOutputStream output = new FileOutputStream(Environment.getExternalStorageDirectory() + "/file.jpg");
+                    View image_view = (View)getActivity().findViewById(R.id.main_view);
+                    viewToBitmap(image_view).compress(Bitmap.CompressFormat.JPEG, 100, output);
+                    output.close();
+                    try {
+                        if (upLoadServerUri != null && upLoadServerUri.length() > 0) {
+                            new Http().start();
+                        } else {
+                            //throw new Exception(getString(R.string.bad_url));
+                        }
+                    } catch (Exception e) {
+                    }
                 }catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
