@@ -8,9 +8,12 @@ import android.widget.TextView;
 
 import com.drivemode.android.typeface.TypefaceHelper;
 
+import biz.sendyou.senduandroid.Async.UserInfo;
 import biz.sendyou.senduandroid.R;
 
 public class SignupActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,9 @@ public class SignupActivity extends AppCompatActivity {
 
         TypefaceHelper.getInstance().setTypeface(mTextView01,"NotoSansCJKkr-Regular.otf");
         TypefaceHelper.getInstance().setTypeface(mTextView02,"NotoSansCJKkr-Regular.otf");
+
+
+
 
     }
 }

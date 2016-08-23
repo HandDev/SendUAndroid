@@ -1,6 +1,5 @@
 package biz.sendyou.senduandroid.Fragment;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,12 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
 
+import biz.sendyou.senduandroid.Activity.NavigationDrawerActivity;
 import biz.sendyou.senduandroid.R;
 
 /**
@@ -67,9 +64,10 @@ public class FrontFragment extends Fragment {
 
 
         String[] images = getResources().getStringArray(R.array.url);
-        mBanner = (Banner)view.findViewById(R.id.Banner);
+        mBanner = (Banner) view.findViewById(R.id.Banner);
         mBanner.setImages(images);
         mBanner.setDelayTime(3000);
+
         //mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);  API 고장남 ㅅㅂ
         return view;
     }
@@ -103,7 +101,7 @@ public class FrontFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
+     * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
