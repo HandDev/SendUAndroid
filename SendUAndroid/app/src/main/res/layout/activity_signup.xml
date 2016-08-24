@@ -49,15 +49,14 @@
         android:id="@+id/gmail_btn"
         android:layout_below="@+id/Select"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        />
+        android:layout_marginTop="30dp" />
 
     <com.facebook.login.widget.LoginButton
+        xmlns:facebook="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fb_btn"
         android:layout_width="287.5dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        xmlns:facebook="http://schemas.android.com/apk/res-auto"
         facebook:com_facebook_login_text=" "
         android:layout_below="@+id/gmail_btn"
         android:layout_alignStart="@+id/gmail_btn"
@@ -72,5 +71,13 @@
         android:layout_below="@+id/fb_btn"
         android:layout_alignStart="@+id/fb_btn"
         android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:layout_width="287.5dp"
+        android:layout_height="42.5dp"
+        android:id="@+id/gmail_btnn"
+        android:src="@drawable/gmail_btn"
+        android:layout_alignTop="@+id/gmail_btn"
+        android:layout_alignStart="@+id/gmail_btn" />
 
 </RelativeLayout>

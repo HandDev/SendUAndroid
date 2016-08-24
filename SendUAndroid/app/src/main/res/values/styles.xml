@@ -30,6 +30,9 @@
 
     <style name="checkBoxStyle" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <item name="colorAccent">#F13968</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
 </resources>
