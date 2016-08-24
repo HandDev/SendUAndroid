@@ -10,7 +10,7 @@ public class UserInfo {
     private String phone;
     private String address;
     private String id;
-    private String birth;
+    private String birth_month, birth_date;
 
     public String getUserName() {
         return userName;
@@ -58,11 +58,19 @@ public class UserInfo {
         this.id = id;
     }
 
-    public String getBirth() {
-        return birth;
-    }
-    public void setBirth(String birth) {
-        this.birth = birth;
+    public String getBirth_month() {
+        return birth_month;
     }
 
+    public void setBirth_month(String birth_month) {
+        this.birth_month = birth_month;
+    }
+
+    public String getBirth_date() {
+        return birth_date;
+    }
+
+    public void setBirth_date(String birth_date) {
+        this.birth_date = birth_date;
+    }
 }
