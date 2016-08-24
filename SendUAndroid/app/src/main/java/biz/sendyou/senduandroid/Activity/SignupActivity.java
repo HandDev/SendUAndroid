@@ -30,7 +30,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import biz.sendyou.senduandroid.R;
 
-public class SignupActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class SignupActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     private CallbackManager mCallBackManager;
     private LoginButton mFacebookSignInButton;
@@ -48,6 +48,8 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_signup);
         mCallBackManager = CallbackManager.Factory.create();
+
+        findViewById(R.id.gmail_btn).setOnClickListener(this);
 
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.hide();
@@ -89,21 +91,31 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
         });
 
 
-        mGoogleSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.gmail_btn:
                 if (mGoogleApiClient == null) {
                     GoogleSignInOptions mGoogleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                             .requestEmail()
                             .build();
 
-                    mGoogleApiClient = new GoogleApiClient.Builder(SignupActivity.this)
+                    mGoogleApiClient = new GoogleApiClient.Builder(view.getContext())
+                            //.enableAutoManage(SignupActivity.mSignupActivity, this)
                             .addApi(Auth.GOOGLE_SIGN_IN_API, mGoogleSignInOptions)
                             .build();
                 }
-                googleSignIn();
-            }
-        });
+
+                if (view.getId() == R.id.gmail_btn) {
+                    googleSignIn();
+                } else {
+
+                }
+                break;
+        }
     }
 
     private void googleSignIn() {
@@ -117,7 +129,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
         if (requestCode == mSignInRequestCode) {
             Log.e(LOGTAG,String.valueOf(requestCode));
             Log.e(LOGTAG,String.valueOf(mSignInRequestCode));
-            GoogleSignInResult mGoogleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            GoogleSignInResult mGoogleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data); //수정필요한듯
             Log.e(LOGTAG,Boolean.toString(mGoogleSignInResult.isSuccess()));
             if (mGoogleSignInResult.isSuccess()) {
                 GoogleSignInAccount mGoogleSignInAccount = mGoogleSignInResult.getSignInAccount();

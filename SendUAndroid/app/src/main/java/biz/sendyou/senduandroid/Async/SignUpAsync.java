@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import biz.sendyou.senduandroid.Util.HttpUtil;
+import biz.sendyou.senduandroid.datatype.UserInfo;
 
 /**
  * Created by JunHyeok on 2016. 8. 23..
