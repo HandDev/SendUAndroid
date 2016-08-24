@@ -9,6 +9,8 @@ public class UserInfo {
     private String email;
     private String phone;
     private String address;
+    private String id;
+    private String birth;
 
     public String getUserName() {
         return userName;
@@ -47,6 +49,20 @@ public class UserInfo {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getID() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 
 }
