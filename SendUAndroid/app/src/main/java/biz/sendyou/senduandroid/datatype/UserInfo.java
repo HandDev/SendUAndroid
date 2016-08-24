@@ -1,4 +1,4 @@
-package biz.sendyou.senduandroid.Async;
+package biz.sendyou.senduandroid.datatype;
 
 /**
  * Created by JunHyeok on 2016. 8. 21..

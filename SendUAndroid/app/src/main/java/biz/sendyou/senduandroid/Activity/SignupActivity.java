@@ -1,6 +1,5 @@
 package biz.sendyou.senduandroid.Activity;
 
-import android.graphics.Typeface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.widget.TextView;
 
 import com.drivemode.android.typeface.TypefaceHelper;
 
-import biz.sendyou.senduandroid.Async.UserInfo;
 import biz.sendyou.senduandroid.R;
 
 public class SignupActivity extends AppCompatActivity {

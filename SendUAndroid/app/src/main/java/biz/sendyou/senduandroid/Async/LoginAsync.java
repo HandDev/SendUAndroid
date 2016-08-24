@@ -5,9 +5,6 @@ package biz.sendyou.senduandroid.Async;
  */
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.facebook.login.LoginManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +13,7 @@ import java.io.IOException;
 
 import biz.sendyou.senduandroid.Activity.OnBoardingActivity;
 import biz.sendyou.senduandroid.Util.HttpUtil;
-import biz.sendyou.senduandroid.Async.UserInfo;
+import biz.sendyou.senduandroid.datatype.UserInfo;
 
 public class LoginAsync extends AsyncTask<UserInfo, Void, Void> {
 
