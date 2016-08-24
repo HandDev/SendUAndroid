@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "115006107038",
+    "project_id": "firebase-sendu"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115006107038:android:fefc4d43c4c9af8f",
+        "android_client_info": {
+          "package_name": "biz.sendyou.senduandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "115006107038-bsoof0vqmopn9bha9civ5g9tblfqtkoi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "biz.sendyou.senduandroid",
+            "certificate_hash": "4019C83A526B460E1370831E11815451EB43D31C"
+          }
+        },
+        {
+          "client_id": "115006107038-c23sesmt2mqll47esm6ukbdhpqfkhh4b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0H0h9SxK5WxhiTJlcQlkniaaA4tB1A74"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
