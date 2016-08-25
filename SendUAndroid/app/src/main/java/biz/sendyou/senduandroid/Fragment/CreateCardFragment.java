@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,7 +126,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
                 Toast.makeText(getContext(), "card_image Clicked", Toast.LENGTH_SHORT).show();
                 Toast.makeText(getContext(), Environment.getExternalStorageDirectory().toString(), Toast.LENGTH_SHORT).show();
                 try {
-                    FileOutputStream output = new FileOutputStream(Environment.getExternalStorageDirectory() + "/file.jpg");
+                    FileOutputStream output = new FileOutputStream("/template/file.jpg");
                     View image_view = (View)getActivity().findViewById(R.id.main_view);
                     viewToBitmap(image_view).compress(Bitmap.CompressFormat.JPEG, 100, output);
                     output.close();
