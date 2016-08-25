@@ -54,11 +54,13 @@ public class OnBoardingActivity extends Activity {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, NavigationDrawerActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         onBoardingContext.startActivity(mIntent);
+
     }
 
     public void callLoginActivity() {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, LoginActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         onBoardingContext.startActivity(mIntent);
+        finish();
     }
 }

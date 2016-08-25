@@ -10,6 +10,11 @@
         <item name="android:typeface">serif</item>
     </style>
 
+    <style name="AppTheme.Splash" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
