@@ -36,15 +36,6 @@
             android:gravity="center_vertical|center_horizontal"
             android:onClick="textClicked" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/card_image"
-            android:layout_weight="1"
-            android:src="@drawable/sample_image"
-            android:scaleType="fitXY"
-            android:onClick="imageClicked" />
-
         </LinearLayout>
 
         <ImageView
