@@ -65,10 +65,8 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
         View view = inflater.inflate(R.layout.fragment_create_card, container, false);
 
         card_text = (TextView)view.findViewById(R.id.card_text);
-        card_image = (ImageView)view.findViewById(R.id.card_image);
 
         card_text.setOnClickListener(this);
-        card_image.setOnClickListener(this);
 
         ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);
         ImageView nextButton = (ImageView)view.findViewById(R.id.nextstep);
@@ -122,7 +120,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.card_image :
+            /*case R.id.card_image :
                 Toast.makeText(getContext(), "card_image Clicked", Toast.LENGTH_SHORT).show();
                 Toast.makeText(getContext(), Environment.getExternalStorageDirectory().toString(), Toast.LENGTH_SHORT).show();
                 try {
@@ -143,7 +141,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                break;
+                break;*/
             case R.id.card_text :
                 Toast.makeText(getContext(), "card_text Clicked", Toast.LENGTH_SHORT).show();
 
