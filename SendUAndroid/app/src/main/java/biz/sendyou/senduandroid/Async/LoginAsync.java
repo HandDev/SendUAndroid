@@ -28,7 +28,7 @@ public class LoginAsync extends AsyncTask<UserInfo, Void, Void> {
 
         UserInfo userInfo = (UserInfo)params[0];
 
-        URL = URL + "?username=" + userInfo.getEmail() + "&password=" + userInfo.getPassword();
+        URL = URL + "?email=" + userInfo.getEmail() + "&password=" + userInfo.getPassword();
 
         try {
             /*Map<String,String> param = new HashMap<>();
@@ -36,6 +36,7 @@ public class LoginAsync extends AsyncTask<UserInfo, Void, Void> {
             param.put("password",userInfo.getPassword());
             res = HttpUtil.postForm(URL,param);
             Log.e(LOGTAG,res);*/
+            Log.e(LOGTAG,URL);
             res = HttpUtil.get(URL);
         } catch (IOException e) {
             e.printStackTrace();
