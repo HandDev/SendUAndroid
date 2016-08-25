@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "408826853770",
+    "project_id": "sendu-83251"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408826853770:android:fefc4d43c4c9af8f",
+        "android_client_info": {
+          "package_name": "biz.sendyou.senduandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "408826853770-lctehj3hl0fv0f9ugub62k5fa3b22gke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "biz.sendyou.senduandroid",
+            "certificate_hash": "69943D1445FEBD6D45D6F9B127939FAD9D7743DF"
+          }
+        },
+        {
+          "client_id": "408826853770-rpmp3mnvj7m89c3fnv57iq4po96osb1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK4gl_vt28kHT6dGDcdTs6iYH1MEeD_10"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
