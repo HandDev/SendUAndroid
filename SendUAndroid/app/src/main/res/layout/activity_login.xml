@@ -19,24 +19,6 @@
         android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="320dp"
-        android:layout_height="0.3dp"
-        android:id="@+id/imageView3"
-        android:src="@drawable/la_line1"
-        android:layout_above="@+id/autoLogin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp" />
-
-    <ImageView
-        android:layout_width="320dp"
-        android:layout_height="0.3dp"
-        android:id="@+id/imageView2"
-        android:src="@drawable/la_line2"
-        android:layout_alignBottom="@+id/imageView4"
-        android:layout_alignStart="@+id/imageView3"
-        android:layout_marginBottom="-5dp" />
-
-    <ImageView
         android:layout_width="17.5dp"
         android:layout_height="17.5dp"
         android:id="@+id/imageView4"
@@ -49,9 +31,9 @@
         android:layout_height="17.5dp"
         android:id="@+id/imageView5"
         android:src="@drawable/la_pwicon"
-        android:layout_above="@+id/imageView3"
         android:layout_alignStart="@+id/loginButton"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:layout_above="@+id/autoLogin" />
 
     <Button
         android:id="@+id/loginButton"
@@ -137,12 +119,13 @@
         android:inputType="text"
         android:maxLines="1"
         android:lines="1"
-        android:layout_alignBottom="@+id/imageView2"
         android:background="@android:color/transparent"
         android:layout_alignEnd="@+id/loginButton"
         android:layout_alignTop="@+id/imageView4"
         android:layout_alignStart="@+id/SignUp1"
-        android:textCursorDrawable="@drawable/color_cursor"/>
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:layout_alignBottom="@+id/imageView4"
+        android:drawableBottom="@drawable/la_line1"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -157,16 +140,7 @@
         android:layout_alignStart="@+id/idedit"
         android:layout_alignTop="@+id/imageView5"
         android:layout_alignEnd="@+id/idedit"
-        android:textCursorDrawable="@drawable/color_cursor"/>
-
-    <FrameLayout
-        android:layout_width="360dp"
-        android:layout_height="match_parent"
-        android:layout_toStartOf="@+id/SendU"
-        android:layout_below="@+id/SendU"
-        android:layout_above="@+id/autoLogin"
-        android:layout_alignParentEnd="true">
-
-    </FrameLayout>
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:drawableBottom="@drawable/la_line1"/>
 
 </RelativeLayout>
