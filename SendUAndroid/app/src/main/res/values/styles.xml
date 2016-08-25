@@ -28,8 +28,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
+    <style name="checkBoxStyle" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <item name="colorAccent">#F13968</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
 </resources>

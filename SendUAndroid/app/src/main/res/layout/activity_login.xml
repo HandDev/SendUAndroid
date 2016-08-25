@@ -23,7 +23,7 @@
         android:layout_height="0.3dp"
         android:id="@+id/imageView3"
         android:src="@drawable/la_line1"
-        android:layout_above="@+id/checkBox2"
+        android:layout_above="@+id/autoLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp" />
 
@@ -39,22 +39,22 @@
     <ImageView
         android:layout_width="17.5dp"
         android:layout_height="17.5dp"
-        android:id="@+id/imageView5"
-        android:src="@drawable/la_pwicon"
-        android:layout_above="@+id/imageView3"
-        android:layout_alignStart="@+id/copybutton"
-        android:layout_marginBottom="5dp" />
-
-    <ImageView
-        android:layout_width="17.5dp"
-        android:layout_height="17.5dp"
         android:id="@+id/imageView4"
         android:src="@drawable/la_idicon"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/imageView5" />
 
+    <ImageView
+        android:layout_width="17.5dp"
+        android:layout_height="17.5dp"
+        android:id="@+id/imageView5"
+        android:src="@drawable/la_pwicon"
+        android:layout_above="@+id/imageView3"
+        android:layout_alignStart="@+id/loginButton"
+        android:layout_marginBottom="5dp" />
+
     <Button
-        android:id="@+id/copybutton"
+        android:id="@+id/loginButton"
         android:text = "로그인"
         android:background="@drawable/la_loginbutton3"
         android:layout_width="287.5dp"
@@ -64,7 +64,8 @@
         android:textColor="@color/abc_background_cache_hint_selector_material_light"
         android:layout_marginBottom="74dp"
         android:layout_above="@+id/SignUp1"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="loginBtn" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -89,7 +90,7 @@
         android:id="@+id/autologin"
         android:textSize="12.8225sp"
         android:layout_gravity="center_horizontal|top"
-        android:layout_above="@+id/copybutton"
+        android:layout_above="@+id/loginButton"
         android:layout_alignStart="@+id/imageView5"
         android:layout_marginBottom="15dp" />
 
@@ -123,32 +124,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme = "@style/checkBoxStyle"
-        android:id="@+id/checkBox2"
+        android:id="@+id/autoLogin"
         android:checked="true"
-        android:layout_alignBottom="@+id/copybutton"
+        android:layout_alignBottom="@+id/loginButton"
         android:layout_toEndOf="@+id/autologin"
         android:layout_marginBottom="50dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/idedit"
+        android:inputType="text"
+        android:maxLines="1"
+        android:lines="1"
         android:layout_alignBottom="@+id/imageView2"
-        android:layout_alignStart="@+id/SignUp1"
-        android:layout_below="@+id/SendU"
         android:background="@android:color/transparent"
-        android:layout_alignEnd="@+id/copybutton" />
+        android:layout_alignEnd="@+id/loginButton"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_alignStart="@+id/SignUp1"
+        android:textCursorDrawable="@drawable/color_cursor"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:maxLines="1"
+        android:lines="1"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/pwedit"
         android:background="@android:color/transparent"
-        android:layout_above="@+id/checkBox2"
-        android:layout_alignStart="@+id/editText"
+        android:layout_above="@+id/autoLogin"
+        android:layout_alignStart="@+id/idedit"
         android:layout_alignTop="@+id/imageView5"
-        android:layout_alignEnd="@+id/editText" />
+        android:layout_alignEnd="@+id/idedit"
+        android:textCursorDrawable="@drawable/color_cursor"/>
+
+    <FrameLayout
+        android:layout_width="360dp"
+        android:layout_height="match_parent"
+        android:layout_toStartOf="@+id/SendU"
+        android:layout_below="@+id/SendU"
+        android:layout_above="@+id/autoLogin"
+        android:layout_alignParentEnd="true">
+
+    </FrameLayout>
 
 </RelativeLayout>

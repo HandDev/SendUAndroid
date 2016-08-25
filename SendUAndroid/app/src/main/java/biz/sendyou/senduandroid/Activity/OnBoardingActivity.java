@@ -1,9 +1,12 @@
 package biz.sendyou.senduandroid.Activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 
 import biz.sendyou.senduandroid.R;
@@ -11,6 +14,10 @@ import biz.sendyou.senduandroid.R;
 public class OnBoardingActivity extends Activity {
 
     private ViewPager mViewPager;
+    private SharedPreferences pref;
+    private String LOGTAG = "OnBoardingActivity";
+    public static OnBoardingActivity onBoardingActivity;
+    public static Context onBoardingContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +25,38 @@ public class OnBoardingActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_on_boarding);
 
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        pref = getSharedPreferences("pref",MODE_PRIVATE);
 
-        ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getLayoutInflater());
-        mViewPager.setAdapter(mViewPagerAdapter);
+        Log.i(LOGTAG, "login pref :" + pref.getBoolean("login", false));
+        Log.i(LOGTAG, "tutorial pref : " + pref.getBoolean("tutorial", true));
+        if(!pref.getBoolean("login",false) && pref.getBoolean("tutorial", true)) {
+
+            Log.i(LOGTAG, "Show Tutorial");
+            mViewPager = (ViewPager) findViewById(R.id.viewpager);
+
+            ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getLayoutInflater());
+            mViewPager.setAdapter(mViewPagerAdapter);
+
+        }else if(!pref.getBoolean("login", false) && !pref.getBoolean("tutorial", true)){
+            Log.i(LOGTAG, "Show Login");
+            callLoginActivity();
+        }
+        else{
+            callNavigationDrawerActivity();
+        }
+
+
+    }
+
+    public static void callNavigationDrawerActivity() {
+        Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, NavigationDrawerActivity.class);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        onBoardingContext.startActivity(mIntent);
+    }
+
+    public void callLoginActivity() {
+        Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, LoginActivity.class);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        onBoardingContext.startActivity(mIntent);
     }
 }

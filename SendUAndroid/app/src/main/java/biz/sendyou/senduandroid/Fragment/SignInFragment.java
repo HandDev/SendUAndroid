@@ -46,7 +46,7 @@ import biz.sendyou.senduandroid.Util.HttpUtil;
  */
 public class SignInFragment extends Fragment implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-    String URL = "http://sendyou.biz/userAuth/signup/insertData";
+    //String URL = "http://sendyou.biz/userAuth/signup/insertData";
     String res = "";
 
     private int mSignInRequestCode = 0;
@@ -106,7 +106,7 @@ public class SignInFragment extends Fragment implements View.OnClickListener, Go
                             Map<String, String> params = new HashMap();
                             params.put("username", "하준혁하아하아");
                             params.put("password", loginResult.getAccessToken().getUserId());
-                            res = HttpUtil.postForm(URL, params);
+                            //res = HttpUtil.postForm(URL, params);
                             Log.w("Log",res);
                         } catch (Exception e){
                             Log.w("Log",e);
