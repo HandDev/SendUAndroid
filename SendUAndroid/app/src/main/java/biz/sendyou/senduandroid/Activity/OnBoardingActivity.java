@@ -25,6 +25,8 @@ public class OnBoardingActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_on_boarding);
 
+        onBoardingActivity = this;
+        onBoardingContext = getApplicationContext();
         pref = getSharedPreferences("pref",MODE_PRIVATE);
 
         Log.i(LOGTAG, "login pref :" + pref.getBoolean("login", false));

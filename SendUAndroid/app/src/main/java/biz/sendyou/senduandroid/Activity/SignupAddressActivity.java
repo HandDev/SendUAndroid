@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -24,6 +25,9 @@ public class SignupAddressActivity extends AppCompatActivity {
     private TextView mTextView01,mTextView02;
     private EditText mEditText01;
 
+    public static SignupAddressActivity signupAddressActivity;
+    public static Context signupAddressActivityContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,8 @@ public class SignupAddressActivity extends AppCompatActivity {
         mEditText01 = (EditText)findViewById(R.id.signup_input_address_edittext);
 
         mImageView01 = (ImageView) findViewById(R.id.signup_enter_imageview);
+        signupAddressActivity = this;
+        signupAddressActivityContext = getApplicationContext();
 
 
 
@@ -62,4 +68,15 @@ public class SignupAddressActivity extends AppCompatActivity {
         password = mIntent.getStringExtra("password");
         birth = mIntent.getStringExtra("birth");
     }
+
+    public static void callLoginActivity() {
+
+        Intent mIntent = new Intent(SignupAddressActivity.signupAddressActivity, LoginActivity.class);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        signupAddressActivityContext.startActivity(mIntent);
+    }
+
+
+
+
 }
