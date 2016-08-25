@@ -10,9 +10,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +42,8 @@ import biz.sendyou.senduandroid.datatype.CardTemplate;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener{
+
+    final int DEFAULT_LODING_COUNT = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,10 +170,12 @@ public class NavigationDrawerActivity extends AppCompatActivity
         //TODO Remove Creating DummyData code
         List<CardTemplate> templates = new ArrayList<>();
 
-        CardTemplate dummy1 = new CardTemplate();
-        dummy1.setDrawable(getResources().getDrawable(R.drawable.arrow));
+        String result = SendByHttp(); // 메시지를 서버에 보냄
+        String[][] parsedData = jsonParserList(result);
 
-        templates.add(dummy1);
+        for(int i = 1;i <= DEFAULT_LODING_COUNT ;i++) {
+            templates.add(new CardTemplate());
+        }
 
         SelectTemplateFragment mSelectTemplateFragment = SelectTemplateFragment.newInstance(templates ,2);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -183,4 +199,70 @@ public class NavigationDrawerActivity extends AppCompatActivity
     public void onListFragmentInteraction(CardTemplate item) {
 
     }
+
+    private String SendByHttp() {
+
+        String URL = "https://api.imgur.com/3/album/DevHand";
+
+        DefaultHttpClient client = new DefaultHttpClient();
+        try {
+            HttpPost post = new HttpPost(URL);
+
+            HttpParams params = client.getParams();
+            HttpConnectionParams.setConnectionTimeout(params, 5000);
+            HttpConnectionParams.setSoTimeout(params, 5000);
+
+            HttpResponse response = client.execute(post);
+            BufferedReader bufreader = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent(),
+                            "utf-8"));
+
+            String line = null;
+            String result = "";
+
+            while ((line = bufreader.readLine()) != null) {
+                result += line;
+            }
+
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            client.getConnectionManager().shutdown();
+            return "";
+        }
+
+    }
+
+    public String[][] jsonParserList(String pRecvServerPage) {
+
+        Log.i("서버에서 받은 전체 내용 : ", pRecvServerPage);
+
+        try {
+            JSONObject json = new JSONObject(pRecvServerPage);
+            JSONArray jArr = json.getJSONArray("List");
+
+            String[] jsonName = {"msg1", "msg2", "msg3"};
+            String[][] parseredData = new String[jArr.length()][jsonName.length];
+            for (int i = 0; i < jArr.length(); i++) {
+                json = jArr.getJSONObject(i);
+                if(json != null) {
+                    for(int j = 0; j < jsonName.length; j++) {
+                        parseredData[i][j] = json.getString(jsonName[j]);
+                    }
+                }
+            }
+
+            for(int i=0; i<parseredData.length; i++){
+                Log.i("JSON을 분석한 데이터 "+i+" : ", parseredData[i][0]);
+                Log.i("JSON을 분석한 데이터 "+i+" : ", parseredData[i][1]);
+                Log.i("JSON을 분석한 데이터 "+i+" : ", parseredData[i][2]);
+            }
+
+            return parseredData;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
