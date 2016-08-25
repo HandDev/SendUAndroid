@@ -121,11 +121,11 @@
         android:lines="1"
         android:background="@android:color/transparent"
         android:layout_alignEnd="@+id/loginButton"
-        android:layout_alignTop="@+id/imageView4"
         android:layout_alignStart="@+id/SignUp1"
         android:textCursorDrawable="@drawable/color_cursor"
-        android:layout_alignBottom="@+id/imageView4"
-        android:drawableBottom="@drawable/la_line1"/>
+        android:drawableBottom="@drawable/la_line1"
+        android:layout_below="@+id/SendU"
+        android:layout_alignBottom="@+id/imageView4" />
 
     <EditText
         android:layout_width="wrap_content"

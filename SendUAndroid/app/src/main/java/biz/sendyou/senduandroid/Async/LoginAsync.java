@@ -21,11 +21,14 @@ public class LoginAsync extends AsyncTask<UserInfo, Void, Void> {
     private String res ="";
     private final String LOGTAG = "LOGINASYNC";
     private boolean isAutoLogin = false;
+    private UserInfo userInfo = null;
 
     @Override
     protected Void doInBackground(UserInfo... params) {
 
         UserInfo userInfo = (UserInfo)params[0];
+
+        URL = URL + "?username=" + userInfo.getEmail() + "&password=" + userInfo.getPassword();
 
         try {
             /*Map<String,String> param = new HashMap<>();

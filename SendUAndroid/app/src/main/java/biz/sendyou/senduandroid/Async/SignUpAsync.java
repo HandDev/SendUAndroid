@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import biz.sendyou.senduandroid.Activity.OnBoardingActivity;
+import biz.sendyou.senduandroid.Activity.SignupAddressActivity;
 import biz.sendyou.senduandroid.Util.HttpUtil;
 import biz.sendyou.senduandroid.datatype.UserInfo;
 
@@ -21,6 +22,8 @@ import biz.sendyou.senduandroid.datatype.UserInfo;
 public class SignUpAsync extends AsyncTask<UserInfo, Void, Void> {
     private String URL = "http://sendyou.biz/user/signup/insertData";
     private String res ="";
+    private final String LOGTAG = "LOGINASYNC";
+
     @Override
     protected Void doInBackground(UserInfo... params) {
 
@@ -49,13 +52,14 @@ public class SignUpAsync extends AsyncTask<UserInfo, Void, Void> {
         Boolean isSignUpSuccess = false;
         try {
             JSONObject jsonObject = new JSONObject(res);
+            Log.e(LOGTAG,res);
             isSignUpSuccess = jsonObject.getBoolean("success");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         if(isSignUpSuccess) {
-            OnBoardingActivity.callNavigationDrawerActivity();
+            SignupAddressActivity.callLoginActivity();
         }
 
         //Toast.makeText(MainActivity.MainActivityContext, res, Toast.LENGTH_LONG).show();
