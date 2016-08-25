@@ -11,6 +11,7 @@ public class UserInfo {
     private String address;
     private String id;
     private String birth_month, birth_date;
+    private String birth;
 
     public String getUserName() {
         return userName;
@@ -58,19 +59,12 @@ public class UserInfo {
         this.id = id;
     }
 
-    public String getBirth_month() {
-        return birth_month;
+
+    public String getBirth() {
+        return birth;
     }
 
-    public void setBirth_month(String birth_month) {
-        this.birth_month = birth_month;
-    }
-
-    public String getBirth_date() {
-        return birth_date;
-    }
-
-    public void setBirth_date(String birth_date) {
-        this.birth_date = birth_date;
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 }

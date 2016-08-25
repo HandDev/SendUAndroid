@@ -62,7 +62,9 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
 
         mFacebookSignInButton = (LoginButton) findViewById(R.id.fb_btn);
         mGoogleSignInButton = (SignInButton) findViewById(R.id.gmail_btn);
+        ImageView mEmailSignInButton = (ImageView) findViewById(R.id.email_btn);
         mFacebookSignInButton.setReadPermissions("email");
+        mFacebookSignInButton.setReadPermissions("public_profile");
         //ImageView mGGButton = (ImageView) findViewById(R.id.gmail_btn);
         //ImageView mEmButton = (ImageView) findViewById(R.id.email_btn);
 
@@ -72,11 +74,18 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
         mGoogleSignInButton.setBackgroundResource(R.drawable.sg_gmail);
         //mGoogleSignInButton.setVisibility(View.INVISIBLE);
 
+        mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callSignActivity();
+            }
+        });
+
         mFacebookSignInButton.registerCallback(mCallBackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 final Profile mProfile = Profile.getCurrentProfile();
-                callSignUpProcessActivity();
+                callSignUpInputActivity();
             }
 
             @Override
@@ -133,7 +142,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
             Log.e(LOGTAG,Boolean.toString(mGoogleSignInResult.isSuccess()));
             if (mGoogleSignInResult.isSuccess()) {
                 GoogleSignInAccount mGoogleSignInAccount = mGoogleSignInResult.getSignInAccount();
-                callSignUpProcessActivity();
+                callSignUpInputActivity();
             }
         }
     }
@@ -143,9 +152,14 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
 
     }
 
-    public static void callSignUpProcessActivity() {
-        Intent mIntent = new Intent(SignupActivity.mSignupActivity, SignUpProcessActivity.class);
+    public static void callSignUpInputActivity() {
+        Intent mIntent = new Intent(SignupActivity.mSignupActivity, SignupInputActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         signupContext.startActivity(mIntent);
+    }
+
+    private void callSignActivity() {
+        Intent mIntent = new Intent(SignupActivity.this,SignupInputActivity.class);
+        startActivity(mIntent);
     }
 }

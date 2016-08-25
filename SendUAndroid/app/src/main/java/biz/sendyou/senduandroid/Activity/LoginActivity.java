@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"Hello",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    userInfo.setUserName(String.valueOf(mEditText01.getText()));
+                    userInfo.setEmail(String.valueOf(mEditText01.getText()));
                     userInfo.setPassword(String.valueOf(mEditText02.getText()));
 
                     LoginAsync loginAsync = new LoginAsync();

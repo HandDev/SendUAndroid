@@ -1,12 +1,17 @@
 package biz.sendyou.senduandroid.Async;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import biz.sendyou.senduandroid.Activity.OnBoardingActivity;
 import biz.sendyou.senduandroid.Util.HttpUtil;
 import biz.sendyou.senduandroid.datatype.UserInfo;
 
@@ -27,9 +32,7 @@ public class SignUpAsync extends AsyncTask<UserInfo, Void, Void> {
             param.put("userName",userInfo.getUserName());
             param.put("password",userInfo.getPassword());
             param.put("email",userInfo.getEmail());
-            param.put("phone",userInfo.getPhone());
             param.put("address",userInfo.getAddress());
-            param.put("id",userInfo.getID());
             param.put("birth",userInfo.getBirth());
             res = HttpUtil.postForm(URL,param);
         } catch (IOException e) {
@@ -43,6 +46,18 @@ public class SignUpAsync extends AsyncTask<UserInfo, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
+        Boolean isSignUpSuccess = false;
+        try {
+            JSONObject jsonObject = new JSONObject(res);
+            isSignUpSuccess = jsonObject.getBoolean("success");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if(isSignUpSuccess) {
+            OnBoardingActivity.callNavigationDrawerActivity();
+        }
+
         //Toast.makeText(MainActivity.MainActivityContext, res, Toast.LENGTH_LONG).show();
     }
 }

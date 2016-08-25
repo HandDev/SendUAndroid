@@ -16,8 +16,7 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
 
     private EditText mFirstNameEditText;
     private EditText mNameEditText;
-    private EditText mBirthMonthEditText;
-    private EditText mBirthDateEditText;
+    private EditText mBirthEditText;
     private EditText mEmailEditText;
     private EditText mPasswordCheckEditText;
     private EditText mPasswordEditText;
@@ -31,9 +30,8 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
 
         mFirstNameEditText = (EditText)findViewById(R.id.signup_first_name_edittext);
         mNameEditText = (EditText)findViewById(R.id.signup_name_edittext);
-        mBirthMonthEditText = (EditText)findViewById(R.id.signup_month_edittext);
-        mBirthDateEditText = (EditText)findViewById(R.id.signup_date_edittext);
-        mEmailEditText = (EditText)findViewById(R.id.signup_date_edittext);
+        mBirthEditText = (EditText)findViewById(R.id.signup_birth);
+        mEmailEditText = (EditText)findViewById(R.id.signup_email_edittext);
         mPasswordEditText = (EditText)findViewById(R.id.signup_password_edittext);
         mPasswordCheckEditText = (EditText)findViewById(R.id.signup_password_check_edittext);
 
@@ -45,8 +43,7 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
         mIntent.putExtra("userName", mFirstNameEditText.getText().toString() + mNameEditText.getText().toString());
         mIntent.putExtra("email", mEmailEditText.getText().toString());
         mIntent.putExtra("password", mPasswordCheckEditText.getText().toString());
-        mIntent.putExtra("birth_date", Integer.parseInt(mBirthDateEditText.getText().toString()));
-        mIntent.putExtra("birth_month", Integer.parseInt(mBirthMonthEditText.getText().toString()));
+        mIntent.putExtra("birth",mBirthEditText.getText().toString());
         startActivity(mIntent);
         finish();
     }
