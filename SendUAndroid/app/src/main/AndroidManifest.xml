@@ -37,6 +37,9 @@
 
         <activity android:name=".Activity.SignUpProcessActivity"></activity>
 
+        <activity android:name=".Activity.SignupInputActivity"></activity>
+        <activity android:name=".Activity.SignupAddressActivity"></activity>
+
 
 
     </application>
