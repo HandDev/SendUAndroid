@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -24,8 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEditText01;
     private String LOGTAG = "LoginActivity";
     private EditText mEditText02;
-    public static Context loginActivityContext;
-
+    public static Context mLoginActivityContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         mEditText02 = (EditText)findViewById(R.id.pwedit);
         final CheckBox mCheckBox01 = (CheckBox)findViewById(R.id.autoLogin);
 
-        loginActivityContext = getApplicationContext();
+        mLoginActivityContext = LoginActivity.this;
 
         Button mButton = (Button)findViewById(R.id.loginButton);
+        assert mButton != null;
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"Hello",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    userInfo.setEmail(String.valueOf(mEditText01.getText()));
+                    userInfo.setEmail(mEditText01.getText().toString().trim());
                     userInfo.setPassword(String.valueOf(mEditText02.getText()));
 
                     LoginAsync loginAsync = new LoginAsync();
