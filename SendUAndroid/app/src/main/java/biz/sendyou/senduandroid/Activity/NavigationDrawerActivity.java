@@ -37,12 +37,14 @@ import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Util.albumHttp;
 import biz.sendyou.senduandroid.datatype.Address;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener{
 
+    private static final String TAG = "NavigationDrawer";
     final int DEFAULT_LODING_COUNT = 12;
 
     @Override
@@ -170,8 +172,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
         //TODO Remove Creating DummyData code
         List<CardTemplate> templates = new ArrayList<>();
 
-        String result = SendByHttp(); // 메시지를 서버에 보냄
-        String[][] parsedData = jsonParserList(result);
+        //String result = SendByHttp(); // 메시지를 서버에 보냄
+        //String[][] parsedData = jsonParserList(result);
+        Log.w(TAG, "start");
+        albumHttp request = new albumHttp();
+        request.start();
 
         for(int i = 1;i <= DEFAULT_LODING_COUNT ;i++) {
             templates.add(new CardTemplate());
@@ -199,70 +204,4 @@ public class NavigationDrawerActivity extends AppCompatActivity
     public void onListFragmentInteraction(CardTemplate item) {
 
     }
-
-    private String SendByHttp() {
-
-        String URL = "https://api.imgur.com/3/album/DevHand";
-
-        DefaultHttpClient client = new DefaultHttpClient();
-        try {
-            HttpPost post = new HttpPost(URL);
-
-            HttpParams params = client.getParams();
-            HttpConnectionParams.setConnectionTimeout(params, 5000);
-            HttpConnectionParams.setSoTimeout(params, 5000);
-
-            HttpResponse response = client.execute(post);
-            BufferedReader bufreader = new BufferedReader(
-                    new InputStreamReader(response.getEntity().getContent(),
-                            "utf-8"));
-
-            String line = null;
-            String result = "";
-
-            while ((line = bufreader.readLine()) != null) {
-                result += line;
-            }
-
-            return result;
-        } catch (Exception e) {
-            e.printStackTrace();
-            client.getConnectionManager().shutdown();
-            return "";
-        }
-
-    }
-
-    public String[][] jsonParserList(String pRecvServerPage) {
-
-        Log.i("서버에서 받은 전체 내용 : ", pRecvServerPage);
-
-        try {
-            JSONObject json = new JSONObject(pRecvServerPage);
-            JSONArray jArr = json.getJSONArray("List");
-
-            String[] jsonName = {"msg1", "msg2", "msg3"};
-            String[][] parseredData = new String[jArr.length()][jsonName.length];
-            for (int i = 0; i < jArr.length(); i++) {
-                json = jArr.getJSONObject(i);
-                if(json != null) {
-                    for(int j = 0; j < jsonName.length; j++) {
-                        parseredData[i][j] = json.getString(jsonName[j]);
-                    }
-                }
-            }
-
-            for(int i=0; i<parseredData.length; i++){
-                Log.i("JSON을 분석한 데이터 "+i+" : ", parseredData[i][0]);
-                Log.i("JSON을 분석한 데이터 "+i+" : ", parseredData[i][1]);
-                Log.i("JSON을 분석한 데이터 "+i+" : ", parseredData[i][2]);
-            }
-
-            return parseredData;
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 }
