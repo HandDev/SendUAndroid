@@ -7,6 +7,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,6 +16,10 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,44 +32,45 @@ public class albumHttp extends Thread {
 
     @Override
     public void run() {
+        String response = null;
         Log.w(TAG, "start");
-        SendByHttp();
+        try {
+            response = SendByHttp();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Log.w(TAG, "complete");
+        Log.w(TAG, response);
         super.run();
     }
-    private String SendByHttp() {
+    private String SendByHttp() throws IOException {
 
-        String URL = "https://api.imgur.com/3/album/iF1M8";
+        URL url = new URL("https://api.imgur.com/3/album/iF1M8");
 
-        DefaultHttpClient client = new DefaultHttpClient();
-        try {
-            Map<String, String> hearders = new HashMap<>();
-            hearders.put("Authorization", "ad80551cc425295239239d3d659ce4f3d26ca01d");
-            HttpPost post = new HttpPost(HttpUtil.get(URL, hearders));
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setDoInput(true);
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Authorization", "ad80551cc425295239239d3d659ce4f3d26ca01d");
 
-            HttpParams params = client.getParams();
-            HttpConnectionParams.setConnectionTimeout(params, 5000);
-            HttpConnectionParams.setSoTimeout(params, 5000);
+        OutputStream os = conn.getOutputStream();
 
-            HttpResponse response = client.execute(post);
-            BufferedReader bufreader = new BufferedReader(
-                    new InputStreamReader(response.getEntity().getContent(),
-                            "utf-8"));
+        os.write("");
+        os.flush();
+        os.close();
 
-            String line = null;
-            String result = "";
+        BufferedReader read = new BufferedReader(new InputStreamReader(conn.getInputStream(), "EUC-KR"), conn.getContentLength());
 
-            while ((line = bufreader.readLine()) != null) {
-                result += line;
-            }
-
-            return result;
-        } catch (Exception e) {
-            e.printStackTrace();
-            client.getConnectionManager().shutdown();
-            return "";
+        String buffer;
+        while((buffer = read.readLine()) != null) {
+            Log.w(TAG, buffer);
         }
 
+        read.close();
+
+        return buffer;
     }
 
     public String[][] jsonParserList(String pRecvServerPage) {
