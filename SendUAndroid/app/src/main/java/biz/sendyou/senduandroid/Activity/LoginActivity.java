@@ -119,10 +119,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public static void callNaviation() {
+    public void callNaviation() {
         Intent mIntent = new Intent(LoginActivity.loginActivity, NavigationDrawerActivity.class);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mLoginActivityContext.startActivity(mIntent);
+        finish();
     }
 
 
