@@ -20,7 +20,7 @@ import biz.sendyou.senduandroid.datatype.UserInfo;
  * Created by JunHyeok on 2016. 8. 23..
  */
 public class SignUpAsync extends AsyncTask<UserInfo, Void, Void> {
-    private String URL = "http://sendyou.biz/user/signup/insertData";
+    private static final String URL = "http://sendyou.biz/user/signup/";
     private String res ="";
     private final String LOGTAG = "LOGINASYNC";
 
