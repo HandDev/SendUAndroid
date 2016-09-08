@@ -57,7 +57,7 @@ public class albumHttp extends Thread {
 
         OutputStream os = conn.getOutputStream();
 
-        os.write("");
+        //os.write("");
         os.flush();
         os.close();
 
