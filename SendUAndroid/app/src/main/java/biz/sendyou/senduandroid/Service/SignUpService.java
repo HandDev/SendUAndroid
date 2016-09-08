@@ -2,6 +2,7 @@ package biz.sendyou.senduandroid.Service;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
@@ -9,6 +10,7 @@ import retrofit2.http.POST;
  */
 
 public interface SignUpService {
+    @FormUrlEncoded
     @POST("insertData")
     Call<Repo> doSignup(
             @Field("userName") String userName,

@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -56,7 +58,7 @@ public class SignupAddressActivity extends AppCompatActivity {
         mImageView01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                doSignup();
             }
         });
 
@@ -90,7 +92,14 @@ public class SignupAddressActivity extends AppCompatActivity {
         call.enqueue(new Callback<Repo>() {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
-
+                Repo repo = response.body();
+                Log.e("Resp",String.valueOf(repo.isSuccess()));
+                Log.e("Response",response.raw().toString());
+                Log.e("Response",response.message());
+                if(repo.isSuccess())
+                    callNavigation();
+                else
+                    Toast.makeText(SignupAddressActivity.this,"Error",Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -98,6 +107,11 @@ public class SignupAddressActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void callNavigation() {
+        Intent mIntent = new Intent(SignupAddressActivity.this,NavigationDrawerActivity.class);
+        startActivity(mIntent);
     }
 
 
