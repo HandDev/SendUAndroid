@@ -1,6 +1,7 @@
 package biz.sendyou.senduandroid.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -11,11 +12,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Service.SignUpService;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 
 public class SplashActivity extends AppCompatActivity {
 
     private final String LOGTAG = "SplashActivity";
+    private SplashActivity splashActivity;
+    public static Context splashActivityContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,9 @@ public class SplashActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+        splashActivity = this;
+        splashActivityContext = getApplicationContext();
 
         boolean isFirstStart = false;
         SharedPreferences pref;
@@ -71,5 +78,7 @@ public class SplashActivity extends AppCompatActivity {
         };
 
     }
+
+
 
 }
