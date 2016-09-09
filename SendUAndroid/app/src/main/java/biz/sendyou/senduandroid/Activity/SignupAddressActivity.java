@@ -3,22 +3,17 @@ package biz.sendyou.senduandroid.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
-import biz.sendyou.senduandroid.Async.SignUpAsync;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.SignUpService;
-import biz.sendyou.senduandroid.datatype.UserInfo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,11 +67,10 @@ public class SignupAddressActivity extends AppCompatActivity {
         birth = mIntent.getStringExtra("birth");
     }
 
-    public static void callLoginActivity() {
-
+    private void callLoginActivity() {
         Intent mIntent = new Intent(SignupAddressActivity.signupAddressActivity, LoginActivity.class);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         signupAddressActivityContext.startActivity(mIntent);
+        finish();
     }
 
     private void doSignup() {
@@ -87,17 +81,23 @@ public class SignupAddressActivity extends AppCompatActivity {
 
         SignUpService signUpService = retrofit.create(SignUpService.class);
 
-        Call<Repo> call = signUpService.doSignup(userName,password,email,mTextView02.getText().toString()+mEditText01.getText().toString(),birth);
+        Call<Repo> call = signUpService.doSignup(
+                userName,password,email,mTextView02.getText().toString()+mEditText01.getText().toString(),birth);
 
         call.enqueue(new Callback<Repo>() {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
+                /*
                 Log.e("Resp",String.valueOf(repo.isSuccess()));
                 Log.e("Response",response.raw().toString());
                 Log.e("Response",response.message());
-                if(repo.isSuccess())
-                    callNavigation();
+                */
+                if(repo.isSuccess()){
+                    Toast.makeText(SignupAddressActivity.this,userName+"님 회원가입이 완료되었습니다. 로그인해주세요.",Toast.LENGTH_LONG).show();
+                    callLoginActivity();
+                }
+
                 else
                     Toast.makeText(SignupAddressActivity.this,"Error",Toast.LENGTH_LONG).show();
             }
@@ -109,10 +109,6 @@ public class SignupAddressActivity extends AppCompatActivity {
         });
     }
 
-    private void callNavigation() {
-        Intent mIntent = new Intent(SignupAddressActivity.this,NavigationDrawerActivity.class);
-        startActivity(mIntent);
-    }
 
 
 

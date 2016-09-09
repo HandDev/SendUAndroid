@@ -64,20 +64,6 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    private void callOnBoardingActivity(){
-        //Very normal Splash!!
-        Handler mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-
-                Intent mIntent = new Intent(SplashActivity.this, OnBoardingActivity.class);
-                startActivity(mIntent);
-                finish();
-            }
-        };
-
-    }
 
 
 
