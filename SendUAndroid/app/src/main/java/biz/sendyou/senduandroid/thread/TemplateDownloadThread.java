@@ -50,7 +50,7 @@ public class TemplateDownloadThread extends AsyncTask<Void, Void, Void> {
         }
 
         Log.i(LOGTAG,jsonObject.toString());
-            Log.i(LOGTAG, "urls length :" + urls.size());
+        Log.i(LOGTAG, "urls length :" + urls.size());
 
         return null;
     }

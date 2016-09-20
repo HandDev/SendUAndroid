@@ -38,6 +38,7 @@ import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Util.albumHttp;
+import biz.sendyou.senduandroid.Util.imgurAuth;
 import biz.sendyou.senduandroid.datatype.Address;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 
@@ -175,7 +176,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         //String result = SendByHttp(); // 메시지를 서버에 보냄
         //String[][] parsedData = jsonParserList(result);
         Log.w(TAG, "start");
-        albumHttp request = new albumHttp();
+        imgurAuth request = new imgurAuth();
         request.start();
 
         for(int i = 1;i <= DEFAULT_LODING_COUNT ;i++) {

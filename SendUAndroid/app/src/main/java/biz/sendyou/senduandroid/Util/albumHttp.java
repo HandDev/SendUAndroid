@@ -33,7 +33,6 @@ public class albumHttp extends Thread {
     @Override
     public void run() {
         String response = null;
-        Log.w(TAG, "start");
         try {
             response = SendByHttp();
         } catch (MalformedURLException e) {
@@ -57,7 +56,7 @@ public class albumHttp extends Thread {
 
         OutputStream os = conn.getOutputStream();
 
-        os.write("");
+        os.write("iF1M8".getBytes("euc-kr"));
         os.flush();
         os.close();
 
