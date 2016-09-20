@@ -1,11 +1,11 @@
 package biz.sendyou.senduandroid.Activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,9 +15,14 @@ import android.widget.Toast;
 
 import com.drivemode.android.typeface.TypefaceHelper;
 
-import biz.sendyou.senduandroid.Async.LoginAsync;
-import biz.sendyou.senduandroid.datatype.UserInfo;
+import biz.sendyou.senduandroid.Service.LoginService;
+import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -25,7 +30,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEditText01;
     private String LOGTAG = "LoginActivity";
     private EditText mEditText02;
+    public static LoginActivity loginActivity;
     public static Context mLoginActivityContext;
+    private static final String URL = "http://sendyou.biz/userAuth/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +42,9 @@ public class LoginActivity extends AppCompatActivity {
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.hide();
 
-        final UserInfo userInfo = new UserInfo();
+        loginActivity = this;
+
+
 
         mEditText01 = (EditText)findViewById(R.id.idedit);
         mEditText02 = (EditText)findViewById(R.id.pwedit);
@@ -48,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 /*if(String.valueOf(mEditText01.getText())==null || String.valueOf(mEditText02.getText())==null) {
                     Toast.makeText(getBaseContext(),"Hello",Toast.LENGTH_LONG).show();
                 }
@@ -59,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                     loginAsync.execute(userInfo);
                 }*/
                 OnBoardingActivity.callNavigationDrawerActivity();
+=======
+                doLogin();
+>>>>>>> cde6683a9c700256e0965de238333f6c8a9b1abe
             }
         });
 
@@ -87,6 +100,43 @@ public class LoginActivity extends AppCompatActivity {
     public void moveSignupActivity(){
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
         startActivity(intent);
+    }
+
+    private void doLogin() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        LoginService loginService = retrofit.create(LoginService.class);
+
+        Call<Repo> call = loginService.doLogin(mEditText01.getText().toString(),mEditText02.getText().toString());
+        call.enqueue(new Callback<Repo>() {
+            @Override
+            public void onResponse(Call<Repo> call, Response<Repo> response) {
+                Repo repo = response.body();
+                Log.e("Repo",String.valueOf(repo.isSuccess()));
+                Log.e("Repo",response.raw().toString());
+                Log.e("Repo",response.message());
+                if(repo.isSuccess() ) {
+                    callNaviation();
+                }
+                else{
+                    Toast.makeText(LoginActivity.mLoginActivityContext,"Error",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Repo> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void callNaviation() {
+        Intent mIntent = new Intent(LoginActivity.loginActivity, NavigationDrawerActivity.class);
+        mLoginActivityContext.startActivity(mIntent);
+        finish();
     }
 
 

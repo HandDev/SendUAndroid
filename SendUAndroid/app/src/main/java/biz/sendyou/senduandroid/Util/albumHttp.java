@@ -56,7 +56,11 @@ public class albumHttp extends Thread {
 
         OutputStream os = conn.getOutputStream();
 
+<<<<<<< HEAD
         os.write("iF1M8".getBytes("euc-kr"));
+=======
+        //os.write("");
+>>>>>>> cde6683a9c700256e0965de238333f6c8a9b1abe
         os.flush();
         os.close();
 
