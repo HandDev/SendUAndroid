@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
                 /*if(String.valueOf(mEditText01.getText())==null || String.valueOf(mEditText02.getText())==null) {
                     Toast.makeText(getBaseContext(),"Hello",Toast.LENGTH_LONG).show();
                 }
@@ -69,9 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     loginAsync.execute(userInfo);
                 }*/
                 OnBoardingActivity.callNavigationDrawerActivity();
-=======
                 doLogin();
->>>>>>> cde6683a9c700256e0965de238333f6c8a9b1abe
             }
         });
 

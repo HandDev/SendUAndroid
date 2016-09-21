@@ -24,13 +24,11 @@ import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 public class SplashActivity extends AppCompatActivity {
 
     private final String LOGTAG = "SplashActivity";
-<<<<<<< HEAD
-    public static Activity activity;
 
-=======
+    public static Activity activity;
     private SplashActivity splashActivity;
     public static Context splashActivityContext;
->>>>>>> cde6683a9c700256e0965de238333f6c8a9b1abe
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +84,6 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-<<<<<<< HEAD
     private Bitmap resizeBitmap(Bitmap bitmap, int width, int height) {
         if(height > 720) {
             return Bitmap.createScaledBitmap(bitmap, (width * 720) / height, 720, true);
@@ -100,10 +97,6 @@ public class SplashActivity extends AppCompatActivity {
         recycleView(findViewById(R.id.splash_background));
         super.onDestroy();
     }
-=======
-
-
->>>>>>> cde6683a9c700256e0965de238333f6c8a9b1abe
 
     private void recycleView(View view) {
         if(view != null) {
