@@ -46,6 +46,7 @@ public class ViewPagerAdapter extends PagerAdapter implements View.OnClickListen
     //첫번째 파라미터 : ViewPager
     //두번째 파라미터 : 파괴될 View의 인덱스(가장 처음부터 0,1,2,3...)
     //세번째 파라미터 : 파괴될 객체(더 이상 보이지 않은 View 객체)
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View)object);

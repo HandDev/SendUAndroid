@@ -21,12 +21,10 @@
             android:theme="@style/checkBoxStyle">
 
         </activity>
-<<<<<<< HEAD
+
+
         <activity android:name=".Activity.SplashActivity"
             android:theme="@style/AppTheme.Splash">
-=======
-        <activity android:name=".Activity.SplashActivity">
->>>>>>> cde6683a9c700256e0965de238333f6c8a9b1abe
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

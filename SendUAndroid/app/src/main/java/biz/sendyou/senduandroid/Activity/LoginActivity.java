@@ -41,15 +41,11 @@ public class LoginActivity extends AppCompatActivity {
         TypefaceHelper.initialize(getApplication());
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.hide();
-
         loginActivity = this;
-
-
 
         mEditText01 = (EditText)findViewById(R.id.idedit);
         mEditText02 = (EditText)findViewById(R.id.pwedit);
         final CheckBox mCheckBox01 = (CheckBox)findViewById(R.id.autoLogin);
-
         mLoginActivityContext = LoginActivity.this;
 
         Button mButton = (Button)findViewById(R.id.loginButton);
@@ -57,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 doLogin();
             }
         });
