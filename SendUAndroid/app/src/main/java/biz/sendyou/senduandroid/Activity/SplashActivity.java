@@ -18,17 +18,22 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import biz.sendyou.senduandroid.R;
-import biz.sendyou.senduandroid.Service.SignUpService;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 
 public class SplashActivity extends AppCompatActivity {
 
     private final String LOGTAG = "SplashActivity";
+<<<<<<< HEAD
 
     public static Activity activity;
     private SplashActivity splashActivity;
     public static Context splashActivityContext;
 
+=======
+    public static Activity activity;
+    public SplashActivity splashActivity;
+    public static Context splashActivityContext;
+>>>>>>> 5366d6c9752fa256bed60e7c10511bca946a06d9
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +75,7 @@ public class SplashActivity extends AppCompatActivity {
 
         }
         //Very normal Splash!!
+        //hello im soyeoneeeeeeee yeeyeeyee
         Handler mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -97,6 +103,11 @@ public class SplashActivity extends AppCompatActivity {
         recycleView(findViewById(R.id.splash_background));
         super.onDestroy();
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5366d6c9752fa256bed60e7c10511bca946a06d9
 
     private void recycleView(View view) {
         if(view != null) {
