@@ -53,18 +53,13 @@ public class LoginActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if(String.valueOf(mEditText01.getText())==null || String.valueOf(mEditText02.getText())==null) {
-                    Toast.makeText(getBaseContext(),"Hello",Toast.LENGTH_LONG).show();
+                if(mEditText01.getText().toString().matches("") || mEditText02.getText().toString().matches("")) {
+                    Toast.makeText(getBaseContext(),"아이디 또는 비밀번호를 확인해주세요.",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    userInfo.setEmail(mEditText01.getText().toString().trim());
-                    userInfo.setPassword(String.valueOf(mEditText02.getText()));
-
-                    LoginAsync loginAsync = new LoginAsync();
-                    loginAsync.execute(userInfo);
-                }*/
-                OnBoardingActivity.callNavigationDrawerActivity();
-                doLogin();
+                    doLogin();
+                }
+                //OnBoardingActivity.callNavigationDrawerActivity();
             }
         });
 
@@ -115,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                     callNaviation();
                 }
                 else{
-                    Toast.makeText(LoginActivity.mLoginActivityContext,"Error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.mLoginActivityContext,"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
                 }
             }
 

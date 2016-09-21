@@ -11,14 +11,6 @@
 
 
     <ImageView
-        android:id="@+id/plane"
-        android:layout_width="87.5dp"
-        android:layout_height="87.5dp"
-        android:src="@drawable/la_plane"
-        android:layout_above="@+id/SendU"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
         android:layout_width="17.5dp"
         android:layout_height="17.5dp"
         android:id="@+id/imageView4"
@@ -31,9 +23,9 @@
         android:layout_height="17.5dp"
         android:id="@+id/imageView5"
         android:src="@drawable/la_pwicon"
+        android:layout_above="@+id/autoLogin"
         android:layout_alignStart="@+id/loginButton"
-        android:layout_marginBottom="5dp"
-        android:layout_above="@+id/autoLogin" />
+        android:layout_marginBottom="30dp" />
 
     <Button
         android:id="@+id/loginButton"
@@ -124,8 +116,16 @@
         android:layout_alignStart="@+id/SignUp1"
         android:textCursorDrawable="@drawable/color_cursor"
         android:drawableBottom="@drawable/la_line1"
-        android:layout_below="@+id/SendU"
-        android:layout_alignBottom="@+id/imageView4" />
+        android:layout_alignBottom="@+id/imageView4"
+        android:hint="아이디"/>
+
+    <ImageView
+        android:id="@+id/plane"
+        android:layout_width="87.5dp"
+        android:layout_height="87.5dp"
+        android:src="@drawable/la_plane"
+        android:layout_above="@+id/SendU"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -136,11 +136,10 @@
         android:ems="10"
         android:id="@+id/pwedit"
         android:background="@android:color/transparent"
-        android:layout_above="@+id/autoLogin"
-        android:layout_alignStart="@+id/idedit"
-        android:layout_alignTop="@+id/imageView5"
-        android:layout_alignEnd="@+id/idedit"
         android:textCursorDrawable="@drawable/color_cursor"
-        android:drawableBottom="@drawable/la_line1"/>
+        android:drawableBottom="@drawable/la_line1"
+        android:hint="비밀번호"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_alignStart="@+id/idedit" />
 
 </RelativeLayout>
