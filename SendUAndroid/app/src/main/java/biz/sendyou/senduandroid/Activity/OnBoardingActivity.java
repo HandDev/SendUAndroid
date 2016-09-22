@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 
 import biz.sendyou.senduandroid.R;
@@ -53,17 +54,18 @@ public class OnBoardingActivity extends Activity {
 
     }
 
-    public static void callNavigationDrawerActivity() {
+    public void callNavigationDrawerActivity() {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, NavigationDrawerActivity.class);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        onBoardingContext.startActivity(mIntent);
-
-    }
-
-    public void callLoginActivity() {
-        Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, LoginActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         onBoardingContext.startActivity(mIntent);
         finish();
     }
+
+    public void callLoginActivity() {
+        Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, LoginActivity.class);
+        onBoardingContext.startActivity(mIntent);
+        finish();
+    }
+
+
 }
