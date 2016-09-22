@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +39,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
 
     private TextView card_text;
     private ImageView card_image;
+    private EditText edt;
 
     private OnFragmentInteractionListener mListener;
 
@@ -148,9 +151,19 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
                 LayoutInflater inflater = (LayoutInflater)view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View layout = inflater.inflate(R.layout.dialog_fragment, null);
 
-                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
+                final AlertDialog alertBuilder = new AlertDialog.Builder(view.getContext()).create();
                 alertBuilder.setView(layout);
                 alertBuilder.show();
+
+                Button btn = (Button) layout.findViewById(R.id.Btn);
+                edt = (EditText) layout.findViewById(R.id.dialog_text);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        card_text.setText(edt.getText());
+                        alertBuilder.dismiss();
+                    }
+                });
                 break;
         }
     }
