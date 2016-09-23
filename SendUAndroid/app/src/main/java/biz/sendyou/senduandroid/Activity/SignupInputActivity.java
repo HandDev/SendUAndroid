@@ -11,9 +11,6 @@ import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialo
 import java.util.Calendar;
 
 import biz.sendyou.senduandroid.R;
-import biz.sendyou.senduandroid.datatype.UserInfo;
-
-import static android.R.attr.minDate;
 
 /**
  * Created by Chan_Woo_Kim on 2016-08-24.
@@ -67,10 +64,11 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
+        int months = monthOfYear+1;
         String month,day,years;
         years = String.valueOf(year);
         if(monthOfYear<10) {
-            month = "0"+monthOfYear;
+            month = "0"+months;
         }
         else {
             month = String.valueOf(monthOfYear);
