@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -69,6 +70,7 @@ public class SignupAddressActivity extends AppCompatActivity {
 
     private void callLoginActivity() {
         Intent mIntent = new Intent(SignupAddressActivity.signupAddressActivity, LoginActivity.class);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         signupAddressActivityContext.startActivity(mIntent);
         finish();
     }
@@ -88,18 +90,20 @@ public class SignupAddressActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
-                /*
+
                 Log.e("Resp",String.valueOf(repo.isSuccess()));
                 Log.e("Response",response.raw().toString());
                 Log.e("Response",response.message());
-                */
+
                 if(repo.isSuccess()){
                     Toast.makeText(SignupAddressActivity.this,userName+"님 회원가입이 완료되었습니다. 로그인해주세요.",Toast.LENGTH_LONG).show();
                     callLoginActivity();
                 }
 
-                else
-                    Toast.makeText(SignupAddressActivity.this,"Error",Toast.LENGTH_LONG).show();
+                else {
+                    Toast.makeText(SignupAddressActivity.this, "로그인 도중 오류가 발생하였습니다. 이메일을 확인해주세요.", Toast.LENGTH_LONG).show();
+                    callLoginActivity();
+                }
             }
 
             @Override
