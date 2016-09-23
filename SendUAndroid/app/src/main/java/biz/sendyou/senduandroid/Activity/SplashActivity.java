@@ -43,7 +43,6 @@ public class SplashActivity extends AppCompatActivity {
         RelativeLayout layout = (RelativeLayout)findViewById(R.id.splash_background);
         layout.setBackground(new BitmapDrawable(resize));
 
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 

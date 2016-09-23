@@ -2,6 +2,10 @@ package biz.sendyou.senduandroid.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +42,19 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
+        int bHeight = bitmap.getHeight();
+        int bWidth = bitmap.getWidth();
+
+        Bitmap resize = resizeBitmap(bitmap, bWidth, bHeight);
+
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.activity_login_background);
+        layout.setBackground(new BitmapDrawable(resize));
+
         TypefaceHelper.initialize(getApplication());
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.hide();
@@ -79,7 +97,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
+    private Bitmap resizeBitmap(Bitmap bitmap, int width, int height) {
+        if(height > 720) {
+            return Bitmap.createScaledBitmap(bitmap, (width * 720) / height, 720, true);
+        }
+        return bitmap;
+    }
 
     public void moveSignupActivity(){
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
@@ -125,7 +148,24 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onDestroy() {
+        Log.w(LOGTAG, "Destroy background");
+        recycleView(findViewById(R.id.activity_login_background));
+        super.onDestroy();
+    }
 
+    private void recycleView(View view) {
+        if(view != null) {
+            Drawable bg = view.getBackground();
+            if(bg != null) {
+                ((BitmapDrawable)bg).getBitmap().recycle();
+                System.gc();
+                view.setBackgroundDrawable(null);
+            }
+            bg.setCallback(null);
+        }
+    }
 }
 
 
