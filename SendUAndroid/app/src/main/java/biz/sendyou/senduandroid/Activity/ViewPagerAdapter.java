@@ -68,7 +68,6 @@ public class ViewPagerAdapter extends PagerAdapter implements View.OnClickListen
             case R.id.arrow_imageview:
                 Intent mConvertIntent = new Intent(view.getContext(), LoginActivity.class);
                 view.getContext().startActivity(mConvertIntent);
-
                 ((Activity)view.getContext()).finish();
         }
     }

@@ -13,18 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +28,6 @@ import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
 import biz.sendyou.senduandroid.R;
-import biz.sendyou.senduandroid.Util.albumHttp;
 import biz.sendyou.senduandroid.Util.imgurAuth;
 import biz.sendyou.senduandroid.datatype.Address;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
@@ -48,11 +37,20 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
     private static final String TAG = "NavigationDrawer";
     final int DEFAULT_LODING_COUNT = 12;
+    private long backKeyPressedTime = 0;
+    private Toast toast;
+    private NavigationDrawerActivity navigationDrawerActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
+
+        LoginActivity loginActivity = LoginActivity.loginActivity;
+        loginActivity.finish();
+
+        navigationDrawerActivity = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("                     SendU");
@@ -87,6 +85,22 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            showGuide();
+            return;
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            navigationDrawerActivity.finish();
+            toast.cancel();
+        }
+    }
+
+    public void showGuide() {
+        toast = Toast.makeText(navigationDrawerActivity,
+                "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override
@@ -134,6 +148,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 
     @Override
     public void onFragmentInteraction(Uri uri) {
