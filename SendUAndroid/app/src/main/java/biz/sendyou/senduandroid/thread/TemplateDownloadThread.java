@@ -49,7 +49,7 @@ public class TemplateDownloadThread extends AsyncTask<Void, Void, Void> {
             e.printStackTrace();
         }
 
-        Log.i(LOGTAG,jsonObject.toString());
+        //Log.i(LOGTAG,jsonObject.toString());
         Log.i(LOGTAG, "urls length :" + urls.size());
 
         return null;

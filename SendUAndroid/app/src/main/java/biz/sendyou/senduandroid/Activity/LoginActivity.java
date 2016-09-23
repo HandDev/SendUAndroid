@@ -24,7 +24,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mEditText01;
@@ -53,26 +52,19 @@ public class LoginActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if(String.valueOf(mEditText01.getText())==null || String.valueOf(mEditText02.getText())==null) {
-                    Toast.makeText(getBaseContext(),"Hello",Toast.LENGTH_LONG).show();
+                if(mEditText01.getText().toString().matches("") || mEditText02.getText().toString().matches("")) {
+                    Toast.makeText(getBaseContext(),"아이디 또는 비밀번호를 확인해주세요.",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    userInfo.setEmail(mEditText01.getText().toString().trim());
-                    userInfo.setPassword(String.valueOf(mEditText02.getText()));
-
-                    LoginAsync loginAsync = new LoginAsync();
-                    loginAsync.execute(userInfo);
-                }*/
-                OnBoardingActivity.callNavigationDrawerActivity();
-                doLogin();
+                    //doLogin();
+                    callNaviation();
+                }
             }
         });
 
         TextView mTextView01 = (TextView)findViewById(R.id.SendU);
         TextView mTextView02 = (TextView)findViewById(R.id.SignUp1);
         TextView mTextView03 = (TextView)findViewById(R.id.SignUp2);
-
-
 
         TypefaceHelper.getInstance().setTypeface(mTextView01,"NotoSansCJKkr-Regular.otf");
         TypefaceHelper.getInstance().setTypeface(mTextView02,"NotoSansCJKkr-Light.otf");
@@ -84,7 +76,6 @@ public class LoginActivity extends AppCompatActivity {
                 moveSignupActivity();
             }
         });
-
 
     }
 
@@ -108,14 +99,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
+                /*
                 Log.e("Repo",String.valueOf(repo.isSuccess()));
                 Log.e("Repo",response.raw().toString());
                 Log.e("Repo",response.message());
+                */
                 if(repo.isSuccess() ) {
                     callNaviation();
                 }
                 else{
-                    Toast.makeText(LoginActivity.mLoginActivityContext,"Error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.mLoginActivityContext,"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
                 }
             }
 

@@ -6,23 +6,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import biz.sendyou.senduandroid.R;
-import biz.sendyou.senduandroid.Util.Http;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 
 /**
@@ -37,6 +33,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
 
     private TextView card_text;
     private ImageView card_image;
+    private EditText edt;
 
     private OnFragmentInteractionListener mListener;
 
@@ -146,11 +143,21 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
                 Toast.makeText(getContext(), "card_text Clicked", Toast.LENGTH_SHORT).show();
 
                 LayoutInflater inflater = (LayoutInflater)view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View layout = inflater.inflate(R.layout.dialog_fragment, null);
+                final View layout = inflater.inflate(R.layout.fragment_create_card_textdialog, null);
 
-                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(view.getContext());
+                final AlertDialog alertBuilder = new AlertDialog.Builder(view.getContext()).create();
                 alertBuilder.setView(layout);
                 alertBuilder.show();
+
+                Button btn = (Button) layout.findViewById(R.id.Btn);
+                edt = (EditText) layout.findViewById(R.id.dialog_text);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        card_text.setText(edt.getText());
+                        alertBuilder.dismiss();
+                    }
+                });
                 break;
         }
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,22 +8,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="biz.sendyou.senduandroid.Activity.LoginActivity">
+    tools:context="biz.sendyou.senduandroid.Activity.LoginActivity"
+    >
 
-
-    <ImageView
-        android:id="@+id/plane"
-        android:layout_width="87.5dp"
-        android:layout_height="87.5dp"
-        android:src="@drawable/la_plane"
-        android:layout_above="@+id/SendU"
-        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="17.5dp"
         android:layout_height="17.5dp"
         android:id="@+id/imageView4"
-        android:src="@drawable/la_idicon"
+        android:src="@drawable/lg_id"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/imageView5" />
 
@@ -30,10 +24,10 @@
         android:layout_width="17.5dp"
         android:layout_height="17.5dp"
         android:id="@+id/imageView5"
-        android:src="@drawable/la_pwicon"
+        android:src="@drawable/lg_lock"
+        android:layout_above="@+id/autoLogin"
         android:layout_alignStart="@+id/loginButton"
-        android:layout_marginBottom="5dp"
-        android:layout_above="@+id/autoLogin" />
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:id="@+id/loginButton"
@@ -44,7 +38,7 @@
         android:singleLine="true"
         android:layout_gravity="center_horizontal|bottom"
         android:textColor="@color/abc_background_cache_hint_selector_material_light"
-        android:layout_marginBottom="74dp"
+        android:layout_marginBottom="10dp"
         android:layout_above="@+id/SignUp1"
         android:layout_centerHorizontal="true"
         android:onClick="loginBtn" />
@@ -54,7 +48,6 @@
         android:layout_height="wrap_content"
         android:text="SENDU"
         android:textSize="16.725sp"
-        android:textColor="#000000"
         android:id="@+id/SendU"
         android:layout_gravity="center_horizontal|top"
         android:textIsSelectable="false"
@@ -68,13 +61,25 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="자동 로그인"
         android:letterSpacing="0"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:id="@+id/autologin"
         android:textSize="12.8225sp"
         android:layout_gravity="center_horizontal|top"
         android:layout_above="@+id/loginButton"
         android:layout_alignStart="@+id/imageView5"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="30dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme = "@style/checkBoxStyle"
+        android:id="@+id/autoLogin"
+        android:checked="true"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_above="@+id/loginButton"
+        android:layout_alignStart="@+id/imageView5"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="45dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -82,12 +87,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="SENDU가 처음이신가요?"
         android:id="@+id/SignUp1"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal|top"
         android:textSize="12.8225sp"
         android:letterSpacing="0"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/SendU" />
+        android:layout_marginLeft="85dp"
+        android:layout_marginBottom="70dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -100,47 +106,68 @@
         android:textSize="12.8225sp"
         android:layout_alignTop="@+id/SignUp1"
         android:layout_toEndOf="@+id/plane"
-        android:textColor="#F13968" />
+        android:textColor="#F13968"
+        android:src="@drawable/sp_logo" />
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:theme = "@style/checkBoxStyle"
-        android:id="@+id/autoLogin"
-        android:checked="true"
-        android:layout_alignBottom="@+id/loginButton"
-        android:layout_toEndOf="@+id/autologin"
-        android:layout_marginBottom="50dp" />
+
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/idedit"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:inputType="text"
         android:maxLines="1"
         android:lines="1"
         android:background="@android:color/transparent"
         android:layout_alignEnd="@+id/loginButton"
-        android:layout_alignStart="@+id/SignUp1"
         android:textCursorDrawable="@drawable/color_cursor"
-        android:drawableBottom="@drawable/la_line1"
-        android:layout_below="@+id/SendU"
-        android:layout_alignBottom="@+id/imageView4" />
+        android:layout_alignBottom="@+id/imageView4"
+        android:hint="아이디"
+        android:layout_alignStart="@+id/autoLogin" />
+
+    <ImageView
+        android:id="@+id/plane"
+        android:layout_width="87.5dp"
+        android:layout_height="87.5dp"
+        android:src="@drawable/sp_logo"
+        android:layout_above="@+id/SendU"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:maxLines="1"
         android:lines="1"
         android:ems="10"
         android:id="@+id/pwedit"
         android:background="@android:color/transparent"
-        android:layout_above="@+id/autoLogin"
-        android:layout_alignStart="@+id/idedit"
-        android:layout_alignTop="@+id/imageView5"
-        android:layout_alignEnd="@+id/idedit"
         android:textCursorDrawable="@drawable/color_cursor"
-        android:drawableBottom="@drawable/la_line1"/>
+        android:hint="비밀번호"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_alignStart="@+id/autoLogin"
+        android:layout_alignEnd="@+id/idedit" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/underline1"
+        android:src="@drawable/la_line1"
+        android:layout_below="@+id/pwedit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/underline2"
+        android:src="@drawable/la_line1"
+        android:layout_below="@+id/idedit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp" />
 
 </RelativeLayout>

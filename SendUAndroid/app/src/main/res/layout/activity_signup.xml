@@ -8,40 +8,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="biz.sendyou.senduandroid.Activity.SignupActivity">
+    tools:context="biz.sendyou.senduandroid.Activity.SignupActivity"
+    >
 
     <ImageView
         android:id="@+id/Plane"
         android:layout_width="87.5dp"
         android:layout_height="87.5dp"
-        android:src="@drawable/la_plane"
+        android:src="@drawable/sp_logo"
         android:layout_marginTop="87dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SENDU"
-        android:textSize="16.725sp"
-        android:textColor="#000000"
-        android:id="@+id/sendu"
-        android:layout_gravity="center_horizontal|top"
-        android:textIsSelectable="false"
-        android:layout_below="@+id/Plane"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="가입할 서비스를 선택하세요"
-        android:id="@+id/Select"
-        android:textSize="16.725sp"
-        android:textColor="#868686"
-        android:layout_below="@+id/sendu"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentStart="false"
-        android:layout_marginTop="20dp" />
 
     <com.google.android.gms.common.SignInButton
         android:layout_width="287.5dp"
@@ -79,5 +57,16 @@
         android:src="@drawable/gmail_btn"
         android:layout_alignTop="@+id/gmail_btn"
         android:layout_alignStart="@+id/gmail_btn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="가입할 서비스를 선택하세요"
+        android:id="@+id/Select"
+        android:textSize="16.725sp"
+        android:textColor="#868686"
+        android:layout_below="@+id/Plane"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp" />
 
 </RelativeLayout>
