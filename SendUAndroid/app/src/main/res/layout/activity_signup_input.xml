@@ -169,6 +169,6 @@
         android:layout_below="@+id/signup_name_edittext"
         android:layout_alignEnd="@+id/signup_name_edittext"
         android:layout_marginTop="10dp"
-        android:focusable="true"/>
+        android:focusable="false"/>
 
 </RelativeLayout>
