@@ -54,6 +54,12 @@ public class OnBoardingActivity extends Activity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        mViewPager.setAdapter(null);
+        super.onDestroy();
+    }
+
     public void callNavigationDrawerActivity() {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, NavigationDrawerActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

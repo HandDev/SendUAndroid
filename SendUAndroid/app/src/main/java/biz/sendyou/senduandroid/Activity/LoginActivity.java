@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEditText02;
     public static LoginActivity loginActivity;
     public static Context mLoginActivityContext;
-    private static final String URL = "http://sendyou.biz/userAuth/";
+    private static final String URL = "http://52.78.159.163:3000/userAuth/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -159,5 +159,6 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     private void callSignActivity() {
         Intent mIntent = new Intent(SignupActivity.this,SignupInputActivity.class);
         startActivity(mIntent);
+        finish();
     }
 }

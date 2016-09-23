@@ -82,7 +82,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
 
                 SelectTemplateFragment selectTemplateFragment = SelectTemplateFragment.newInstance(templates,2);
 
-                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, selectTemplateFragment).commit();
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_right_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, selectTemplateFragment).commit();
 
             }
         });

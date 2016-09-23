@@ -28,7 +28,7 @@ public class SignupAddressActivity extends AppCompatActivity {
     private ImageView mImageView01,mImageView02;
     private TextView mTextView01,mTextView02;
     private EditText mEditText01;
-    private static final String URL = "http://sendyou.biz/user/signup/";
+    private static final String URL = "http://52.78.159.163:3000/user/signup/";
 
     public static SignupAddressActivity signupAddressActivity;
     public static Context signupAddressActivityContext;

@@ -72,4 +72,6 @@ public class ViewPagerAdapter extends PagerAdapter implements View.OnClickListen
                 ((Activity)view.getContext()).finish();
         }
     }
+
+
 }
