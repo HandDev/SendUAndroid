@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -193,4 +194,8 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
         recyclerView.setAdapter(mViewAdapter);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 }
