@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
+import biz.sendyou.senduandroid.Fragment.CashFragment;
 import biz.sendyou.senduandroid.Fragment.CreateCardFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
 import biz.sendyou.senduandroid.Fragment.OrderCardFragment;
@@ -43,7 +44,7 @@ import biz.sendyou.senduandroid.datatype.Address;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener,CashFragment.OnFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener{
 
     private static final String TAG = "NavigationDrawer";
     final int DEFAULT_LODING_COUNT = 12;

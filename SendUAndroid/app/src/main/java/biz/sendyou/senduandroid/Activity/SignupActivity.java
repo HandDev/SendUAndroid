@@ -54,10 +54,8 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.hide();
 
-        TextView mTextView01 = (TextView) findViewById(R.id.sendu);
         TextView mTextView02 = (TextView) findViewById(R.id.Select);
 
-        TypefaceHelper.getInstance().setTypeface(mTextView01, "NotoSansCJKkr-Regular.otf");
         TypefaceHelper.getInstance().setTypeface(mTextView02, "NotoSansCJKkr-Regular.otf");
 
         mFacebookSignInButton = (LoginButton) findViewById(R.id.fb_btn);
@@ -161,5 +159,6 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     private void callSignActivity() {
         Intent mIntent = new Intent(SignupActivity.this,SignupInputActivity.class);
         startActivity(mIntent);
+        finish();
     }
 }

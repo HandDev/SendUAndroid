@@ -12,5 +12,6 @@
     <string name="title_activity_m2ain">M2ainActivity</string>
 
     <string name="facebook_app_id">1232711640082024</string>
+    <string name="calendar_date_picker_result_values">%1$s%2$s%3$s</string>
 
 </resources>

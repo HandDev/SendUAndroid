@@ -165,9 +165,10 @@
         android:layout_marginLeft="170dp"
         android:background="@android:color/transparent"
         android:drawableBottom="@drawable/la_line1"
-        android:hint="생년월일 (ex) 19990330"
+        android:hint="생년월일"
         android:layout_below="@+id/signup_name_edittext"
         android:layout_alignEnd="@+id/signup_name_edittext"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:focusable="false"/>
 
 </RelativeLayout>
