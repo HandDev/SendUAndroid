@@ -54,6 +54,7 @@ public class SignupAddressActivity extends AppCompatActivity {
         mImageView01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("Clicked","clicked!");
                 doSignup();
             }
         });
@@ -84,26 +85,13 @@ public class SignupAddressActivity extends AppCompatActivity {
         SignUpService signUpService = retrofit.create(SignUpService.class);
 
         Call<Repo> call = signUpService.doSignup(
-                userName,password,email,mTextView02.getText().toString()+mEditText01.getText().toString(),birth);
+                userName,password,email,mTextView01.getText().toString(),mTextView02.getText().toString()+mEditText01.getText().toString(),birth);
 
         call.enqueue(new Callback<Repo>() {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
-                Repo repo = response.body();
-
-                Log.e("Resp",String.valueOf(repo.isSuccess()));
-                Log.e("Response",response.raw().toString());
-                Log.e("Response",response.message());
-
-                if(repo.isSuccess()){
-                    Toast.makeText(SignupAddressActivity.this,userName+"님 회원가입이 완료되었습니다. 로그인해주세요.",Toast.LENGTH_LONG).show();
-                    callLoginActivity();
-                }
-
-                else {
-                    Toast.makeText(SignupAddressActivity.this, "로그인 도중 오류가 발생하였습니다. 이메일을 확인해주세요.", Toast.LENGTH_LONG).show();
-                    callLoginActivity();
-                }
+                Toast.makeText(SignupAddressActivity.this,userName+"님 회원가입이 완료되었습니다. 로그인해주세요.",Toast.LENGTH_LONG).show();
+                callLoginActivity();
             }
 
             @Override
