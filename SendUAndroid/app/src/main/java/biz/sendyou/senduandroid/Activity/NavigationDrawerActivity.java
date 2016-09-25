@@ -3,6 +3,7 @@ package biz.sendyou.senduandroid.Activity;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -46,6 +50,13 @@ public class NavigationDrawerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
+
+        View view = (View)getLayoutInflater().inflate(R.layout.nav_header_navigation_drawer,null);
+
+        TextView usrName = (TextView) view.findViewById(R.id.username);
+        TextView place = (TextView) view.findViewById(R.id.textView3);
+        TextView num = (TextView) view.findViewById(R.id.textView);
+        ImageView btn = (ImageView) view.findViewById(R.id.imageView9);
 
         LoginActivity loginActivity = LoginActivity.loginActivity;
         loginActivity.finish();
@@ -83,18 +94,18 @@ public class NavigationDrawerActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+                backKeyPressedTime = System.currentTimeMillis();
+                showGuide();
+                return;
+            }
+            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+                navigationDrawerActivity.finish();
+                toast.cancel();
+            }
             super.onBackPressed();
         }
 
-        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-            backKeyPressedTime = System.currentTimeMillis();
-            showGuide();
-            return;
-        }
-        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            navigationDrawerActivity.finish();
-            toast.cancel();
-        }
     }
 
     public void showGuide() {
