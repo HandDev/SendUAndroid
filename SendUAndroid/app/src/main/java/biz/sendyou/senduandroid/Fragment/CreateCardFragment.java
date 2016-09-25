@@ -35,6 +35,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
     private TextView card_text;
     private ImageView card_image;
     private EditText edt;
+    public static String letterText;
 
     private OnFragmentInteractionListener mListener;
 
@@ -95,6 +96,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
 
                 getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, orderCardFragment).commit();
 
+                letterText = card_text.getText().toString();
             }
         });
 
@@ -152,6 +154,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
 
                 Button btn = (Button) layout.findViewById(R.id.Btn);
                 edt = (EditText) layout.findViewById(R.id.dialog_text);
+                edt.setText(card_text.getText());
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

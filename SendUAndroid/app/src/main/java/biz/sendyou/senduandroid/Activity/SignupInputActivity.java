@@ -1,9 +1,10 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -16,7 +17,6 @@ import java.util.Calendar;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.EmailCheck;
 import biz.sendyou.senduandroid.Service.Repo;
-import biz.sendyou.senduandroid.Service.SignUpService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,10 +35,12 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
     private EditText mPasswordCheckEditText;
     private EditText mPasswordEditText;
     private static final String URL = "http://52.78.159.163:3000/user/";
+    public static Activity fa;
 
     private static final String FRAG_TAG_DATE_PICKER = "Select Date";
 
-    private SignupInputActivity signupInputActivity;
+    public SignupInputActivity signupInputActivity;
+    public Context signupInputActivityContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,10 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_signup_input);
 
         findViewById(R.id.signup_next_imageview).setOnClickListener(this);
-
+        fa = this;
         signupInputActivity = this;
+        Log.e("activity",signupInputActivity.toString());
+        signupInputActivityContext = getApplicationContext();
 
         mFirstNameEditText = (EditText)findViewById(R.id.signup_first_name_edittext);
         mNameEditText = (EditText)findViewById(R.id.signup_name_edittext);
@@ -105,10 +109,6 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
 
-                Log.e("Resp",String.valueOf(repo.isSuccess()));
-                Log.e("Response",response.raw().toString());
-                Log.e("Response",response.message());
-
                 if(repo.isSuccess()){
                     Intent mIntent = new Intent(signupInputActivity, SignupAddressActivity.class);
                     mIntent.putExtra("userName", mFirstNameEditText.getText().toString() + mNameEditText.getText().toString());
@@ -116,7 +116,6 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
                     mIntent.putExtra("password", mPasswordCheckEditText.getText().toString());
                     mIntent.putExtra("birth",mBirthEditText.getText().toString());
                     startActivity(mIntent);
-                    finish();
                 }
 
                 else {
