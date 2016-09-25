@@ -3,6 +3,7 @@ package biz.sendyou.senduandroid.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -71,14 +72,22 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
         if(mFirstNameEditText.getText().toString().matches("") || mNameEditText.getText().toString().matches("") || mEmailEditText.getText().toString().matches("") || mPasswordCheckEditText.getText().toString().matches("") || mPasswordEditText.getText().toString().matches("")) {
             Toast.makeText(getBaseContext(),"빈칸이 있는지 확인해주세요.",Toast.LENGTH_LONG).show();
         }
-        else if(mPasswordEditText.getText().toString().matches(mPasswordCheckEditText.getText().toString())) {
-            emailck();
-            Log.e("password",mPasswordEditText.getText().toString());
-            Log.e("check",mPasswordCheckEditText.getText().toString());
+        else if(!isValidEmail(mEmailEditText.getText().toString())) {
+            Toast.makeText(getBaseContext(),"이메일의 형식이 아닙니다. 다시 한번 확인해주세요.",Toast.LENGTH_LONG).show();
+        }
+        else if(mPasswordEditText.getText().length()<8) {
+            Toast.makeText(getBaseContext(),"비밀번호가 너무 짧습니다. 8자 이상으로 작성해주세요.",Toast.LENGTH_LONG).show();
+        }
+        else if(!mPasswordEditText.getText().toString().matches(mPasswordCheckEditText.getText().toString())) {
+            Toast.makeText(getBaseContext(),"비밀번호가 일치하지 않습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(getBaseContext(),"비밀번호를 확인해주세요.",Toast.LENGTH_LONG).show();
+            emailck();
         }
+    }
+
+    private static boolean isValidEmail(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     private void emailck() {
@@ -111,7 +120,7 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
                 }
 
                 else {
-                    Toast.makeText(signupInputActivity, "중복된 이메일입니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signupInputActivity, "이미 가입된 이메일입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
