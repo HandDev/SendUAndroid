@@ -74,26 +74,15 @@
         android:layout_height="wrap_content"
         android:theme = "@style/checkBoxStyle"
         android:id="@+id/autoLogin"
-        android:checked="true"
+        android:checked="false"
         android:layout_gravity="center_horizontal|top"
         android:layout_above="@+id/loginButton"
         android:layout_alignStart="@+id/imageView5"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="55dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="SENDU가 처음이신가요?"
-        android:id="@+id/SignUp1"
-        android:textColor="#FFFFFF"
-        android:layout_gravity="center_horizontal|top"
-        android:textSize="12.8225sp"
-        android:letterSpacing="0"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="85dp"
-        android:layout_marginBottom="70dp" />
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="55dp"
+        android:buttonTint="#F13968"
+        android:scaleX="0.8"
+        android:scaleY="0.8"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -169,5 +158,20 @@
         android:layout_below="@+id/idedit"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="4dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SENDU가 처음이신가요?"
+        android:id="@+id/SignUp1"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal|top"
+        android:textSize="12.8225sp"
+        android:letterSpacing="0"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginBottom="69dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/autologin" />
 
 </RelativeLayout>
