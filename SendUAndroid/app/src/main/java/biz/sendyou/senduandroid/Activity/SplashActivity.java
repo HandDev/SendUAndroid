@@ -73,9 +73,21 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
+                SharedPreferences pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
+                if(pref.getBoolean("activity_excuted",false)) {
+                    Intent mIntent = new Intent(SplashActivity.this,LoginActivity.class);
+                    startActivity(mIntent);
+                    finish();
+                }
+                else {
+                    Intent mIntent = new Intent(SplashActivity.this, OnBoardingActivity.class);
+                    startActivity(mIntent);
+                    finish();
+                    SharedPreferences.Editor ed = pref.edit();
+                    ed.putBoolean("activity_excuted",true);
+                    ed.commit();
+                }
 
-                Intent mIntent = new Intent(SplashActivity.this, OnBoardingActivity.class);
-                startActivity(mIntent);
             }
         };
 

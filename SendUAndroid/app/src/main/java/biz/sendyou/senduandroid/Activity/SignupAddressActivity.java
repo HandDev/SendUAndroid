@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -53,6 +54,7 @@ public class SignupAddressActivity extends AppCompatActivity {
         mImageView01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("Clicked","clicked!");
                 doSignup();
             }
         });
@@ -69,6 +71,7 @@ public class SignupAddressActivity extends AppCompatActivity {
 
     private void callLoginActivity() {
         Intent mIntent = new Intent(SignupAddressActivity.signupAddressActivity, LoginActivity.class);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         signupAddressActivityContext.startActivity(mIntent);
         finish();
     }
@@ -82,24 +85,13 @@ public class SignupAddressActivity extends AppCompatActivity {
         SignUpService signUpService = retrofit.create(SignUpService.class);
 
         Call<Repo> call = signUpService.doSignup(
-                userName,password,email,mTextView02.getText().toString()+mEditText01.getText().toString(),birth);
+                userName,password,email,mTextView01.getText().toString(),mTextView02.getText().toString()+mEditText01.getText().toString(),birth);
 
         call.enqueue(new Callback<Repo>() {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
-                Repo repo = response.body();
-                /*
-                Log.e("Resp",String.valueOf(repo.isSuccess()));
-                Log.e("Response",response.raw().toString());
-                Log.e("Response",response.message());
-                */
-                if(repo.isSuccess()){
-                    Toast.makeText(SignupAddressActivity.this,userName+"님 회원가입이 완료되었습니다. 로그인해주세요.",Toast.LENGTH_LONG).show();
-                    callLoginActivity();
-                }
-
-                else
-                    Toast.makeText(SignupAddressActivity.this,"Error",Toast.LENGTH_LONG).show();
+                Toast.makeText(SignupAddressActivity.this,userName+"님 회원가입이 완료되었습니다. 로그인해주세요.",Toast.LENGTH_LONG).show();
+                callLoginActivity();
             }
 
             @Override

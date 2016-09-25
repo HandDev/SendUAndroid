@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -233,5 +234,12 @@ public class SignInFragment extends Fragment implements View.OnClickListener, Go
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    @Override
+    public void onPause() {
+        Fragment mFragment = getFragmentManager().findFragmentByTag("SignInFragment");
+        FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
+        FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

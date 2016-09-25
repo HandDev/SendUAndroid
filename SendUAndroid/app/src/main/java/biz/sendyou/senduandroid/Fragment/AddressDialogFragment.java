@@ -7,7 +7,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,6 +84,14 @@ public class AddressDialogFragment extends DialogFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onPause() {
+        Fragment mFragment = getFragmentManager().findFragmentByTag("AddressDialogFragment");
+        FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
+        FragTsaction.remove(mFragment);
+        super.onPause();
     }
 
 }

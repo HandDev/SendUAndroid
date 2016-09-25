@@ -5,6 +5,7 @@ import android.preference.PreferenceFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +83,13 @@ public class SettingFragment extends Fragment {
             // Load the preferences from an XML resource
             addPreferencesFromResource(R.xml.xml_preference);
         }
+    }
+    @Override
+    public void onPause() {
+        Fragment mFragment = getFragmentManager().findFragmentByTag("SettingFragment");
+        FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
+        FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }
 

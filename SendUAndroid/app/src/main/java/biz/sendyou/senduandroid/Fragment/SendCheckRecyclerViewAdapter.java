@@ -46,7 +46,7 @@ public class SendCheckRecyclerViewAdapter extends RecyclerView.Adapter<SendCheck
 //        holder.mDueDate.setTypeface(holder.mTypeface_regular);
 //        holder.mDueDate_num.setTypeface(holder.mTypeface_regular);
 
-        holder.mAddress.setText(mItems.get(position).getAddress());
+        /*holder.mAddress.setText(mItems.get(position).getAddress());
         holder.mReceiver_bold.setText(mItems.get(position).getReceiver());
         holder.mDate_num.setText(mItems.get(position).getDate());
         holder.mDueDate_num.setText(mItems.get(position).getDueDate());
@@ -57,7 +57,7 @@ public class SendCheckRecyclerViewAdapter extends RecyclerView.Adapter<SendCheck
         TypefaceHelper.getInstance().setTypeface(holder.mDate,"NotoSansCJKkr-Regular.otf");
         TypefaceHelper.getInstance().setTypeface(holder.mDate_num,"NotoSansCJKkr-Regular.otf");
         TypefaceHelper.getInstance().setTypeface(holder.mDueDate,"NotoSansCJKkr-Regular.otf");
-        TypefaceHelper.getInstance().setTypeface(holder.mDueDate_num,"NotoSansCJKkr-Regular.otf");
+        TypefaceHelper.getInstance().setTypeface(holder.mDueDate_num,"NotoSansCJKkr-Regular.otf");*/
     }
 
     @Override
@@ -88,4 +88,5 @@ public class SendCheckRecyclerViewAdapter extends RecyclerView.Adapter<SendCheck
             mStatusImg = (ImageView) item.findViewById(R.id.sendcheck_status_img);
         }
     }
+
 }

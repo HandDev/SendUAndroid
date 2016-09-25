@@ -121,6 +121,7 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
     }
 
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -196,6 +197,12 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
 
     @Override
     public void onPause() {
+<<<<<<< HEAD
+=======
+        Fragment mFragment = getFragmentManager().findFragmentByTag("AddressBookFragment");
+        FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
+        FragTsaction.remove(mFragment);
+>>>>>>> 42d48b0a24613d5cead65baba829c3013bf81c84
         super.onPause();
     }
 }

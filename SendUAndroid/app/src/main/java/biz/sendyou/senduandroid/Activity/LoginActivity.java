@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.drivemode.android.typeface.TypefaceHelper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
@@ -37,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
     public static LoginActivity loginActivity;
     public static Context mLoginActivityContext;
     private static final String URL = "http://52.78.159.163:3000/userAuth/";
+    private String jsonStr = null;
+    private String usrName, numAdd,address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +79,12 @@ public class LoginActivity extends AppCompatActivity {
 
         Button mButton = (Button)findViewById(R.id.loginButton);
         assert mButton != null;
+        JsoupAsyncTask jsoupAsyncTask = new JsoupAsyncTask();
+        jsoupAsyncTask.execute();
+
+
+
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     //doLogin();
                     callNaviation();
+
                 }
             }
         });
@@ -164,6 +183,33 @@ public class LoginActivity extends AppCompatActivity {
                 view.setBackgroundDrawable(null);
             }
             bg.setCallback(null);
+        }
+    }
+
+    private class JsoupAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                String str = Jsoup.connect("http://52.78.159.163:3000/user/debug/allusers").ignoreContentType(true).execute().body();
+
+                Log.e("document", str);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+
         }
     }
 }

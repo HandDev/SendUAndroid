@@ -38,4 +38,5 @@ public class InputDialogFragment extends DialogFragment {
         mContext = (FragmentActivity)activity;
         super.onAttach(activity);
     }
+
 }
