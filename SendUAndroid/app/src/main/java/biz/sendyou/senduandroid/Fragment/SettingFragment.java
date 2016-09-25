@@ -89,6 +89,7 @@ public class SettingFragment extends Fragment {
         Fragment mFragment = getFragmentManager().findFragmentByTag("SettingFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }
 

@@ -50,5 +50,6 @@ public class SendCheckFragment extends Fragment {
         Fragment mFragment = getFragmentManager().findFragmentByTag("SendCheckFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

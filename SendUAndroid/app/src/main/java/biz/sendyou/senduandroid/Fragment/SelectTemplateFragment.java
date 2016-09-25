@@ -146,5 +146,6 @@ public class SelectTemplateFragment extends Fragment {
         Fragment mFragment = getFragmentManager().findFragmentByTag("SelectTemplateFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

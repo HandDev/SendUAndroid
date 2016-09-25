@@ -240,5 +240,6 @@ public class SignInFragment extends Fragment implements View.OnClickListener, Go
         Fragment mFragment = getFragmentManager().findFragmentByTag("SignInFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

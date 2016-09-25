@@ -109,5 +109,6 @@ public class CashFragment extends Fragment {
         Fragment mFragment = getFragmentManager().findFragmentByTag("CashFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

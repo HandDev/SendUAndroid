@@ -112,5 +112,6 @@ public class SignUpFragment extends Fragment {
         Fragment mFragment = getFragmentManager().findFragmentByTag("SignUpFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

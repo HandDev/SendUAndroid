@@ -91,6 +91,7 @@ public class AddressDialogFragment extends DialogFragment {
         Fragment mFragment = getFragmentManager().findFragmentByTag("AddressDialogFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 
 }

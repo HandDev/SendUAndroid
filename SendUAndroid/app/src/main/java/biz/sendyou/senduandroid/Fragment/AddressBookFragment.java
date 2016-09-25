@@ -200,5 +200,6 @@ public class AddressBookFragment extends Fragment implements AddressDialogIntera
         Fragment mFragment = getFragmentManager().findFragmentByTag("AddressBookFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

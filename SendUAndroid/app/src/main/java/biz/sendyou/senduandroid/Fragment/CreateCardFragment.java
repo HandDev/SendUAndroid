@@ -200,5 +200,6 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
         Fragment mFragment = getFragmentManager().findFragmentByTag("CreateCardFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

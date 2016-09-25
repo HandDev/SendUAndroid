@@ -112,5 +112,6 @@ public class SelectServiceFragment extends Fragment {
         Fragment mFragment = getFragmentManager().findFragmentByTag("SelectServiceFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

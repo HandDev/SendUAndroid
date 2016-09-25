@@ -116,5 +116,6 @@ public class FrontFragment extends Fragment {
         Fragment mFragment = getFragmentManager().findFragmentByTag("FrontFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }

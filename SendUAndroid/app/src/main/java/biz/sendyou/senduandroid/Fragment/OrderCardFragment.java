@@ -115,5 +115,6 @@ public class OrderCardFragment extends Fragment {
         Fragment mFragment = getFragmentManager().findFragmentByTag("OrderCardFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
+        super.onPause();
     }
 }
