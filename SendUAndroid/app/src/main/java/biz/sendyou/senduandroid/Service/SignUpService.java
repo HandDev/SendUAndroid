@@ -13,9 +13,10 @@ public interface SignUpService {
     @FormUrlEncoded
     @POST("insertData")
     Call<Repo> doSignup(
-            @Field("userName") String userName,
+            @Field("username") String userName,
             @Field("password") String password,
             @Field("email") String email,
+            @Field("numaddress") String numadd,
             @Field("address") String address,
             @Field("birth") String birth);
 }
