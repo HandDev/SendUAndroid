@@ -27,13 +27,10 @@ public class SplashActivity extends AppCompatActivity {
 
     public static Activity activity;
     public SplashActivity splashActivity;
-<<<<<<< HEAD
     public static Context splashActivityContext;
     private static Drawable sBackground;
     private static RelativeLayout layout;
 
-=======
->>>>>>> baa611eefe1e4e4762ae8e6887785515bfe4f318
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

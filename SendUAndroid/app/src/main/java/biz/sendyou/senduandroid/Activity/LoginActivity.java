@@ -60,26 +60,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-<<<<<<< HEAD
         layout = (RelativeLayout)findViewById(R.id.activity_login_background);
 
         if(sBackground == null) {
-            sBackground = getDrawable(R.drawable.sp_back1);
+            sBackground = new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2));
             layout.setBackgroundDrawable(sBackground);
         }
-=======
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 8;
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
-        int bHeight = bitmap.getHeight();
-        int bWidth = bitmap.getWidth();
         loginActivity = this;
         la = this;
-
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.activity_login_background);
-        layout.setBackgroundDrawable(new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1)));
->>>>>>> baa611eefe1e4e4762ae8e6887785515bfe4f318
 
         TypefaceHelper.initialize(getApplication());
         ActionBar mActionBar = getSupportActionBar();
