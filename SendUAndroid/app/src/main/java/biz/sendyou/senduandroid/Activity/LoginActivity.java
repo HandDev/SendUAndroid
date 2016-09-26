@@ -52,14 +52,20 @@ public class LoginActivity extends AppCompatActivity {
     private String usrName, numAdd,address;
     public static Activity la;
     public static String email;
+    private static Drawable sBackground;
+    private static RelativeLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.activity_login_background);
-        layout.setBackgroundDrawable(new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1)));
+        layout = (RelativeLayout)findViewById(R.id.activity_login_background);
+
+        if(sBackground == null) {
+            sBackground = getDrawable(R.drawable.sp_back1);
+            layout.setBackgroundDrawable(sBackground);
+        }
 
         TypefaceHelper.initialize(getApplication());
         ActionBar mActionBar = getSupportActionBar();

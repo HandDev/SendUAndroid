@@ -28,13 +28,21 @@ public class SplashActivity extends AppCompatActivity {
     public static Activity activity;
     public SplashActivity splashActivity;
     public static Context splashActivityContext;
+    private static Drawable sBackground;
+    private static RelativeLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.splash_background);
-        layout.setBackground(new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2)));
+        layout = (RelativeLayout)findViewById(R.id.splash_background);
+
+        if(sBackground == null) {
+            Log.w(LOGTAG, "Set BackgroundDrawble");
+            sBackground = new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2));
+            layout.setBackgroundDrawable(sBackground);
+        }
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -59,8 +67,7 @@ public class SplashActivity extends AppCompatActivity {
             edit.commit();
 
         }
-        //Very normal Splash!!
-        //hello im soyeoneeeeeeee yeeyeeyee
+
         Handler mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -83,7 +90,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
 
-        mHandler.sendEmptyMessageDelayed(0,3000); // Delay 3 sec.
+        //mHandler.sendEmptyMessageDelayed(0,3000); // Delay 3 sec.
 
     }
 
