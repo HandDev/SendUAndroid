@@ -82,9 +82,6 @@ public class LoginActivity extends AppCompatActivity {
         JsoupAsyncTask jsoupAsyncTask = new JsoupAsyncTask();
         jsoupAsyncTask.execute();
 
-
-
-
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
