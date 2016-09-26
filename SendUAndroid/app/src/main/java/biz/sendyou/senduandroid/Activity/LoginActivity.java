@@ -31,6 +31,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.R;
@@ -45,12 +46,11 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEditText01;
     private String LOGTAG = "LoginActivity";
     private EditText mEditText02;
-    public static LoginActivity loginActivity;
-    public static Context mLoginActivityContext;
     private static final String URL = "http://52.78.159.163:3000/userAuth/";
     private String jsonStr = null;
-    private String usrName, numAdd,address;
+    public static LoginActivity loginActivity;
     public static Activity la;
+    private String usrName, numAdd,address;
     public static String email;
     private static Drawable sBackground;
     private static RelativeLayout layout;
@@ -60,22 +60,34 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+<<<<<<< HEAD
         layout = (RelativeLayout)findViewById(R.id.activity_login_background);
 
         if(sBackground == null) {
             sBackground = getDrawable(R.drawable.sp_back1);
             layout.setBackgroundDrawable(sBackground);
         }
+=======
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
+        int bHeight = bitmap.getHeight();
+        int bWidth = bitmap.getWidth();
+        loginActivity = this;
+        la = this;
+
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.activity_login_background);
+        layout.setBackgroundDrawable(new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1)));
+>>>>>>> baa611eefe1e4e4762ae8e6887785515bfe4f318
 
         TypefaceHelper.initialize(getApplication());
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.hide();
-        loginActivity = this;
 
         mEditText01 = (EditText)findViewById(R.id.idedit);
         mEditText02 = (EditText)findViewById(R.id.pwedit);
         final CheckBox mCheckBox01 = (CheckBox)findViewById(R.id.autoLogin);
-        mLoginActivityContext = LoginActivity.this;
 
         Button mButton = (Button)findViewById(R.id.loginButton);
         assert mButton != null;
@@ -87,7 +99,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"아이디 또는 비밀번호를 확인해주세요.",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    //doLogin();
+                    doLogin();
+                    email = mEditText01.getText().toString();
                     callNaviation();
 
                 }
@@ -130,11 +143,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
                 if(repo.isSuccess() ) {
-                    email = mEditText01.getText().toString();
                     callNaviation();
                 }
                 else{
-                    Toast.makeText(LoginActivity.mLoginActivityContext,"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ContextManager.getP(),"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -147,7 +159,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void callNaviation() {
         Intent mIntent = new Intent(LoginActivity.loginActivity, NavigationDrawerActivity.class);
-        mLoginActivityContext.startActivity(mIntent);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ContextManager.getP().startActivity(mIntent);
         finish();
     }
 

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.SignUpService;
@@ -31,7 +32,6 @@ public class SignupAddressActivity extends AppCompatActivity {
     private static final String URL = "http://52.78.159.163:3000/user/signup/";
 
     public static SignupAddressActivity signupAddressActivity;
-    public static Context signupAddressActivityContext;
     private SignupInputActivity signupInputActivity;
 
     @Override
@@ -49,7 +49,6 @@ public class SignupAddressActivity extends AppCompatActivity {
 
         mImageView01 = (ImageView) findViewById(R.id.signup_enter_imageview);
         signupAddressActivity = this;
-        signupAddressActivityContext = getApplicationContext();
 
         mImageView01.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +70,7 @@ public class SignupAddressActivity extends AppCompatActivity {
     private void callLoginActivity() {
         Intent mIntent = new Intent(SignupAddressActivity.signupAddressActivity, LoginActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        signupAddressActivityContext.startActivity(mIntent);
+        ContextManager.getP().startActivity(mIntent);
         SignupInputActivity.fa.finish();
         LoginActivity.la.finish();
         finish();

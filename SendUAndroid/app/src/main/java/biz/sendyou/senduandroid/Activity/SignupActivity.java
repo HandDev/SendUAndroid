@@ -28,6 +28,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 
 public class SignupActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
@@ -37,7 +38,6 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     private GoogleApiClient mGoogleApiClient;
     private SignInButton mGoogleSignInButton;
     private int mSignInRequestCode = 0;
-    public static Context signupContext;
     public static SignupActivity mSignupActivity;
     private String LOGTAG = "SignUp";
 
@@ -45,7 +45,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        FacebookSdk.sdkInitialize(ContextManager.getP());
         setContentView(R.layout.activity_signup);
         mCallBackManager = CallbackManager.Factory.create();
 
@@ -153,7 +153,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     public static void callSignUpInputActivity() {
         Intent mIntent = new Intent(SignupActivity.mSignupActivity, SignupInputActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        signupContext.startActivity(mIntent);
+        ContextManager.getP().startActivity(mIntent);
     }
 
     private void callSignActivity() {
