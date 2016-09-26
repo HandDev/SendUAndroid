@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 
 public class OnBoardingActivity extends Activity {
@@ -18,7 +19,6 @@ public class OnBoardingActivity extends Activity {
     private SharedPreferences pref;
     private String LOGTAG = "OnBoardingActivity";
     public static OnBoardingActivity onBoardingActivity;
-    public static Context onBoardingContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ public class OnBoardingActivity extends Activity {
         splashActivity.finish();
 
         onBoardingActivity = this;
-        onBoardingContext = getApplicationContext();
         pref = getSharedPreferences("pref",MODE_PRIVATE);
 
         Log.i(LOGTAG, "login pref :" + pref.getBoolean("login", false));
@@ -63,13 +62,13 @@ public class OnBoardingActivity extends Activity {
     public void callNavigationDrawerActivity() {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, NavigationDrawerActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        onBoardingContext.startActivity(mIntent);
+        ContextManager.getP().startActivity(mIntent);
         finish();
     }
 
     public void callLoginActivity() {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, LoginActivity.class);
-        onBoardingContext.startActivity(mIntent);
+        ContextManager.getP().startActivity(mIntent);
         finish();
     }
 

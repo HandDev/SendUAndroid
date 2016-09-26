@@ -27,7 +27,6 @@ public class SplashActivity extends AppCompatActivity {
 
     public static Activity activity;
     public SplashActivity splashActivity;
-    public static Context splashActivityContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +47,6 @@ public class SplashActivity extends AppCompatActivity {
         actionBar.hide();
 
         splashActivity = this;
-        splashActivityContext = getApplicationContext();
 
         boolean isFirstStart = false;
         SharedPreferences pref;
