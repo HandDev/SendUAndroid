@@ -33,16 +33,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        activity = SplashActivity.this;
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2);
-        int bHeight = bitmap.getHeight();
-        int bWidth = bitmap.getWidth();
-
-        Bitmap resize = resizeBitmap(bitmap, bWidth, bHeight);
-
         RelativeLayout layout = (RelativeLayout)findViewById(R.id.splash_background);
-        layout.setBackground(new BitmapDrawable(resize));
+        layout.setBackground(new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2)));
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -93,13 +85,6 @@ public class SplashActivity extends AppCompatActivity {
 
         mHandler.sendEmptyMessageDelayed(0,3000); // Delay 3 sec.
 
-    }
-
-    private Bitmap resizeBitmap(Bitmap bitmap, int width, int height) {
-        if(height > 720) {
-            return Bitmap.createScaledBitmap(bitmap, (width * 720) / height, 720, true);
-        }
-        return bitmap;
     }
 
     @Override

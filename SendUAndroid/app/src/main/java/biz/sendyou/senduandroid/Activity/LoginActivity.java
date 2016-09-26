@@ -58,19 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 8;
-
-        la = this;
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
-        int bHeight = bitmap.getHeight();
-        int bWidth = bitmap.getWidth();
-
-        Bitmap resize = resizeBitmap(bitmap, bWidth, bHeight);
-
         RelativeLayout layout = (RelativeLayout)findViewById(R.id.activity_login_background);
-        layout.setBackground(new BitmapDrawable(resize));
+        layout.setBackgroundDrawable(new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1)));
 
         TypefaceHelper.initialize(getApplication());
         ActionBar mActionBar = getSupportActionBar();
@@ -114,13 +103,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private Bitmap resizeBitmap(Bitmap bitmap, int width, int height) {
-        if(height > 720) {
-            return Bitmap.createScaledBitmap(bitmap, (width * 720) / height, 720, true);
-        }
-        return bitmap;
     }
 
     public void moveSignupActivity(){
