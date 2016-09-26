@@ -7,6 +7,7 @@ import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.ArrayMap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,10 +51,11 @@ public class OrderCardFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private String uuid;
-    private JSONObject jsonParams;
+    private JSONObject jsonParams = new JSONObject();
     private static final String URL = "http://52.78.159.163:8080/";
     private RequestBody body;
     private EditText receivername,numAddress,jusoAddress,phoneNumber;
+    private String email = "enoxaiming@naver.com";
 
     public OrderCardFragment() {
         // Required empty public constructor
@@ -99,8 +101,12 @@ public class OrderCardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getUUID();
-                CashFragment cashFragment = CashFragment.newInstance();
-                getFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,cashFragment).commit();
+                if(uuid != null) {
+                    doOrder();
+                }
+                else {
+
+                }
             }
         });
 
@@ -121,6 +127,7 @@ public class OrderCardFragment extends Fragment {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 uuid = response.body().getOrderUUID();
+                Log.e("UUID",uuid);
             }
 
             @Override
@@ -135,7 +142,7 @@ public class OrderCardFragment extends Fragment {
             Calendar c = Calendar.getInstance();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
             String date = sdf.format(c.getTime());
-            jsonParams.put("userUUID",LoginActivity.email);
+            jsonParams.put("userUUID",email);
             jsonParams.put("orderUUID",uuid);
             jsonParams.put("orderDate",date);
             jsonParams.put("receiverName",receivername.getText().toString());
@@ -145,7 +152,8 @@ public class OrderCardFragment extends Fragment {
             jsonParams.put("text",CreateCardFragment.letterText);
             jsonParams.put("image","s3");
 
-            body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(jsonParams).toString());
+            body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jsonParams.toString());
+            Log.e("str",jsonParams.toString());
         }
         catch (JSONException e) {
             e.printStackTrace();
@@ -158,18 +166,22 @@ public class OrderCardFragment extends Fragment {
 
         DoOrder doOrder = retrofit.create(DoOrder.class);
 
+        Call<ResponseBody> call = doOrder.doOrder(email,uuid,body);
 
-        Call<ResponseBody> call = doOrder.doOrder(LoginActivity.email,uuid,body);
+
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+                Log.e("Body",response.message());
+                Log.e("raw", response.raw().toString());
+                CashFragment cashFragment = CashFragment.newInstance();
+                getFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,cashFragment).commit();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Log.e("C",t.getMessage());
             }
         });
     }
