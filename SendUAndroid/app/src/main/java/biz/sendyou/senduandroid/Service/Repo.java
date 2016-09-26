@@ -8,6 +8,7 @@ public class Repo {
     private String message;
     private boolean success;
     private String token;
+    private String orderUUID;
 
     public void setMessage(String message){
         this.message = message;
@@ -27,5 +28,11 @@ public class Repo {
     }
     public String getToken(){
         return this.token;
+    }
+    public void setOrderUUID(String orderUUID) {
+        this.orderUUID = orderUUID;
+    }
+    public String getOrderUUID() {
+        return this.orderUUID;
     }
 }

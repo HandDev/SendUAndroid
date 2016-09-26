@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -49,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final String URL = "http://52.78.159.163:3000/userAuth/";
     private String jsonStr = null;
     private String usrName, numAdd,address;
+    public static Activity la;
+    public static String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 8;
+
+        la = this;
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
         int bHeight = bitmap.getHeight();
@@ -79,8 +84,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Button mButton = (Button)findViewById(R.id.loginButton);
         assert mButton != null;
-        JsoupAsyncTask jsoupAsyncTask = new JsoupAsyncTask();
-        jsoupAsyncTask.execute();
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,12 +141,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
-                /*
-                Log.e("Repo",String.valueOf(repo.isSuccess()));
-                Log.e("Repo",response.raw().toString());
-                Log.e("Repo",response.message());
-                */
                 if(repo.isSuccess() ) {
+                    email = mEditText01.getText().toString();
                     callNaviation();
                 }
                 else{
@@ -183,32 +182,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private class JsoupAsyncTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                String str = Jsoup.connect("http://52.78.159.163:3000/user/debug/allusers").ignoreContentType(true).execute().body();
-
-                Log.e("document", str);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-
-
-        }
-    }
 }
 
 

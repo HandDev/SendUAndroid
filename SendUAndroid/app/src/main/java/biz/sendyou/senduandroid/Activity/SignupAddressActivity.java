@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.SignUpService;
@@ -33,12 +32,15 @@ public class SignupAddressActivity extends AppCompatActivity {
 
     public static SignupAddressActivity signupAddressActivity;
     public static Context signupAddressActivityContext;
+    private SignupInputActivity signupInputActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_address);
         getInfo();
+
+
 
         mImageView02 = (ImageView)findViewById(R.id.signup_address_search_button_imageview);
         mTextView01 = (TextView)findViewById(R.id.signup_auto_address_num_textview);
@@ -49,12 +51,9 @@ public class SignupAddressActivity extends AppCompatActivity {
         signupAddressActivity = this;
         signupAddressActivityContext = getApplicationContext();
 
-
-
         mImageView01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","clicked!");
                 doSignup();
             }
         });
@@ -73,6 +72,8 @@ public class SignupAddressActivity extends AppCompatActivity {
         Intent mIntent = new Intent(SignupAddressActivity.signupAddressActivity, LoginActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         signupAddressActivityContext.startActivity(mIntent);
+        SignupInputActivity.fa.finish();
+        LoginActivity.la.finish();
         finish();
     }
 
