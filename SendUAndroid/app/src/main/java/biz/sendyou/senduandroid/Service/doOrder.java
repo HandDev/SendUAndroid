@@ -11,7 +11,7 @@ import retrofit2.http.Path;
  * Created by JunHyeok on 2016. 9. 25..
  */
 
-public interface DoOrder {
+public interface doOrder {
     @POST("order/{email}/{orderuuid}")
     Call<ResponseBody> doOrder(@Path("email") String email,
                                @Path("orderuuid") String uuid,

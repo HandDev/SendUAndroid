@@ -66,10 +66,9 @@ public class LoginActivity extends AppCompatActivity {
         int bWidth = bitmap.getWidth();
         loginActivity = this;
         la = this;
-        Bitmap resize = resizeBitmap(bitmap, bWidth, bHeight);
 
         RelativeLayout layout = (RelativeLayout)findViewById(R.id.activity_login_background);
-        layout.setBackground(new BitmapDrawable(resize));
+        layout.setBackgroundDrawable(new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1)));
 
         TypefaceHelper.initialize(getApplication());
         ActionBar mActionBar = getSupportActionBar();
@@ -81,9 +80,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Button mButton = (Button)findViewById(R.id.loginButton);
         assert mButton != null;
-
-
-
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,13 +111,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private Bitmap resizeBitmap(Bitmap bitmap, int width, int height) {
-        if(height > 720) {
-            return Bitmap.createScaledBitmap(bitmap, (width * 720) / height, 720, true);
-        }
-        return bitmap;
     }
 
     public void moveSignupActivity(){

@@ -3,34 +3,26 @@ package biz.sendyou.senduandroid.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jsoup.nodes.Document;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Map;
 
 import biz.sendyou.senduandroid.Activity.LoginActivity;
-import biz.sendyou.senduandroid.Activity.SignupAddressActivity;
 import biz.sendyou.senduandroid.R;
-import biz.sendyou.senduandroid.Service.DoOrder;
+import biz.sendyou.senduandroid.Service.doOrder;
 import biz.sendyou.senduandroid.Service.GetUUID;
 import biz.sendyou.senduandroid.Service.Repo;
-import biz.sendyou.senduandroid.Service.SignUpService;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -164,7 +156,7 @@ public class OrderCardFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        DoOrder doOrder = retrofit.create(DoOrder.class);
+        doOrder doOrder = retrofit.create(biz.sendyou.senduandroid.Service.doOrder.class);
 
         Call<ResponseBody> call = doOrder.doOrder(email,uuid,body);
 
