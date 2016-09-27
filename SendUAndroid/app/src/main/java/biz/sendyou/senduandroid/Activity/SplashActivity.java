@@ -28,16 +28,13 @@ public class SplashActivity extends AppCompatActivity {
     public static Activity activity;
     public SplashActivity splashActivity;
     public static Context splashActivityContext;
-    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        imageView = (ImageView) findViewById(R.id.background_image);
-
-        putBitmap(imageView, R.drawable.sp_back1);
+        putBitmap(R.id.background_image, R.drawable.sp_back1);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -85,11 +82,13 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         Log.w(LOGTAG, "Destroy background");
-        recycleView(imageView);
+        recycleView(R.id.background_image);
         super.onDestroy();
     }
 
-    private void recycleView(ImageView view) {
+    private void recycleView(int id) {
+        ImageView view = (ImageView)findViewById(id);
+
         Drawable d = view.getDrawable();
         if(d instanceof BitmapDrawable) {
             Bitmap b = ((BitmapDrawable) d).getBitmap();
@@ -107,10 +106,12 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
-    private void putBitmap(ImageView imageView, int id) {
+    private void putBitmap(int imageViewId, int drawableId) {
+        ImageView imageView = (ImageView)findViewById(imageViewId);
+        
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 8;
-        Bitmap background_image = BitmapFactory.decodeResource(getResources(), id, options);
+        Bitmap background_image = BitmapFactory.decodeResource(getResources(), drawableId, options);
 
         imageView.setImageBitmap(background_image);
         background_image = null;
