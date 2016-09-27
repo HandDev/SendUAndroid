@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.drivemode.android.typeface.TypefaceHelper;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -31,7 +30,6 @@ import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 import biz.sendyou.senduandroid.Service.UsrInfo;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,15 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     public static LoginActivity loginActivity;
     public static Activity la;
     private String usrName, numAdd,address;
-<<<<<<< HEAD
-    public static String email;
     private ImageView imageView;
-    private Bitmap background_src;
-=======
     public static String email,token;
-    private static Drawable sBackground;
-    private static RelativeLayout layout;
->>>>>>> d8fd19bf86f0a00c93ca08650c6a0702f5ac9b9c
 
 
     @Override
@@ -76,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
         loginActivity = this;
         la = this;
 
-        TypefaceHelper.initialize(getApplication());
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.hide();
 
@@ -97,11 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     doLogin();
                     email = mEditText01.getText().toString();
-<<<<<<< HEAD
-                    callNaviation();
-=======
-
->>>>>>> d8fd19bf86f0a00c93ca08650c6a0702f5ac9b9c
                 }
             }
         });
@@ -109,10 +94,6 @@ public class LoginActivity extends AppCompatActivity {
         TextView mTextView01 = (TextView)findViewById(R.id.SendU);
         TextView mTextView02 = (TextView)findViewById(R.id.SignUp1);
         TextView mTextView03 = (TextView)findViewById(R.id.SignUp2);
-
-        TypefaceHelper.getInstance().setTypeface(mTextView01,"NotoSansCJKkr-Regular.otf");
-        TypefaceHelper.getInstance().setTypeface(mTextView02,"NotoSansCJKkr-Light.otf");
-        TypefaceHelper.getInstance().setTypeface(mTextView03,"NotoSansCJKkr-Bold.otf");
 
         mTextView03.setOnClickListener(new View.OnClickListener() {
             @Override
