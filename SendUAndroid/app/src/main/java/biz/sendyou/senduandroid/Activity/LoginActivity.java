@@ -35,12 +35,9 @@ import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.R;
-<<<<<<< HEAD
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
-=======
 import biz.sendyou.senduandroid.Service.UsrInfo;
 import okhttp3.ResponseBody;
->>>>>>> origin/master
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
