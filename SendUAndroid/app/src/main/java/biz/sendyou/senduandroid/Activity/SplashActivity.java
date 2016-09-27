@@ -52,10 +52,7 @@ public class SplashActivity extends AppCompatActivity {
         if(!pref.getBoolean("isFirst", false)){
             Log.i(LOGTAG,"isFirst launch after installation");
             //start Template Image Download Thread
-<<<<<<< HEAD
-=======
             TemplateDownloadThread templateDownloadThread = new TemplateDownloadThread();
->>>>>>> fc04fbfb806b7027f222adf14745a2cecdefbdc8
             Log.i(LOGTAG, "Thread execute");
 
             SharedPreferences.Editor edit = pref.edit();

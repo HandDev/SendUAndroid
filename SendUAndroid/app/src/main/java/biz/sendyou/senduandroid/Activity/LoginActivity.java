@@ -19,13 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
-=======
 import com.drivemode.android.typeface.TypefaceHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,9 +43,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
->>>>>>> fc04fbfb806b7027f222adf14745a2cecdefbdc8
-
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
@@ -74,20 +69,10 @@ public class LoginActivity extends AppCompatActivity {
     public static LoginActivity loginActivity;
     public static Activity la;
     private String usrName, numAdd,address;
-<<<<<<< HEAD
-    private ImageView imageView;
-    public static String email,token;
-=======
 
+    public static String email,token;
     private ImageView imageView;
     private Bitmap background_src;
-
-    public static String email,token;
-    private static Drawable sBackground;
-
-
->>>>>>> fc04fbfb806b7027f222adf14745a2cecdefbdc8
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
