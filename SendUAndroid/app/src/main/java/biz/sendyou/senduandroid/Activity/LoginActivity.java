@@ -1,13 +1,11 @@
 package biz.sendyou.senduandroid.Activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,20 +14,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.drivemode.android.typeface.TypefaceHelper;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
 
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Service.LoginService;
@@ -52,20 +46,22 @@ public class LoginActivity extends AppCompatActivity {
     public static Activity la;
     private String usrName, numAdd,address;
     public static String email;
-    private static Drawable sBackground;
-    private static RelativeLayout layout;
+    private ImageView imageView;
+    private Bitmap background_src;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        layout = (RelativeLayout)findViewById(R.id.activity_login_background);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
+        Bitmap background_image = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
 
-        if(sBackground == null) {
-            sBackground = new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2));
-            layout.setBackgroundDrawable(sBackground);
-        }
+        imageView = (ImageView)findViewById(R.id.login_background);
+        imageView.setImageBitmap(background_image);
+
+        background_image = null;
 
         loginActivity = this;
         la = this;
@@ -76,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mEditText01 = (EditText)findViewById(R.id.idedit);
         mEditText02 = (EditText)findViewById(R.id.pwedit);
+        
         final CheckBox mCheckBox01 = (CheckBox)findViewById(R.id.autoLogin);
 
         Button mButton = (Button)findViewById(R.id.loginButton);
@@ -91,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
                     doLogin();
                     email = mEditText01.getText().toString();
                     callNaviation();
-
                 }
             }
         });
@@ -156,22 +152,21 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         Log.w(LOGTAG, "Destroy background");
-        recycleView(findViewById(R.id.activity_login_background));
+        recycleView(imageView);
         super.onDestroy();
     }
 
-    private void recycleView(View view) {
-        if(view != null) {
-            Drawable bg = view.getBackground();
-            if(bg != null) {
-                ((BitmapDrawable)bg).getBitmap().recycle();
-                System.gc();
-                view.setBackgroundDrawable(null);
-            }
-            bg.setCallback(null);
+    private void recycleView(ImageView view) {
+        Drawable d = view.getDrawable();
+        if(d instanceof BitmapDrawable) {
+            Bitmap b = ((BitmapDrawable) d).getBitmap();
+            b.recycle();
+            view.setImageBitmap(null);
+            b = null;
         }
+        d.setCallback(null);
+        System.gc();
     }
-
 }
 
 

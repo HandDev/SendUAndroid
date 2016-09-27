@@ -1,7 +1,6 @@
 package biz.sendyou.senduandroid.Activity;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,8 +14,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
+
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
 
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
@@ -28,26 +32,27 @@ public class SplashActivity extends AppCompatActivity {
     public static Activity activity;
     public SplashActivity splashActivity;
     public static Context splashActivityContext;
-    private static Drawable sBackground;
-    private static RelativeLayout layout;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        layout = (RelativeLayout)findViewById(R.id.splash_background);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
+        Bitmap background_image = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
 
-        if(sBackground == null) {
-            Log.w(LOGTAG, "Set BackgroundDrawble");
-            sBackground = new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2));
-            layout.setBackgroundDrawable(sBackground);
-        }
+        imageView = (ImageView) findViewById(R.id.background_image);
+        imageView.setImageBitmap(background_image);
+
+        background_image = null;
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
         splashActivity = this;
+        splashActivityContext = getApplicationContext();
 
         boolean isFirstStart = false;
         SharedPreferences pref;
@@ -85,30 +90,29 @@ public class SplashActivity extends AppCompatActivity {
                     ed.putBoolean("activity_excuted",true);
                     ed.commit();
                 }
-
             }
         };
 
-        //mHandler.sendEmptyMessageDelayed(0,3000); // Delay 3 sec.
+        mHandler.sendEmptyMessageDelayed(0,3000); // Delay 3 sec.
 
     }
 
     @Override
     protected void onDestroy() {
         Log.w(LOGTAG, "Destroy background");
-        recycleView(findViewById(R.id.splash_background));
+        recycleView(imageView);
         super.onDestroy();
     }
 
-    private void recycleView(View view) {
-        if(view != null) {
-            Drawable bg = view.getBackground();
-            if(bg != null) {
-                ((BitmapDrawable)bg).getBitmap().recycle();
-                System.gc();
-                view.setBackgroundDrawable(null);
-            }
-            bg.setCallback(null);
+    private void recycleView(ImageView view) {
+        Drawable d = view.getDrawable();
+        if(d instanceof BitmapDrawable) {
+            Bitmap b = ((BitmapDrawable) d).getBitmap();
+            b.recycle();
+            view.setImageBitmap(null);
+            b = null;
         }
+        d.setCallback(null);
+        System.gc();
     }
 }
