@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -54,18 +55,21 @@ public class NavigationDrawerActivity extends AppCompatActivity
     private long backKeyPressedTime = 0;
     private Toast toast;
     private NavigationDrawerActivity navigationDrawerActivity;
+    private String userName,address,numAddress;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
+<<<<<<< HEAD
 
+=======
+        getInfo();
+>>>>>>> origin/master
         View view = (View)getLayoutInflater().inflate(R.layout.nav_header_navigation_drawer,null);
-
-        TextView usrName = (TextView) view.findViewById(R.id.username);
-        TextView place = (TextView) view.findViewById(R.id.textView3);
-        TextView num = (TextView) view.findViewById(R.id.textView);
         ImageView btn = (ImageView) view.findViewById(R.id.imageView9);
 
         LoginActivity loginActivity = LoginActivity.loginActivity;
@@ -90,6 +94,13 @@ public class NavigationDrawerActivity extends AppCompatActivity
         if(savedInstanceState == null) {
             changeFragmentToFront();
         }
+    }
+
+    private void getInfo() {
+        Intent mIntent = getIntent();
+        userName = mIntent.getStringExtra("userName");
+        numAddress = mIntent.getStringExtra("numAddress");
+        address = mIntent.getStringExtra("address");
     }
 
     public void setToolBarTitle(String title) {
