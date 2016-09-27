@@ -63,8 +63,16 @@ public class NavigationDrawerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View view = navigationView.getHeaderView(0);
         getInfo();
-        View view = (View)getLayoutInflater().inflate(R.layout.nav_header_navigation_drawer,null);
+        TextView usrName = (TextView) view.findViewById(R.id.username);
+        usrName.setText(userName);
+        TextView place = (TextView) view.findViewById(R.id.textView3);
+        place.setText(address);
+        TextView num = (TextView) view.findViewById(R.id.textView);
+        num.setText(numAddress);
+
         ImageView btn = (ImageView) view.findViewById(R.id.imageView9);
 
         LoginActivity loginActivity = LoginActivity.loginActivity;
@@ -84,7 +92,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+
         navigationView.setNavigationItemSelectedListener(this);
 
         if(savedInstanceState == null) {

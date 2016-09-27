@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -210,19 +211,10 @@ public class LoginActivity extends AppCompatActivity {
                 mIntent.putExtra("username",user.get(user.size()-1).getUserName());
                 mIntent.putExtra("numAddress",user.get(user.size()-1).getNumAddress());
                 mIntent.putExtra("address",user.get(user.size()-1).getAddress());
-                String userName = user.get(user.size()-1).getUserName();
-                String numAddress = user.get(user.size()-1).getNumAddress();
-                String address = user.get(user.size()-1).getAddress();
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ContextManager.getP().startActivity(mIntent);
 
-                View view = (View)getLayoutInflater().inflate(R.layout.nav_header_navigation_drawer,null);
-                TextView usrName = (TextView) view.findViewById(R.id.username);
-                usrName.setText(userName);
-                TextView place = (TextView) view.findViewById(R.id.textView3);
-                place.setText(address);
-                TextView num = (TextView) view.findViewById(R.id.textView);
-                num.setText(numAddress);
+
 
                 finish();
             }
