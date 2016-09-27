@@ -3,55 +3,86 @@ package biz.sendyou.senduandroid.thread;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.SDKGlobalConfiguration;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.S3ClientOptions;
+import com.amazonaws.services.s3.iterable.S3Objects;
+import com.amazonaws.services.s3.model.ListObjectsRequest;
+import com.amazonaws.services.s3.model.ListObjectsV2Request;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
+import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.Region;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import biz.sendyou.senduandroid.AWSManager;
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Util.HttpUtil;
 
 /**
  * Created by parkjaesung on 2016. 8. 23..
  */
-public class TemplateDownloadThread extends AsyncTask<Void, Void, Void> {
+/*
+Usage
+TemplateDownloadThread thread = new TemplateDownloadThread();
+
+thread.join();
+thread.getRaw_keys();
+thread.getThumb_keys();
+
+ */
+public class TemplateDownloadThread extends Thread {
 
     private final String LOGTAG  = "TemplateDownloadThread";
-    private ArrayList<String> urls = new ArrayList<>();
+    private AmazonS3 s3;
 
-    @Override
-    protected void onPreExecute() {
-        Log.i(LOGTAG, "onPreExecute");
-        super.onPreExecute();
+    private List<String> raw_keys = new ArrayList<>();
+    private List<String> thumb_keys = new ArrayList<>();
+
+    public TemplateDownloadThread() {
+
     }
 
-
     @Override
-    protected Void doInBackground(Void... params) {
-        Log.i(LOGTAG, "doInBackGorund started");
-        String templatesJSON = "";
-        try {
-            templatesJSON = HttpUtil.get("http://sendyou.biz/resources/templates");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(templatesJSON);
-            JSONArray templateURLArray = jsonObject.getJSONArray("templates");
+    public void run() {
+        System.setProperty(SDKGlobalConfiguration.ENABLE_S3_SIGV4_SYSTEM_PROPERTY, "true");
 
-            for(int i=0; i<templateURLArray.length(); i++){
-                JSONObject url = (JSONObject) templateURLArray.get(i);
-                urls.add(url.getString(String.valueOf(i+1)));
-            }
-        }catch (Exception e ){
-            e.printStackTrace();
+        this.s3 = AWSManager.getInstance(ContextManager.getP()).getS3();
+
+        AmazonS3Client s3 = new AmazonS3Client(AWSManager.getInstance(ContextManager.getP()).getCredentialsProvider());
+
+        s3.setEndpoint("s3.ap-northeast-2.amazonaws.com");
+
+        for ( S3ObjectSummary summary : S3Objects.withPrefix(s3, "cardbackground","raw") ) {
+            Log.i(LOGTAG, "Object with key : " + summary.getKey());
+
+            raw_keys.add(summary.getKey());
         }
 
-        //Log.i(LOGTAG,jsonObject.toString());
-        Log.i(LOGTAG, "urls length :" + urls.size());
+        for ( S3ObjectSummary summary : S3Objects.withPrefix(s3, "cardbackground","thumb") ) {
+            Log.i(LOGTAG, "Object with key : " + summary.getKey());
 
-        return null;
+            thumb_keys.add(summary.getKey());
+        }
+    }
+
+    public List<String> getRaw_keys() {
+        return raw_keys;
+    }
+
+    public List<String> getThumb_keys() {
+        return thumb_keys;
     }
 }

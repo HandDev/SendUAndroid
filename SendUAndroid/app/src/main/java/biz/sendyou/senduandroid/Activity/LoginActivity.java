@@ -1,13 +1,11 @@
 package biz.sendyou.senduandroid.Activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
@@ -47,6 +46,8 @@ import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.User;
 import biz.sendyou.senduandroid.Service.UserInfo;
 import biz.sendyou.senduandroid.Service.Usr;
+
+import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 import biz.sendyou.senduandroid.Service.UsrInfo;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -65,9 +66,14 @@ public class LoginActivity extends AppCompatActivity {
     public static LoginActivity loginActivity;
     public static Activity la;
     private String usrName, numAdd,address;
+
+    private ImageView imageView;
+    private Bitmap background_src;
+
     public static String email,token;
     private static Drawable sBackground;
-    private static RelativeLayout layout;
+
+
 
 
     @Override
@@ -75,12 +81,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        layout = (RelativeLayout)findViewById(R.id.activity_login_background);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
+        Bitmap background_image = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
 
-        if(sBackground == null) {
-            sBackground = new BitmapDrawable(getResources(), BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2));
-            layout.setBackgroundDrawable(sBackground);
-        }
+        imageView = (ImageView)findViewById(R.id.login_background);
+        imageView.setImageBitmap(background_image);
+
+        background_image = null;
 
         loginActivity = this;
         la = this;
@@ -91,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mEditText01 = (EditText)findViewById(R.id.idedit);
         mEditText02 = (EditText)findViewById(R.id.pwedit);
+        
         final CheckBox mCheckBox01 = (CheckBox)findViewById(R.id.autoLogin);
 
         Button mButton = (Button)findViewById(R.id.loginButton);
@@ -106,7 +115,6 @@ public class LoginActivity extends AppCompatActivity {
                     doLogin();
                     //getUsrInfo("enoxaiming@naver.com","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NzQ4OTc4NzIsImV4cCI6MTQ3NDk4NDI3Mn0.g7JIoTwzxOuHmq4AUAiNwcjvLHRrPbTv2pCsaR1U6ks");
                     email = mEditText01.getText().toString();
-
                 }
             }
         });
@@ -125,6 +133,20 @@ public class LoginActivity extends AppCompatActivity {
                 moveSignupActivity();
             }
         });
+
+        Log.i(LOGTAG, "Get S3 lists");
+        TemplateDownloadThread templateDownloadThread = new TemplateDownloadThread();
+        try {
+            templateDownloadThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Log.i(LOGTAG, "raw_keys : ");
+        Log.i(LOGTAG, templateDownloadThread.getRaw_keys().toString());
+
+        Log.i(LOGTAG, "thumb_keys :");
+        Log.i(LOGTAG, templateDownloadThread.getThumb_keys().toString());
 
     }
 
@@ -216,22 +238,21 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         Log.w(LOGTAG, "Destroy background");
-        recycleView(findViewById(R.id.activity_login_background));
+        recycleView(imageView);
         super.onDestroy();
     }
 
-    private void recycleView(View view) {
-        if(view != null) {
-            Drawable bg = view.getBackground();
-            if(bg != null) {
-                ((BitmapDrawable)bg).getBitmap().recycle();
-                System.gc();
-                view.setBackgroundDrawable(null);
-            }
-            bg.setCallback(null);
+    private void recycleView(ImageView view) {
+        Drawable d = view.getDrawable();
+        if(d instanceof BitmapDrawable) {
+            Bitmap b = ((BitmapDrawable) d).getBitmap();
+            b.recycle();
+            view.setImageBitmap(null);
+            b = null;
         }
+        d.setCallback(null);
+        System.gc();
     }
-
 }
 
 
