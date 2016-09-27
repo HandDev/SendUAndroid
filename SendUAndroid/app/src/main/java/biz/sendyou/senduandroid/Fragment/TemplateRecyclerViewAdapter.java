@@ -1,5 +1,8 @@
 package biz.sendyou.senduandroid.Fragment;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
+import biz.sendyou.senduandroid.thread.BitmapFromURLThread;
 
 import java.util.List;
 
@@ -44,7 +48,20 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
         holder.mItem = mValues.get(position);
         //holder.mIdView.setText(mValues.get(position).id);
        // holder.mContentView.setText(mValues.get(position).content);
-        holder.mImageView.setImageDrawable(mValues.get(position).getDrawable());
+
+        Bitmap bitmap = null;
+        BitmapFromURLThread bitmapFromURLThread = new BitmapFromURLThread("https://s3.ap-northeast-2.amazonaws.com/cardbackground/" + mValues.get(position).getUrl());
+        bitmapFromURLThread.start();
+
+        try {
+            bitmapFromURLThread.join();
+
+            bitmap = bitmapFromURLThread.getBitmap();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        holder.mImageView.setImageDrawable(new BitmapDrawable(bitmap));
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,8 +93,6 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
            // mContentView = (TextView) view.findViewById(R.id.content);
 
             mImageView = (ImageView)view.findViewById(R.id.templateimage);
-
-
         }
 
         //TODO ReWrite toString method
