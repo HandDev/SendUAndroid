@@ -39,6 +39,7 @@ import biz.sendyou.senduandroid.Service.UsrInfo;
 import biz.sendyou.senduandroid.Util.imgurAuth;
 import biz.sendyou.senduandroid.datatype.Address;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
+import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -85,7 +86,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -112,8 +112,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(title);
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -187,8 +185,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
         return true;
     }
 
-
-
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -225,17 +221,26 @@ public class NavigationDrawerActivity extends AppCompatActivity
     }
 
     private void changeFragmentToSelectTemplate() {
-        //TODO Remove Creating DummyData code
-        List<CardTemplate> templates = new ArrayList<>();
+        Log.w(TAG, "start s3 connect");
+        TemplateDownloadThread templateDownloadThread = new TemplateDownloadThread();
 
+        templateDownloadThread.start();
+        try {
+            templateDownloadThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        List<CardTemplate> templates = new ArrayList<>();
+        List<String> thumbUrls = templateDownloadThread.getThumb_keys();
         //String result = SendByHttp(); // 메시지를 서버에 보냄
         //String[][] parsedData = jsonParserList(result);
-        Log.w(TAG, "start");
-        imgurAuth request = new imgurAuth();
-        request.start();
 
-        for(int i = 1;i <= DEFAULT_LODING_COUNT ;i++) {
-            templates.add(new CardTemplate());
+        for(int i =0; i <thumbUrls.size(); i++){
+            CardTemplate cardTemplate = new CardTemplate();
+            cardTemplate.setUrl(thumbUrls.get(i));
+
+            templates.add(cardTemplate);
         }
 
         SelectTemplateFragment mSelectTemplateFragment = SelectTemplateFragment.newInstance(templates ,2);

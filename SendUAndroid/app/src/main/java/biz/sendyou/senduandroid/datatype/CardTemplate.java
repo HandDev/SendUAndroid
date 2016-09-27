@@ -7,13 +7,13 @@ import android.graphics.drawable.Drawable;
  */
 public class CardTemplate {
 
-    private Drawable drawable;
+    private String url;
 
-    public Drawable getDrawable() {
-        return drawable;
+    public String getUrl() {
+        return url;
     }
 
-    public void setDrawable(Drawable drawable) {
-        this.drawable = drawable;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

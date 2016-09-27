@@ -1,7 +1,6 @@
 package biz.sendyou.senduandroid.Fragment;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -17,7 +16,6 @@ import android.widget.ImageView;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +34,7 @@ public class SelectTemplateFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
 
     //TODO: DummyDatas should not be saved as static
-    private static List<CardTemplate> dummyTemplates;
+    private static List<CardTemplate> thumbImages;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -54,7 +52,7 @@ public class SelectTemplateFragment extends Fragment {
         fragment.setArguments(args);
 
         //TODO Remove dummyData setting code
-        dummyTemplates = inputTemplates;
+        thumbImages = inputTemplates;
         return fragment;
     }
 
@@ -80,7 +78,7 @@ public class SelectTemplateFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TemplateRecyclerViewAdapter(dummyTemplates, mListener));
+            recyclerView.setAdapter(new TemplateRecyclerViewAdapter(thumbImages, mListener));
             Log.i(LOGTAG, "setRecyclerViewAdapter");
 
         ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);
