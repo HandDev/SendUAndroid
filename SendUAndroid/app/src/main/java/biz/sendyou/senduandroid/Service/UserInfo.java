@@ -1,39 +1,17 @@
 package biz.sendyou.senduandroid.Service;
 
-
-import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by JunHyeok on 2016. 9. 27..
  */
 
-public class User {
-
+public class UserInfo {
     private String id;
     private String address;
-
-    public String getNumAddress() {
-        return numAddress;
-    }
-
-    public void setNumAddress(String numAddress) {
-        this.numAddress = numAddress;
-    }
-
-    private String numAddress;
     private String birth;
     private String email;
     private String password;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    private String userName;
 
     public void setId(String id){
         this.id = id;
@@ -67,4 +45,3 @@ public class User {
     }
 
 }
-

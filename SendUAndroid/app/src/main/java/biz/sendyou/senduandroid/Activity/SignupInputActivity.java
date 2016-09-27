@@ -51,7 +51,6 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
         fa = this;
         signupInputActivity = this;
         Log.e("activity",signupInputActivity.toString());
-        signupInputActivityContext = getApplicationContext();
 
         mFirstNameEditText = (EditText)findViewById(R.id.signup_first_name_edittext);
         mNameEditText = (EditText)findViewById(R.id.signup_name_edittext);
