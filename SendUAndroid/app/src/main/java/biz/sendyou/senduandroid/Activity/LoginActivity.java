@@ -35,6 +35,7 @@ import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -110,6 +111,20 @@ public class LoginActivity extends AppCompatActivity {
                 moveSignupActivity();
             }
         });
+
+        Log.i(LOGTAG, "Get S3 lists");
+        TemplateDownloadThread templateDownloadThread = new TemplateDownloadThread();
+        try {
+            templateDownloadThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Log.i(LOGTAG, "raw_keys : ");
+        Log.i(LOGTAG, templateDownloadThread.getRaw_keys().toString());
+
+        Log.i(LOGTAG, "thumb_keys :");
+        Log.i(LOGTAG, templateDownloadThread.getThumb_keys().toString());
 
     }
 
