@@ -88,8 +88,7 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         };
-
-        //mHandler.sendEmptyMessageDelayed(0,3000); // Delay 3 sec.
+        mHandler.sendEmptyMessageDelayed(0,3000); // Delay 3 sec.
 
     }
 
