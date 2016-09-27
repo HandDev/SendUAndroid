@@ -29,6 +29,9 @@ import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
+import biz.sendyou.senduandroid.Service.UsrInfo;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,14 +43,21 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEditText01;
     private String LOGTAG = "LoginActivity";
     private EditText mEditText02;
-    private static final String URL = "http://52.78.159.163:3000/userAuth/";
+    private static final String URL = "http://52.78.159.163:3000/";
     private String jsonStr = null;
     public static LoginActivity loginActivity;
     public static Activity la;
     private String usrName, numAdd,address;
+<<<<<<< HEAD
     public static String email;
     private ImageView imageView;
     private Bitmap background_src;
+=======
+    public static String email,token;
+    private static Drawable sBackground;
+    private static RelativeLayout layout;
+>>>>>>> d8fd19bf86f0a00c93ca08650c6a0702f5ac9b9c
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +97,11 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     doLogin();
                     email = mEditText01.getText().toString();
+<<<<<<< HEAD
                     callNaviation();
+=======
+
+>>>>>>> d8fd19bf86f0a00c93ca08650c6a0702f5ac9b9c
                 }
             }
         });
@@ -106,6 +120,20 @@ public class LoginActivity extends AppCompatActivity {
                 moveSignupActivity();
             }
         });
+
+        Log.i(LOGTAG, "Get S3 lists");
+        TemplateDownloadThread templateDownloadThread = new TemplateDownloadThread();
+        try {
+            templateDownloadThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Log.i(LOGTAG, "raw_keys : ");
+        Log.i(LOGTAG, templateDownloadThread.getRaw_keys().toString());
+
+        Log.i(LOGTAG, "thumb_keys :");
+        Log.i(LOGTAG, templateDownloadThread.getThumb_keys().toString());
 
     }
 
@@ -127,8 +155,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
-                if(repo.isSuccess() ) {
-                    callNaviation();
+                if(repo.isSuccess()) {
+                    token = repo.getToken();
+                    getUsrInfo(mEditText01.getText().toString(),token);
                 }
                 else{
                     Toast.makeText(ContextManager.getP(),"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
@@ -142,12 +171,37 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void callNaviation() {
-        Intent mIntent = new Intent(LoginActivity.loginActivity, NavigationDrawerActivity.class);
-        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ContextManager.getP().startActivity(mIntent);
-        finish();
+    public void getUsrInfo(String mail, String tk) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        UsrInfo usrInfo = retrofit.create(UsrInfo.class);
+
+        Call<Repo> call = usrInfo.getUsrInfo(mail,tk);
+
+        call.enqueue(new Callback<Repo>() {
+            @Override
+            public void onResponse(Call<Repo> call, Response<Repo> response) {
+                Repo repo = response.body();
+
+                Intent mIntent = new Intent(LoginActivity.loginActivity, NavigationDrawerActivity.class);
+                mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mIntent.putExtra("username",repo.getUserName());
+                mIntent.putExtra("numad",repo.getNumaddress());
+                mIntent.putExtra("add",repo.getAddress());
+                ContextManager.getP().startActivity(mIntent);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Repo> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
+
 
     @Override
     protected void onDestroy() {

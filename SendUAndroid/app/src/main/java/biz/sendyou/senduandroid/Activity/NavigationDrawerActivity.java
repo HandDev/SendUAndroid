@@ -32,14 +32,23 @@ import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Service.OrderList;
+import biz.sendyou.senduandroid.Service.Repo;
+import biz.sendyou.senduandroid.Service.UsrInfo;
 import biz.sendyou.senduandroid.Util.imgurAuth;
 import biz.sendyou.senduandroid.datatype.Address;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener,CashFragment.OnFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener{
 
     private static final String TAG = "NavigationDrawer";
+    private static final String URL = "http://52.78.159.163:3000/";
     final int DEFAULT_LODING_COUNT = 12;
     private long backKeyPressedTime = 0;
     private Toast toast;
@@ -50,6 +59,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
+
+
 
         View view = (View)getLayoutInflater().inflate(R.layout.nav_header_navigation_drawer,null);
 
@@ -87,6 +98,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(title);
     }
+
+
 
     @Override
     public void onBackPressed() {
