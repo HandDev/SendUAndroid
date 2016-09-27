@@ -38,7 +38,10 @@ import biz.sendyou.senduandroid.Util.HttpUtil;
 Usage
 TemplateDownloadThread thread = new TemplateDownloadThread();
 
-thread.
+thread.join();
+thread.getRaw_keys();
+thread.getThumb_keys();
+
  */
 public class TemplateDownloadThread extends Thread {
 
