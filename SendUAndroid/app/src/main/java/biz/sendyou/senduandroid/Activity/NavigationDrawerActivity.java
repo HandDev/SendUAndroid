@@ -64,11 +64,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
-<<<<<<< HEAD
-
-=======
         getInfo();
->>>>>>> origin/master
         View view = (View)getLayoutInflater().inflate(R.layout.nav_header_navigation_drawer,null);
         ImageView btn = (ImageView) view.findViewById(R.id.imageView9);
 
