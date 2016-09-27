@@ -10,7 +10,7 @@ import retrofit2.http.Query;
  */
 
 public interface LoginService {
-    @GET("userAuth/authenticate")
+    @GET("authenticate")
     Call<Repo> doLogin(@Query("email")String x,
                        @Query("password") String key);
 }

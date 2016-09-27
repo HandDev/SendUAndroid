@@ -1,17 +1,11 @@
 package biz.sendyou.senduandroid.Activity;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,32 +54,6 @@ public class SignupAddressActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 doSignup();
-            }
-        });
-
-        mImageView02.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LayoutInflater inflater = (LayoutInflater)v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View layout = inflater.inflate(R.layout.activity_signup_address_dialog, null);
-                WebView webView = (WebView) layout.findViewById(R.id.webView);
-                webView.loadUrl("http://52.78.159.163:3000/test/address");
-                webView.getSettings().setJavaScriptEnabled(true);
-                AlertDialog.Builder dialog1 = new AlertDialog.Builder(v.getContext());
-
-                dialog1.setView(layout);
-
-                Dialog dialog = dialog1.create();
-
-                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-                lp.copyFrom(dialog.getWindow().getAttributes());
-                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setAttributes(lp);
-
             }
         });
 
