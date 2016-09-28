@@ -55,13 +55,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener,CashFragment.OnFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener{
 
-    //이게 왜 static 이지?
-    /*
-    private static final String TAG = "NavigationDrawer";
-    private static final String URL = "http://52.78.159.163:3000/";
-    */
     private final String TAG = "NavigationDrawer";
-    private final String URL = "http://52.78.159.163:3000/";
     final int DEFAULT_LODING_COUNT = 12;
     private long backKeyPressedTime = 0;
     private Toast toast;

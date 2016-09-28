@@ -17,11 +17,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.URL;
+
 import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.SignUpService;
+import biz.sendyou.senduandroid.URLManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,7 +39,6 @@ public class SignupAddressActivity extends AppCompatActivity {
     private ImageView mImageView01,mImageView02;
     private TextView mTextView01,mTextView02;
     private EditText mEditText01;
-    private static final String URL = "http://52.78.159.163:3000/user/signup/";
 
     public static SignupAddressActivity signupAddressActivity;
     private SignupInputActivity signupInputActivity;
@@ -111,7 +113,7 @@ public class SignupAddressActivity extends AppCompatActivity {
 
     private void doSignup() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(URLManager.authURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

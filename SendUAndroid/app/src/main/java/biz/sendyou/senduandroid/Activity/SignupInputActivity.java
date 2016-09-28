@@ -18,6 +18,7 @@ import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.EmailCheck;
 import biz.sendyou.senduandroid.Service.Repo;
+import biz.sendyou.senduandroid.URLManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +36,6 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
     private EditText mEmailEditText;
     private EditText mPasswordCheckEditText;
     private EditText mPasswordEditText;
-    private static final String URL = "http://52.78.159.163:3000/user/";
 
     private static final String FRAG_TAG_DATE_PICKER = "Select Date";
 
@@ -95,7 +95,7 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
 
     private void emailck() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(URLManager.authURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -9,7 +9,7 @@ import retrofit2.http.Path;
  */
 
 public interface EmailCheck {
-    @GET("email/{Email}")
+    @GET("user/email/{Email}")
     Call<Repo> emailck(@Path("Email") String email);
 }
 

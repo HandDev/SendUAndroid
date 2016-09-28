@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 
 public interface SignUpService {
     @FormUrlEncoded
-    @POST("insertData")
+    @POST("user/signup/insertData")
     Call<Repo> doSignup(
             @Field("username") String userName,
             @Field("password") String password,

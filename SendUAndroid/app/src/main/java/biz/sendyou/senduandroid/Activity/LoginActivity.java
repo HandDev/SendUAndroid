@@ -29,6 +29,7 @@ import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.User;
 import biz.sendyou.senduandroid.Service.UsrInfo;
+import biz.sendyou.senduandroid.URLManager;
 import biz.sendyou.senduandroid.UserInfoManager;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 import retrofit2.Call;
@@ -43,8 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEditText01;
     private String LOGTAG = "LoginActivity";
     private EditText mEditText02;
-    //URL은 싱글톤 클래스 하나만들고 거기서만 참조해야 유지보수가 쉬울것 같음
-    private final String URL = "http://sendu.kr:3000/";
 
     private UserInfoManager userInfoManager;
     //TODO Remove static variable
@@ -130,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
     private void doLogin(final String email, String password) {
         Log.i(LOGTAG, "doLogin Method");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(URLManager.authURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -168,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
     //변수이름도 통일해야 가독성이 높아지겠네여
     public void getUsrInfo(String email, String token) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(URLManager.authURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

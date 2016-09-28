@@ -25,6 +25,7 @@ import biz.sendyou.senduandroid.Service.OrderList;
 import biz.sendyou.senduandroid.Service.Orders;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.doOrder;
+import biz.sendyou.senduandroid.URLManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,8 +36,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Chan_Woo_Kim on 2016-07-31.
  */
 public class SendCheckFragment extends Fragment {
-
-    private static final String URL = "http://52.78.159.163:8080/";
 
     private List<SendCheckItem> mList;
 
@@ -83,7 +82,7 @@ public class SendCheckFragment extends Fragment {
 
     private void getOrderList() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(URLManager.checkURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
