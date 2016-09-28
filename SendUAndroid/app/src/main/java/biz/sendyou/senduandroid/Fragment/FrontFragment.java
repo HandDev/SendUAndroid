@@ -61,13 +61,13 @@ public class FrontFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_front, container, false);
-        Banner mBanner;
+        //Banner mBanner;
 
 
-        String[] images = getResources().getStringArray(R.array.url);
+        /*String[] images = getResources().getStringArray(R.array.url);
         mBanner = (Banner) view.findViewById(R.id.Banner);
         mBanner.setImages(images);
-        mBanner.setDelayTime(3000);
+        mBanner.setDelayTime(3000);*/
 
         //mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);  API 고장남 ㅅㅂ
         return view;

@@ -81,8 +81,7 @@
                         android:hint="아이디"
                         android:id="@+id/idedit"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:textColor="@android:color/white" />
+                        android:background="@android:color/transparent"/>
 
                 </LinearLayout>
 
@@ -127,15 +126,10 @@
                         android:ems="10"
                         android:id="@+id/pwedit"
                         android:layout_weight="1"
-<<<<<<< HEAD
-                        android:background="@android:color/transparent"
-                        android:textColor="@android:color/white" />
-=======
                         android:textColor="#FFFFFF"
                         android:textColorHint="#FFFFFF"
                         android:hint="비밀번호"
                         android:background="@android:color/transparent" />
->>>>>>> ac87dccf750aa5d72b69e544642326bf70720998
 
                 </LinearLayout>
 
