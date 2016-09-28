@@ -1,6 +1,5 @@
 package biz.sendyou.senduandroid.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,8 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nostra13.universalimageloader.utils.L;
-
 import java.util.ArrayList;
 
 import biz.sendyou.senduandroid.ActivityManager;
@@ -28,11 +25,9 @@ import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.User;
-import biz.sendyou.senduandroid.Service.UserInfo;
 import biz.sendyou.senduandroid.Service.UsrInfo;
 import biz.sendyou.senduandroid.URLManager;
 import biz.sendyou.senduandroid.UserInfoManager;
-import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -68,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 8;
-        Bitmap background_image = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
+        Bitmap background_image = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2, options);
 
         imageView = (ImageView)findViewById(R.id.login_background);
         imageView.setImageBitmap(background_image);
