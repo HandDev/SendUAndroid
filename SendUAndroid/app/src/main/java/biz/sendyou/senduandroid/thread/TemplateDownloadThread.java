@@ -59,9 +59,9 @@ public class TemplateDownloadThread extends Thread {
     public void run() {
         System.setProperty(SDKGlobalConfiguration.ENABLE_S3_SIGV4_SYSTEM_PROPERTY, "true");
 
-        this.s3 = AWSManager.getInstance(ContextManager.getP()).getS3();
+        this.s3 = AWSManager.getInstance(ContextManager.getContext()).getS3();
 
-        AmazonS3Client s3 = new AmazonS3Client(AWSManager.getInstance(ContextManager.getP()).getCredentialsProvider());
+        AmazonS3Client s3 = new AmazonS3Client(AWSManager.getInstance(ContextManager.getContext()).getCredentialsProvider());
 
         s3.setEndpoint("s3.ap-northeast-2.amazonaws.com");
 
