@@ -147,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                     getUsrInfo(email,userInfoManager.getToken());
                 }
                 else{
-                    Toast.makeText(ContextManager.getP(),"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ContextManager.getContext(),"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<Repo> call, Throwable t) {
 
                     Log.e(LOGTAG, "Login on Failure");
-                    Toast.makeText(ContextManager.getP(),"Login On Failure.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ContextManager.getContext(),"Login On Failure.",Toast.LENGTH_LONG).show();
 
             }
         });
@@ -191,7 +191,7 @@ public class LoginActivity extends AppCompatActivity {
                 mIntent.putExtra("numAddress",user.get(user.size()-1).getNumAddress());
                 mIntent.putExtra("address",user.get(user.size()-1).getAddress());
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                ContextManager.getP().startActivity(mIntent);
+                ContextManager.getContext().startActivity(mIntent);
 
                 finish();
             }

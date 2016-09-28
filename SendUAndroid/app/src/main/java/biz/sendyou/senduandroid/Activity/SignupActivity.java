@@ -45,7 +45,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(ContextManager.getP());
+        FacebookSdk.sdkInitialize(ContextManager.getContext());
         setContentView(R.layout.activity_signup);
         mCallBackManager = CallbackManager.Factory.create();
 
@@ -153,7 +153,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     public static void callSignUpInputActivity() {
         Intent mIntent = new Intent(SignupActivity.mSignupActivity, SignupInputActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ContextManager.getP().startActivity(mIntent);
+        ContextManager.getContext().startActivity(mIntent);
     }
 
     private void callSignActivity() {

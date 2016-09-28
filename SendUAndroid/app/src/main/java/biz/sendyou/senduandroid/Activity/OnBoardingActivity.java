@@ -62,13 +62,13 @@ public class OnBoardingActivity extends Activity {
     public void callNavigationDrawerActivity() {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, NavigationDrawerActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ContextManager.getP().startActivity(mIntent);
+        ContextManager.getContext().startActivity(mIntent);
         finish();
     }
 
     public void callLoginActivity() {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, LoginActivity.class);
-        ContextManager.getP().startActivity(mIntent);
+        ContextManager.getContext().startActivity(mIntent);
         finish();
     }
 

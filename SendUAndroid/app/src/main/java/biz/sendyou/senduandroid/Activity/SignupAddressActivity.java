@@ -102,7 +102,7 @@ public class SignupAddressActivity extends AppCompatActivity {
     private void callLoginActivity() {
         Intent mIntent = new Intent(SignupAddressActivity.signupAddressActivity, LoginActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ContextManager.getP().startActivity(mIntent);
+        ContextManager.getContext().startActivity(mIntent);
         SignupInputActivity.fa.finish();
         LoginActivity.la.finish();
         finish();
