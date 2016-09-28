@@ -18,6 +18,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 
+import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 
@@ -64,7 +65,14 @@ public class SplashActivity extends AppCompatActivity {
                 super.handleMessage(msg);
                 SharedPreferences pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
                 if(pref.getBoolean("activity_excuted",false)) {
-                    intentActivty(SplashActivity.this, LoginActivity.class);
+                    if(pref.getBoolean("Auto",false)) {
+                        LoginActivity loginActivity = new LoginActivity();
+                        loginActivity.doLogin(pref.getString("email",null),pref.getString("password",null));
+                    }
+                    else {
+                        intentActivty(SplashActivity.this, LoginActivity.class);
+                    }
+
                 }
                 else {
                     intentActivty(SplashActivity.this, OnBoardingActivity.class);
