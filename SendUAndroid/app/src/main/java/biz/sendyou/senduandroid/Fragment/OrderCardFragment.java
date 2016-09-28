@@ -140,7 +140,7 @@ public class OrderCardFragment extends Fragment {
     private void doOrder() {
         try {
             Calendar c = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
             String date = sdf.format(c.getTime());
             jsonParams.put("userUUID", UserInfoManager.getInstance().getEmail());
             jsonParams.put("orderUUID",uuid);
