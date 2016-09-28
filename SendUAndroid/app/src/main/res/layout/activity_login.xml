@@ -64,11 +64,12 @@
 
                     <ImageView
                         android:id="@+id/id_icon"
-                        android:layout_height="30dp"
                         app:srcCompat="@drawable/lg_id"
                         android:layout_weight="1"
-                        android:layout_width="30dp"
-                        android:layout_marginRight="10dp" />
+                        android:layout_marginRight="10dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp" />
 
                     <EditText
                         android:layout_width="wrap_content"
@@ -111,11 +112,12 @@
 
                     <ImageView
                         android:id="@+id/pw_icon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
                         app:srcCompat="@drawable/lg_lock"
                         android:layout_weight="1"
-                        android:layout_marginRight="10dp" />
+                        android:layout_marginRight="10dp"
+                        android:layout_height="20dp"
+                        android:layout_width="20dp"
+                        android:layout_marginLeft="10dp" />
 
                     <EditText
                         android:layout_width="wrap_content"
