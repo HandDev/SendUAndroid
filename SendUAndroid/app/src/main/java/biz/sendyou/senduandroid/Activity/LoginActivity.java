@@ -201,11 +201,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         Log.w(LOGTAG, "Destroy background");
-        recycleView(imageView);
+        recycleView(R.id.login_background);
+        recycleView(R.id.plane);
         super.onDestroy();
     }
 
-    private void recycleView(ImageView view) {
+    private void recycleView(int id) {
+        ImageView view = (ImageView)findViewById(id);
         Drawable d = view.getDrawable();
         if(d instanceof BitmapDrawable) {
             Bitmap b = ((BitmapDrawable) d).getBitmap();

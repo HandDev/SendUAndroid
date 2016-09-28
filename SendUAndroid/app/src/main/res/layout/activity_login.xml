@@ -78,7 +78,8 @@
                         android:ems="10"
                         android:id="@+id/idedit"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent" />
+                        android:background="@android:color/transparent"
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
@@ -123,7 +124,8 @@
                         android:ems="10"
                         android:id="@+id/pwedit"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent" />
+                        android:background="@android:color/transparent"
+                        android:textColor="@android:color/white" />
 
                 </LinearLayout>
 
