@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         //이건 모두 DI로 해결합시다
-        TextView mTextView01 = (TextView)findViewById(R.id.SendU);
+        //TextView mTextView01 = (TextView)findViewById(R.id.SendU);
         TextView mTextView02 = (TextView)findViewById(R.id.SignUp1);
         TextView mTextView03 = (TextView)findViewById(R.id.SignUp2);
 
@@ -181,7 +181,6 @@ public class LoginActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<ArrayList<User>>() {
 
-
             @Override
             public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
                 ArrayList<User> user = response.body();
@@ -214,6 +213,8 @@ public class LoginActivity extends AppCompatActivity {
         Log.w(LOGTAG, "Destroy background");
         recycleView(R.id.login_background);
         recycleView(R.id.plane);
+        recycleView(R.id.id_icon);
+        recycleView(R.id.pw_icon);
         super.onDestroy();
     }
 
@@ -228,16 +229,15 @@ public class LoginActivity extends AppCompatActivity {
         }
         d.setCallback(null);
         System.gc();
+        Runtime.getRuntime().gc();
     }
 
     private void putBitmap(int imageViewId, int drawableId, int scale) {
         ImageView imageView = (ImageView)findViewById(imageViewId);
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = scale;
-        Bitmap background_image = BitmapFactory.decodeResource(getResources(), drawableId, options);
 
-        imageView.setImageBitmap(background_image);
-        background_image = null;
+        imageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), drawableId, options));
     }
 }
 

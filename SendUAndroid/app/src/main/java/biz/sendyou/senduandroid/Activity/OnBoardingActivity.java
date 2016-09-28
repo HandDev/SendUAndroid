@@ -26,9 +26,6 @@ public class OnBoardingActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_on_boarding);
 
-        SplashActivity splashActivity = (SplashActivity)SplashActivity.activity;
-        splashActivity.finish();
-
         onBoardingActivity = this;
         pref = getSharedPreferences("pref",MODE_PRIVATE);
 

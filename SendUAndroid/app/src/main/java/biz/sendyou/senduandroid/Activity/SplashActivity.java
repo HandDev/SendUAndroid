@@ -100,12 +100,13 @@ public class SplashActivity extends AppCompatActivity {
         Drawable d = view.getDrawable();
         if(d instanceof BitmapDrawable) {
             Bitmap b = ((BitmapDrawable) d).getBitmap();
-            b.recycle();
             view.setImageBitmap(null);
+            b.recycle();
             b = null;
         }
         d.setCallback(null);
         System.gc();
+        Runtime.getRuntime().gc();
     }
 
     public void intentActivty(Context packageContext, Class cls) {
@@ -118,9 +119,7 @@ public class SplashActivity extends AppCompatActivity {
         ImageView imageView = (ImageView)findViewById(imageViewId);
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = scale;
-        Bitmap background_image = BitmapFactory.decodeResource(getResources(), drawableId, options);
 
-        imageView.setImageBitmap(background_image);
-        background_image = null;
+        imageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), drawableId, options));
     }
 }
