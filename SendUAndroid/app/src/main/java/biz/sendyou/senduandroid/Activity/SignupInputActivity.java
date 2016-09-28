@@ -14,6 +14,7 @@ import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialo
 
 import java.util.Calendar;
 
+import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.EmailCheck;
 import biz.sendyou.senduandroid.Service.Repo;
@@ -35,7 +36,6 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
     private EditText mPasswordCheckEditText;
     private EditText mPasswordEditText;
     private static final String URL = "http://52.78.159.163:3000/user/";
-    public static Activity fa;
 
     private static final String FRAG_TAG_DATE_PICKER = "Select Date";
 
@@ -48,7 +48,7 @@ public class SignupInputActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_signup_input);
 
         findViewById(R.id.signup_next_imageview).setOnClickListener(this);
-        fa = this;
+        ActivityManager.getInstance().setSignupInputActivity(this);
         signupInputActivity = this;
         Log.e("activity",signupInputActivity.toString());
 

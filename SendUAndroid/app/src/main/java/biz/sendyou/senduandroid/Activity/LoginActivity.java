@@ -22,6 +22,7 @@ import com.nostra13.universalimageloader.utils.L;
 
 import java.util.ArrayList;
 
+import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.LoginService;
@@ -62,6 +63,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         userInfoManager = UserInfoManager.getInstance();
+
+        ActivityManager.getInstance().setLoginActivity(this);
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 8;

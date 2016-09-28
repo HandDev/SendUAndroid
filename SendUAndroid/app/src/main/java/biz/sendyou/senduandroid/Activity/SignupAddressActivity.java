@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.Repo;
@@ -103,8 +104,8 @@ public class SignupAddressActivity extends AppCompatActivity {
         Intent mIntent = new Intent(SignupAddressActivity.signupAddressActivity, LoginActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ContextManager.getContext().startActivity(mIntent);
-        SignupInputActivity.fa.finish();
-        LoginActivity.la.finish();
+        ActivityManager.getInstance().getSignupInputActivity().finish();
+        ActivityManager.getInstance().getLoginActivity().finish();
         finish();
     }
 
