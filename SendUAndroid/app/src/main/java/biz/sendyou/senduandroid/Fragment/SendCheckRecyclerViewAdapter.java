@@ -46,11 +46,12 @@ public class SendCheckRecyclerViewAdapter extends RecyclerView.Adapter<SendCheck
 //        holder.mDueDate.setTypeface(holder.mTypeface_regular);
 //        holder.mDueDate_num.setTypeface(holder.mTypeface_regular);
 
-        /*holder.mAddress.setText(mItems.get(position).getAddress());
+        holder.mAddress.setText(mItems.get(position).getAddress());
         holder.mReceiver_bold.setText(mItems.get(position).getReceiver());
         holder.mDate_num.setText(mItems.get(position).getDate());
         holder.mDueDate_num.setText(mItems.get(position).getDueDate());
         holder.mStatusImg.setImageResource(mItems.get(position).getStatus_img());
+        /*
         TypefaceHelper.getInstance().setTypeface(holder.mReceiver_bold,"NotoSansCJKkr-Bold.otf");
         TypefaceHelper.getInstance().setTypeface(holder.mReceiver_regular,"NotoSansCJKkr-Regular.otf");
         TypefaceHelper.getInstance().setTypeface(holder.mAddress,"NotoSansCJKkr-Regular.otf");
