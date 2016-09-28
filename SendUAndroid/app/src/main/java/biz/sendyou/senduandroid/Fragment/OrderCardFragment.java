@@ -23,6 +23,7 @@ import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.doOrder;
 import biz.sendyou.senduandroid.Service.GetUUID;
 import biz.sendyou.senduandroid.Service.Repo;
+import biz.sendyou.senduandroid.URLManager;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -44,7 +45,6 @@ public class OrderCardFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private String uuid;
     private JSONObject jsonParams = new JSONObject();
-    private static final String URL = "http://52.78.159.163:8080/";
     private RequestBody body;
     private EditText receivername,numAddress,jusoAddress,phoneNumber;
     private String email = "enoxaiming@naver.com";
@@ -107,7 +107,7 @@ public class OrderCardFragment extends Fragment {
 
     private void getUUID() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(URLManager.checkURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -152,7 +152,7 @@ public class OrderCardFragment extends Fragment {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(URLManager.checkURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
