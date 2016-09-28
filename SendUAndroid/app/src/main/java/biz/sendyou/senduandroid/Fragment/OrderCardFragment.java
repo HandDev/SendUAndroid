@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,11 +20,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import biz.sendyou.senduandroid.Activity.LoginActivity;
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.doOrder;
 import biz.sendyou.senduandroid.Service.GetUUID;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.URLManager;
+import biz.sendyou.senduandroid.UserInfoManager;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -47,7 +50,6 @@ public class OrderCardFragment extends Fragment {
     private JSONObject jsonParams = new JSONObject();
     private RequestBody body;
     private EditText receivername,numAddress,jusoAddress,phoneNumber;
-    private String email = "enoxaiming@naver.com";
 
     public OrderCardFragment() {
         // Required empty public constructor
@@ -118,13 +120,19 @@ public class OrderCardFragment extends Fragment {
         call.enqueue(new Callback<Repo>() {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
-                uuid = response.body().getOrderUUID();
-                Log.e("UUID",uuid);
+                if(response.isSuccessful()) {
+                    uuid = response.body().getOrderUUID();
+                    doOrder();
+                }
+                else {
+                    Toast.makeText(ContextManager.getContext(),"error",Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
             public void onFailure(Call<Repo> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
     }
@@ -132,9 +140,9 @@ public class OrderCardFragment extends Fragment {
     private void doOrder() {
         try {
             Calendar c = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date = sdf.format(c.getTime());
-            jsonParams.put("userUUID",email);
+            jsonParams.put("userUUID", UserInfoManager.getInstance().getEmail());
             jsonParams.put("orderUUID",uuid);
             jsonParams.put("orderDate",date);
             jsonParams.put("receiverName",receivername.getText().toString());
@@ -158,7 +166,7 @@ public class OrderCardFragment extends Fragment {
 
         doOrder doOrder = retrofit.create(biz.sendyou.senduandroid.Service.doOrder.class);
 
-        Call<ResponseBody> call = doOrder.doOrder(email,uuid,body);
+        Call<ResponseBody> call = doOrder.doOrder(UserInfoManager.getInstance().getEmail(),uuid,body);
 
 
 
