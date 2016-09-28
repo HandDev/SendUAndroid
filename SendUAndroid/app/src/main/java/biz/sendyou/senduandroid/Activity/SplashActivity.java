@@ -88,10 +88,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void recycleView(int id) {
         ImageView view = (ImageView)findViewById(id);
-<<<<<<< HEAD
-=======
 
->>>>>>> Fix_Memory_Leak
         Drawable d = view.getDrawable();
         if(d instanceof BitmapDrawable) {
             Bitmap b = ((BitmapDrawable) d).getBitmap();
@@ -111,11 +108,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void putBitmap(int imageViewId, int drawableId) {
         ImageView imageView = (ImageView)findViewById(imageViewId);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> Fix_Memory_Leak
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 8;
         Bitmap background_image = BitmapFactory.decodeResource(getResources(), drawableId, options);
