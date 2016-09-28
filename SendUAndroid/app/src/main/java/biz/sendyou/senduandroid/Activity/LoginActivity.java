@@ -168,6 +168,8 @@ public class LoginActivity extends AppCompatActivity {
         Call<ArrayList<User>> call = usrInfo.getUsrInfo(email,token);
 
         call.enqueue(new Callback<ArrayList<User>>() {
+
+
             @Override
             public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
                 ArrayList<User> user = response.body();
@@ -175,9 +177,7 @@ public class LoginActivity extends AppCompatActivity {
                 //로그로 출력하는 정보들은 태그를 통일해야 디버깅이 쉽겠져?
                 // + 로그 출력 레벨을 구분시킵시다
                 Log.i(LOGTAG,"size : " + String.valueOf(user.size()));
-
                 Log.i(LOGTAG,"user : " + user.get(user.size()-1).getUserName());
-
                 Log.i(LOGTAG,"response : " + response.raw().toString());
                 Log.i(LOGTAG,"res : " + response.message());
                 UserInfoManager.getInstance().setUserName(user.get(user.size()-1).getUserName());
@@ -186,7 +186,6 @@ public class LoginActivity extends AppCompatActivity {
                 Intent mIntent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ContextManager.getContext().startActivity(mIntent);
-
                 finish();
             }
 
