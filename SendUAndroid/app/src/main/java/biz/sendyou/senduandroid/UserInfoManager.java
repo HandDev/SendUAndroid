@@ -1,7 +1,5 @@
 package biz.sendyou.senduandroid;
 
-import biz.sendyou.senduandroid.Service.UserInfo;
-
 /**
  * Created by parkjaesung on 2016. 9. 28..
  */

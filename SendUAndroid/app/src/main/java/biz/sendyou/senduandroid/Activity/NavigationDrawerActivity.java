@@ -1,10 +1,8 @@
 package biz.sendyou.senduandroid.Activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -39,18 +37,10 @@ import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
 import biz.sendyou.senduandroid.R;
-import biz.sendyou.senduandroid.Service.OrderList;
-import biz.sendyou.senduandroid.Service.Repo;
-import biz.sendyou.senduandroid.Service.UsrInfo;
-import biz.sendyou.senduandroid.Util.imgurAuth;
+import biz.sendyou.senduandroid.UserInfoManager;
 import biz.sendyou.senduandroid.datatype.Address;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener,CashFragment.OnFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener{
@@ -60,7 +50,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
     private long backKeyPressedTime = 0;
     private Toast toast;
     private NavigationDrawerActivity navigationDrawerActivity;
-    private String userName,address,numAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +60,12 @@ public class NavigationDrawerActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);
 
-        getInfo();
         TextView usrName = (TextView) view.findViewById(R.id.username);
-        usrName.setText(userName);
+        usrName.setText(UserInfoManager.getInstance().getUserName());
         TextView place = (TextView) view.findViewById(R.id.textView3);
-        place.setText(address);
+        place.setText(UserInfoManager.getInstance().getJusoAddress());
         TextView num = (TextView) view.findViewById(R.id.textView);
-        num.setText(numAddress);
+        num.setText(UserInfoManager.getInstance().getNumAddress());
 
         ImageView btn = (ImageView) view.findViewById(R.id.imageView9);
 
@@ -108,13 +96,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
         if(savedInstanceState == null) {
             changeFragmentToFront();
         }
-    }
-
-    private void getInfo() {
-        Intent mIntent = getIntent();
-        userName = mIntent.getStringExtra("userName");
-        numAddress = mIntent.getStringExtra("numAddress");
-        address = mIntent.getStringExtra("address");
     }
 
     public void setToolBarTitle(String title) {

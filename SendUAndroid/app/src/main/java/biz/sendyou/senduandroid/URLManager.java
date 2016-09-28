@@ -7,5 +7,4 @@ package biz.sendyou.senduandroid;
 public class URLManager {
     public static final String authURL = "http://sendu.kr:3000/";
     public static final String checkURL = "http://sendu.kr:8080/";
-
 }

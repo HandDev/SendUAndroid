@@ -26,6 +26,7 @@ import biz.sendyou.senduandroid.Service.Orders;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.doOrder;
 import biz.sendyou.senduandroid.URLManager;
+import biz.sendyou.senduandroid.UserInfoManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +38,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class SendCheckFragment extends Fragment {
 
+    //TODO 시간 형식 변경 및 듀데이트 반환 필요.
+
     private List<SendCheckItem> mList;
+    private RecyclerView mRecyclerView;
+    private View mView;
 
     public static SendCheckFragment newInstance(){
         return new SendCheckFragment();
@@ -48,7 +53,7 @@ public class SendCheckFragment extends Fragment {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
-        View mView = inflater.inflate(R.layout.fragment_send_check_list, container, false);
+        mView = inflater.inflate(R.layout.fragment_send_check_list, container, false);
 
         ImageView arrow = (ImageView)mView.findViewById(R.id.arrow);
         arrow.setOnClickListener(new View.OnClickListener() {
@@ -59,14 +64,13 @@ public class SendCheckFragment extends Fragment {
                 getFragmentManager().beginTransaction().replace(R.id.mainFrameLayout, frontFragment).commit();
             }
         });
-        RecyclerView mRecyclerView = (RecyclerView) mView.findViewById(R.id.sendcheck_recyclerview);
+        mRecyclerView = (RecyclerView) mView.findViewById(R.id.sendcheck_recyclerview);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(mView.getContext());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
         mList = new ArrayList();
         getOrderList();
-        Log.e("size",String.valueOf(mList.size()));
         mRecyclerView.setAdapter(new SendCheckRecyclerViewAdapter(mList, mView.getContext()));
         return mView;
     }
@@ -88,31 +92,32 @@ public class SendCheckFragment extends Fragment {
 
         OrderList orderList = retrofit.create(biz.sendyou.senduandroid.Service.OrderList.class);
 
-        Call<ArrayList<Orders>> call = orderList.getOrderList(LoginActivity.email);
-        Log.e("email",LoginActivity.email);
+        Call<ArrayList<Orders>> call = orderList.getOrderList(UserInfoManager.getInstance().getEmail());
+
 
         call.enqueue(new Callback<ArrayList<Orders>>() {
             @Override
             public void onResponse(Call<ArrayList<Orders>> call, Response<ArrayList<Orders>> response) {
                 ArrayList<Orders> arrayList = response.body();
                 Log.e("Log",String.valueOf(response.isSuccessful()));
-                Log.e("Log",response.message());
-                Log.e("Log",response.raw().toString());
+                Log.e("URL",response.raw().toString());
+                Log.e("Size",String.valueOf(response.body().size()));
                 for(int i = 0; i < response.body().size(); i++) {
                     int image;
                     if(arrayList.get(i).getOrderStatus().equals("Ordered")) {
-                        image = R.drawable.doing;
-                    }
-                    else if(arrayList.get(i).getOrderStatus().equals("Ordered")) {
                         image = R.drawable.todo;
                     }
-                    else if(arrayList.get(i).getOrderStatus().equals("Ordered")) {
+                    else if(arrayList.get(i).getOrderStatus().equals("Deliverying")) {
+                        image = R.drawable.doing;
+                    }
+                    else if(arrayList.get(i).getOrderStatus().equals("Completed")) {
                         image = R.drawable.done;
                     }
                     else {
                         image = R.drawable.sample_image;
                     }
                     mList.add(new SendCheckItem("("+arrayList.get(i).getNumAddress()+") "+arrayList.get(i).getAddress(),arrayList.get(i).getReceiverName(),arrayList.get(i).getOrderDate(),arrayList.get(i).getOrderDate(),image));
+                    mRecyclerView.setAdapter(new SendCheckRecyclerViewAdapter(mList, mView.getContext()));
                 }
 
 
