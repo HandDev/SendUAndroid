@@ -76,7 +76,6 @@
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
                         android:ems="10"
-                        android:textColor="#FFFFFF"
                         android:textColorHint="#FFFFFF"
                         android:hint="아이디"
                         android:id="@+id/idedit"
@@ -126,7 +125,11 @@
                         android:ems="10"
                         android:id="@+id/pwedit"
                         android:layout_weight="1"
+<<<<<<< HEAD
                         android:textColor="#FFFFFF"
+=======
+                        android:textColor="@android:color/white"
+>>>>>>> 15f289cb0377f0c062ffb7f40185d918c3c3ef54
                         android:textColorHint="#FFFFFF"
                         android:hint="비밀번호"
                         android:background="@android:color/transparent" />
@@ -163,6 +166,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
                     android:buttonTint="#F13968"
                     android:id="@+id/autoLogin" />
 
