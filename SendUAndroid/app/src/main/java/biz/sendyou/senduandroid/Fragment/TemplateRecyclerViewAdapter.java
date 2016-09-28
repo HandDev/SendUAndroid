@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 import biz.sendyou.senduandroid.thread.BitmapFromURLThread;
@@ -24,12 +26,14 @@ import java.util.List;
  */
 public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRecyclerViewAdapter.ViewHolder> {
 
+    private final ImageLoader imageLoader;
     private final List<CardTemplate> mValues;
     private final SelectTemplateFragment.OnListFragmentInteractionListener mListener;
     private final String LOGTAG = "TemplateRecylcerAdapter";
 
-    public TemplateRecyclerViewAdapter(List<CardTemplate> items, SelectTemplateFragment.OnListFragmentInteractionListener listener) {
-        mValues = items;
+    public TemplateRecyclerViewAdapter(List<CardTemplate> items, ImageLoader imageLoader, SelectTemplateFragment.OnListFragmentInteractionListener listener) {
+        this.imageLoader = imageLoader;
+        this.mValues = items;
 
         Log.i(LOGTAG, "mValues Length : " + mValues.size());
         mListener = listener;
@@ -46,9 +50,8 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Log.i(LOGTAG, "onBindViewHolder called");
         holder.mItem = mValues.get(position);
-        //holder.mIdView.setText(mValues.get(position).id);
-       // holder.mContentView.setText(mValues.get(position).content);
 
+        /*
         Bitmap bitmap = null;
         BitmapFromURLThread bitmapFromURLThread = new BitmapFromURLThread("https://s3.ap-northeast-2.amazonaws.com/cardbackground/" + mValues.get(position).getUrl());
         bitmapFromURLThread.start();
@@ -59,9 +62,10 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
             bitmap = bitmapFromURLThread.getBitmap();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
-        holder.mImageView.setImageDrawable(new BitmapDrawable(bitmap));
+        imageLoader.displayImage("https://s3.ap-northeast-2.amazonaws.com/cardbackground/" + mValues.get(position).getUrl(), holder.mImageView);
+    //    holder.mImageView.setImageDrawable(new BitmapDrawable(bitmap));
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

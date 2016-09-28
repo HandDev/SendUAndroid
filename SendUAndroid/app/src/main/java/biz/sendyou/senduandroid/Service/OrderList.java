@@ -1,5 +1,7 @@
 package biz.sendyou.senduandroid.Service;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -10,5 +12,5 @@ import retrofit2.http.Path;
 
 public interface OrderList {
     @GET("{Email}/orders")
-    Call<Repo> getOrderList(@Path("Email") String email);
+    Call<ArrayList<Orders>> getOrderList(@Path("Email") String email);
 }
