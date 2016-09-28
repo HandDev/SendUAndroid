@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -57,18 +58,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        putBitmap(R.id.login_background, R.drawable.sp_back2);
+        putBitmap(R.id.plane, R.drawable.icon);
+
         userInfoManager = UserInfoManager.getInstance();
 
         ActivityManager.getInstance().setLoginActivity(this);
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 8;
-        Bitmap background_image = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back2, options);
-
-        imageView = (ImageView)findViewById(R.id.login_background);
-        imageView.setImageBitmap(background_image);
-
-        background_image = null;
 
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.hide();
@@ -116,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
 
         //SignUpActivity에서 LoginActivity를 종료하지말고 여기서 종료하면되는거아닌가?
+        //ㅇㅇ
         //LoginActivity.this.finish();
         finish();
 
@@ -219,6 +215,16 @@ public class LoginActivity extends AppCompatActivity {
         }
         d.setCallback(null);
         System.gc();
+    }
+
+    private void putBitmap(int imageViewId, int drawableId) {
+        ImageView imageView = (ImageView)findViewById(imageViewId);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
+        Bitmap background_image = BitmapFactory.decodeResource(getResources(), drawableId, options);
+
+        imageView.setImageBitmap(background_image);
+        background_image = null;
     }
 }
 

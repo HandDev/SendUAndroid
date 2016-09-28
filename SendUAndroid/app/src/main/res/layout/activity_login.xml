@@ -85,9 +85,9 @@
                     app:srcCompat="@drawable/underline"
                     android:id="@+id/imageView26"
                     android:layout_weight="1"
-                    android:layout_height="3dp"
                     android:layout_width="280dp"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="1dp" />
 
             </LinearLayout>
 
@@ -127,11 +127,11 @@
 
                 <ImageView
                     android:layout_width="280dp"
-                    android:layout_height="3dp"
                     app:srcCompat="@drawable/underline"
                     android:id="@+id/imageView27"
                     android:layout_weight="1"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="1dp" />
 
 
             </LinearLayout>
