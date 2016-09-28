@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 
@@ -78,7 +80,7 @@ public class SelectTemplateFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TemplateRecyclerViewAdapter(thumbImages, mListener));
+            recyclerView.setAdapter(new TemplateRecyclerViewAdapter(thumbImages, ImageLoader.getInstance(), mListener));
             Log.i(LOGTAG, "setRecyclerViewAdapter");
 
         ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);

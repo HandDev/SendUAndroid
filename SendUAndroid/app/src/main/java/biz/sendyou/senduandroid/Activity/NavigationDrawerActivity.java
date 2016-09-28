@@ -20,9 +20,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.CashFragment;
 import biz.sendyou.senduandroid.Fragment.CreateCardFragment;
@@ -57,15 +63,15 @@ public class NavigationDrawerActivity extends AppCompatActivity
     private NavigationDrawerActivity navigationDrawerActivity;
     private String userName,address,numAddress;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
+        setUniversalImageLoader();
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);
+
         getInfo();
         TextView usrName = (TextView) view.findViewById(R.id.username);
         usrName.setText(userName);
@@ -131,6 +137,18 @@ public class NavigationDrawerActivity extends AppCompatActivity
             super.onBackPressed();
         }
 
+    }
+
+    public void setUniversalImageLoader(){
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(ContextManager.getP())
+                .threadPriority(Thread.NORM_PRIORITY -2)
+                .denyCacheImageMultipleSizesInMemory()
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .writeDebugLogs()
+                .build();
+
+        ImageLoader.getInstance().init(config);
     }
 
     public void showGuide() {

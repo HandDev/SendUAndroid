@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBar;
@@ -27,21 +28,13 @@ public class SplashActivity extends AppCompatActivity {
     public static Activity activity;
     public SplashActivity splashActivity;
     public static Context splashActivityContext;
-    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 8;
-        Bitmap background_image = BitmapFactory.decodeResource(getResources(), R.drawable.sp_back1, options);
-
-        imageView = (ImageView) findViewById(R.id.background_image);
-        imageView.setImageBitmap(background_image);
-
-        background_image = null;
+        putBitmap(R.id.background_image, R.drawable.sp_back1);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -63,7 +56,6 @@ public class SplashActivity extends AppCompatActivity {
             edit.putBoolean("workCheckBox", true);
             edit.putBoolean("isFirst", true);
             edit.commit();
-
         }
 
         Handler mHandler = new Handler() {
@@ -72,14 +64,10 @@ public class SplashActivity extends AppCompatActivity {
                 super.handleMessage(msg);
                 SharedPreferences pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
                 if(pref.getBoolean("activity_excuted",false)) {
-                    Intent mIntent = new Intent(SplashActivity.this,LoginActivity.class);
-                    startActivity(mIntent);
-                    finish();
+                    intentActivty(SplashActivity.this, LoginActivity.class);
                 }
                 else {
-                    Intent mIntent = new Intent(SplashActivity.this, OnBoardingActivity.class);
-                    startActivity(mIntent);
-                    finish();
+                    intentActivty(SplashActivity.this, OnBoardingActivity.class);
                     SharedPreferences.Editor ed = pref.edit();
                     ed.putBoolean("activity_excuted",true);
                     ed.commit();
@@ -94,11 +82,16 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         Log.w(LOGTAG, "Destroy background");
-        recycleView(imageView);
+        recycleView(R.id.background_image);
         super.onDestroy();
     }
 
-    private void recycleView(ImageView view) {
+    private void recycleView(int id) {
+        ImageView view = (ImageView)findViewById(id);
+<<<<<<< HEAD
+=======
+
+>>>>>>> Fix_Memory_Leak
         Drawable d = view.getDrawable();
         if(d instanceof BitmapDrawable) {
             Bitmap b = ((BitmapDrawable) d).getBitmap();
@@ -108,5 +101,26 @@ public class SplashActivity extends AppCompatActivity {
         }
         d.setCallback(null);
         System.gc();
+    }
+
+    public void intentActivty(Context packageContext, Class cls) {
+        Intent mIntent = new Intent(packageContext, cls);
+        startActivity(mIntent);
+        finish();
+    }
+
+    private void putBitmap(int imageViewId, int drawableId) {
+        ImageView imageView = (ImageView)findViewById(imageViewId);
+<<<<<<< HEAD
+
+=======
+        
+>>>>>>> Fix_Memory_Leak
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 8;
+        Bitmap background_image = BitmapFactory.decodeResource(getResources(), drawableId, options);
+
+        imageView.setImageBitmap(background_image);
+        background_image = null;
     }
 }
