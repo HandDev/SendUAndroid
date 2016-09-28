@@ -58,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        putBitmap(R.id.login_background, R.drawable.sp_back2);
-        putBitmap(R.id.plane, R.drawable.icon);
+        putBitmap(R.id.login_background, R.drawable.sp_back2, 8);
+        putBitmap(R.id.plane, R.drawable.icon, 1);
 
         userInfoManager = UserInfoManager.getInstance();
 
@@ -217,10 +217,10 @@ public class LoginActivity extends AppCompatActivity {
         System.gc();
     }
 
-    private void putBitmap(int imageViewId, int drawableId) {
+    private void putBitmap(int imageViewId, int drawableId, int scale) {
         ImageView imageView = (ImageView)findViewById(imageViewId);
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 8;
+        options.inSampleSize = scale;
         Bitmap background_image = BitmapFactory.decodeResource(getResources(), drawableId, options);
 
         imageView.setImageBitmap(background_image);
