@@ -56,8 +56,6 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
 
         TextView mTextView02 = (TextView) findViewById(R.id.Select);
 
-        TypefaceHelper.getInstance().setTypeface(mTextView02, "NotoSansCJKkr-Regular.otf");
-
         mFacebookSignInButton = (LoginButton) findViewById(R.id.fb_btn);
         mGoogleSignInButton = (SignInButton) findViewById(R.id.gmail_btn);
         ImageView mEmailSignInButton = (ImageView) findViewById(R.id.email_btn);

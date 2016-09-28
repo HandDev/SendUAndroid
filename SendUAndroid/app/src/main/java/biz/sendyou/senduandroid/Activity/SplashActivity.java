@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        putBitmap(R.id.background_image, R.drawable.sp_back1);
+        putBitmap(R.id.background_image, R.drawable.sp_back2);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
