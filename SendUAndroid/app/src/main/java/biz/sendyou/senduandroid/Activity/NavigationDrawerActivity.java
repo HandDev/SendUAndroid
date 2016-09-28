@@ -149,7 +149,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
     }
 
     public void setUniversalImageLoader(){
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(ContextManager.getP())
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(ContextManager.getContext())
                 .threadPriority(Thread.NORM_PRIORITY -2)
                 .denyCacheImageMultipleSizesInMemory()
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
