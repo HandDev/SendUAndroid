@@ -67,13 +67,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
-<<<<<<< HEAD
         setUniversalImageLoader();
 
-=======
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);
->>>>>>> Fix_Memory_Leak
+
         getInfo();
         TextView usrName = (TextView) view.findViewById(R.id.username);
         usrName.setText(userName);
