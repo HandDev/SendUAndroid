@@ -5,6 +5,6 @@ package biz.sendyou.senduandroid;
  */
 
 public class URLManager {
-    public static final String authURL = "http://52.78.159.163:3000/";
-    public static final String checkURL = "http://52.78.159.163:8080/";
+    public static final String authURL = "http://sendu.kr:3000/";
+    public static final String checkURL = "http://sendu.kr:8080/";
 }
