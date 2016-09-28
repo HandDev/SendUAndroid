@@ -11,6 +11,10 @@ public class UserInfoManager {
 
     private String email;
     private String token;
+    private String userName;
+    private String numAddress;
+    private String jusoAddress;
+
 
     private UserInfoManager(){
 
@@ -35,4 +39,29 @@ public class UserInfoManager {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public String getJusoAddress() {
+        return jusoAddress;
+    }
+
+    public void setJusoAddress(String jusoAddress) {
+        this.jusoAddress = jusoAddress;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getNumAddress() {
+        return numAddress;
+    }
+
+    public void setNumAddress(String numAddress) {
+        this.numAddress = numAddress;
+    }
+
 }

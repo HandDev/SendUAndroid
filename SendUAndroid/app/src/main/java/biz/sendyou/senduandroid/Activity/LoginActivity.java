@@ -28,6 +28,7 @@ import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.User;
+import biz.sendyou.senduandroid.Service.UserInfo;
 import biz.sendyou.senduandroid.Service.UsrInfo;
 import biz.sendyou.senduandroid.URLManager;
 import biz.sendyou.senduandroid.UserInfoManager;
@@ -188,10 +189,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 Log.i(LOGTAG,"response : " + response.raw().toString());
                 Log.i(LOGTAG,"res : " + response.message());
+                UserInfoManager.getInstance().setUserName(user.get(user.size()-1).getUserName());
+                UserInfoManager.getInstance().setNumAddress(user.get(user.size()-1).getNumAddress());
+                UserInfoManager.getInstance().setJusoAddress(user.get(user.size()-1).getAddress());
                 Intent mIntent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
-                mIntent.putExtra("username",user.get(user.size()-1).getUserName());
-                mIntent.putExtra("numAddress",user.get(user.size()-1).getNumAddress());
-                mIntent.putExtra("address",user.get(user.size()-1).getAddress());
                 mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ContextManager.getContext().startActivity(mIntent);
 
