@@ -38,13 +38,10 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
 
-=======
->>>>>>> 46b94033abee39931c135d1a60cf7abe9965520e
         <activity android:name=".Activity.SignupActivity"
             android:screenOrientation="portrait"></activity>
 
