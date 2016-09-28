@@ -55,8 +55,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener,CashFragment.OnFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener{
 
+    //이게 왜 static 이지?
+    /*
     private static final String TAG = "NavigationDrawer";
     private static final String URL = "http://52.78.159.163:3000/";
+    */
+    private final String TAG = "NavigationDrawer";
+    private final String URL = "http://52.78.159.163:3000/";
     final int DEFAULT_LODING_COUNT = 12;
     private long backKeyPressedTime = 0;
     private Toast toast;
@@ -82,8 +87,12 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         ImageView btn = (ImageView) view.findViewById(R.id.imageView9);
 
+        /*
+        * 결국 이 loginActivity를 종료하고 싶은거 아님? 왜 여기서 이렇게 액티비티 객체 자체를 저장하고 종료하는거..?
+        * 액티비티 호출하기 전에 종료하면ㄷ안댐?
         LoginActivity loginActivity = LoginActivity.loginActivity;
         loginActivity.finish();
+        */
 
         navigationDrawerActivity = this;
 
