@@ -163,6 +163,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
                     android:buttonTint="#F13968"
                     android:id="@+id/autoLogin" />
 
