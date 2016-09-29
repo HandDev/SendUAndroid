@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBar;
@@ -17,9 +16,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
-
-import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.UserInfoManager;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 
 public class SplashActivity extends AppCompatActivity {
@@ -29,6 +27,7 @@ public class SplashActivity extends AppCompatActivity {
     public static Activity activity;
     public SplashActivity splashActivity;
     public static Context splashActivityContext;
+    private UserInfoManager userInfoManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +63,13 @@ public class SplashActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 SharedPreferences pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
+                SharedPreferences auto = getSharedPreferences("AutoLogin",Context.MODE_PRIVATE);
+                Log.e("f",String.valueOf(pref.getBoolean("Auto",true)));
                 if(pref.getBoolean("activity_excuted",false)) {
-                    if(pref.getBoolean("Auto",false)) {
+                    if(auto.getBoolean("Auto",true)) {
                         LoginActivity loginActivity = new LoginActivity();
-                        loginActivity.doLogin(pref.getString("email",null),pref.getString("password",null));
+                        Log.e("Password",pref.getString("password",""));
+                        loginActivity.doLogin(pref.getString("Email","enoxaiming@naver.com"),pref.getString("password","gkwnsgur003"));
                     }
                     else {
                         intentActivty(SplashActivity.this, LoginActivity.class);

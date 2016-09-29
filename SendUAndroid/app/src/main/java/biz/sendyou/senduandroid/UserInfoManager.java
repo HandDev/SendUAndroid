@@ -1,5 +1,9 @@
 package biz.sendyou.senduandroid;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+
 /**
  * Created by parkjaesung on 2016. 9. 28..
  */
@@ -61,5 +65,6 @@ public class UserInfoManager {
     public void setNumAddress(String numAddress) {
         this.numAddress = numAddress;
     }
+
 
 }

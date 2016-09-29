@@ -61,6 +61,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        pref = getSharedPreferences("AutoLogin",Context.MODE_PRIVATE);
+
+        pref.edit().putBoolean("Auto",false).commit();
 
         putBitmap(R.id.login_background, R.drawable.sp_back2, 8);
         putBitmap(R.id.plane, R.drawable.icon, 1);
@@ -74,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mEditText01 = (EditText)findViewById(R.id.idedit);
         mEditText02 = (EditText)findViewById(R.id.pwedit);
+        SharedPreferences.Editor editor = pref.edit();
         
         mCheckBox01 = (CheckBox)findViewById(R.id.autoLogin);
 
@@ -85,8 +89,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(mEditText01.getText().toString().matches("") || mEditText02.getText().toString().matches("")) {
                     Toast.makeText(getBaseContext(),"아이디 또는 비밀번호를 확인해주세요.",Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else {
+                    pref.edit().putBoolean("Auto",checkedCheck()).commit();
                     doLogin(mEditText01.getText().toString(), mEditText02.getText().toString());
                     //doLogin은 콜백 설정하는건데 왜.. 바로 아래에다가 메서드 호출을..
 
@@ -108,6 +112,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private Boolean checkedCheck() {
+        return mCheckBox01.isChecked();
     }
 
     public void moveSignupActivity(){
@@ -137,19 +145,24 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
                 if(repo.isSuccess()) {
-                    userInfoManager.setEmail(email);
-                    //token = repo.getToken();
+                    /*userInfoManager.setEmail(email);
                     userInfoManager.setToken(repo.getToken());
                     Log.e("token",repo.getToken());
-                    getUsrInfo(email,userInfoManager.getToken());
+                    getUsrInfo(email,userInfoManager.getToken());*/
 
-                    if(mCheckBox01.isChecked()) {
-                        pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
+                    if(pref.getBoolean("Auto",false)) {
                         SharedPreferences.Editor editor = pref.edit();
-                        editor.putBoolean("Auto",false);
                         editor.putString("Email",email);
                         editor.putString("password",password);
                         editor.commit();
+                        userInfoManager.setEmail(email);
+                        userInfoManager.setToken(repo.getToken());
+                        getUsrInfo(email,userInfoManager.getToken());
+                    }
+                    else {
+                        userInfoManager.setEmail(email);
+                        userInfoManager.setToken(repo.getToken());
+                        getUsrInfo(email,repo.getToken());
                     }
                 }
                 else{
