@@ -6,12 +6,12 @@
     android:gravity="center_horizontal">
 
     <ImageView
-        android:layout_width="20dp"
+        android:layout_width="25dp"
         app:srcCompat="@drawable/close"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
         android:layout_gravity="right"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/close_btn" />
 
     <ImageView
@@ -31,9 +31,9 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/round_blank_rec"
-        android:layout_width="220dp"
+        android:layout_width="240dp"
         android:layout_height="40dp">
 
         <ImageView
@@ -57,8 +57,8 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="220dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="240dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/round_blank_rec"
         android:layout_height="40dp">
 
@@ -83,8 +83,8 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="220dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="240dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/round_blank_rec"
         android:layout_height="40dp">
 
@@ -109,8 +109,8 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="220dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="240dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/round_blank_rec"
         android:layout_height="40dp">
 
@@ -137,20 +137,20 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:background="#60898989"
         android:layout_marginTop="20dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:gravity="center_vertical|center_horizontal">
 
             <Button
                 android:text="다음으로"
-                android:layout_width="160dp"
-                android:layout_height="40dp"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
                 android:id="@+id/signup_next_btn"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/button" />
