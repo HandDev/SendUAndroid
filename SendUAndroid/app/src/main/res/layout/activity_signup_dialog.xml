@@ -17,8 +17,8 @@
     <ImageView
         app:srcCompat="@drawable/icon"
         android:id="@+id/signup_plane"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal" />
 
     <ImageView
@@ -26,15 +26,15 @@
         android:id="@+id/signup_text"
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="20dp"
         android:layout_marginTop="10dp" />
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/round_blank_rec">
+        android:background="@drawable/round_blank_rec"
+        android:layout_width="240dp">
 
         <ImageView
             android:layout_height="match_parent"
@@ -57,7 +57,7 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="300dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_blank_rec">
@@ -83,7 +83,7 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="300dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_blank_rec">
@@ -109,7 +109,7 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="300dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_blank_rec">
