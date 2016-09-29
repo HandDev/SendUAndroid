@@ -5,133 +5,143 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal">
 
-    <ImageView
-        android:layout_width="25dp"
-        app:srcCompat="@drawable/close"
-        android:layout_height="25dp"
-        android:layout_gravity="right"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/close_btn" />
-
-    <ImageView
-        app:srcCompat="@drawable/icon"
-        android:id="@+id/signup_plane"
-        android:layout_height="35dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="35dp" />
-
-    <ImageView
-        app:srcCompat="@drawable/signup_text"
-        android:id="@+id/signup_text"
-        android:layout_gravity="center_horizontal"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:layout_marginTop="10dp" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_blank_rec"
-        android:layout_width="240dp"
-        android:layout_height="40dp">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
 
         <ImageView
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/la_idicon"
-            android:id="@+id/signup_name_icon"
-            android:layout_gravity="center_horizontal"
-            android:padding="13dp"
-            android:layout_width="50dp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/signup_name_edittext"
-            android:layout_weight="1"
-            android:hint="이름"
-            android:textSize="14sp"
-            android:layout_marginLeft="3dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="240dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_blank_rec"
-        android:layout_height="40dp">
+            android:layout_width="25dp"
+            app:srcCompat="@drawable/close"
+            android:layout_height="25dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/close_btn" />
 
         <ImageView
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/la_pwicon"
-            android:id="@+id/signup_email_icon"
+            app:srcCompat="@drawable/icon"
+            android:id="@+id/signup_plane"
+            android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
-            android:padding="13dp"
-            android:layout_width="50dp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/signup_email_edittext"
-            android:layout_weight="1"
-            android:hint="이메일"
-            android:textSize="14sp"
-            android:layout_marginLeft="3dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="240dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_blank_rec"
-        android:layout_height="40dp">
+            android:layout_width="match_parent" />
 
         <ImageView
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/la_pwicon"
-            android:id="@+id/signup_password_icon"
+            app:srcCompat="@drawable/signup_text"
+            android:id="@+id/signup_text"
             android:layout_gravity="center_horizontal"
-            android:padding="13dp"
-            android:layout_width="50dp" />
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginTop="10dp" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/signup_password_edittext"
-            android:layout_weight="1"
-            android:hint="비밀번호"
-            android:textSize="14sp"
-            android:layout_marginLeft="3dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="240dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_blank_rec"
-        android:layout_height="40dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_blank_rec"
+            android:layout_width="240dp"
+            android:layout_height="40dp">
 
-        <ImageView
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/la_pwicon"
-            android:id="@+id/signup_password_check_icon"
-            android:layout_gravity="center_horizontal"
-            android:padding="13dp"
-            android:layout_width="50dp" />
+            <ImageView
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/la_idicon"
+                android:id="@+id/signup_name_icon"
+                android:layout_gravity="center_horizontal"
+                android:padding="13dp"
+                android:layout_width="50dp" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/signup_password_check_edittext"
-            android:layout_weight="1"
-            android:hint="비밀번호 확인"
-            android:textSize="14sp"
-            android:layout_marginLeft="3dp" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/signup_name_edittext"
+                android:layout_weight="1"
+                android:hint="이름"
+                android:textSize="14sp"
+                android:layout_marginLeft="3dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="240dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_blank_rec"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/la_pwicon"
+                android:id="@+id/signup_email_icon"
+                android:layout_gravity="center_horizontal"
+                android:padding="13dp"
+                android:layout_width="50dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/signup_email_edittext"
+                android:layout_weight="1"
+                android:hint="이메일"
+                android:textSize="14sp"
+                android:layout_marginLeft="3dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="240dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_blank_rec"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/la_pwicon"
+                android:id="@+id/signup_password_icon"
+                android:layout_gravity="center_horizontal"
+                android:padding="13dp"
+                android:layout_width="50dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/signup_password_edittext"
+                android:layout_weight="1"
+                android:hint="비밀번호"
+                android:textSize="14sp"
+                android:layout_marginLeft="3dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="240dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_blank_rec"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/la_pwicon"
+                android:id="@+id/signup_password_check_icon"
+                android:layout_gravity="center_horizontal"
+                android:padding="13dp"
+                android:layout_width="50dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/signup_password_check_edittext"
+                android:layout_weight="1"
+                android:hint="비밀번호 확인"
+                android:textSize="14sp"
+                android:layout_marginLeft="3dp" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
