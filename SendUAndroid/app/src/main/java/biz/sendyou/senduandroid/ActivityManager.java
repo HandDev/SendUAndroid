@@ -13,9 +13,18 @@ public class ActivityManager {
 
     private Activity loginActivity;
     private Activity signupInputActivity;
+    private Activity splashActivity;
 
     private ActivityManager() {
 
+    }
+
+    public Activity getSplashActivity() {
+        return splashActivity;
+    }
+
+    public void setSplashActivity(Activity splashActivity) {
+        this.splashActivity = splashActivity;
     }
 
     public static ActivityManager getInstance(){

@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -43,8 +44,8 @@ public class LoginActivity extends AppCompatActivity {
     private String LOGTAG = "LoginActivity";
     private EditText mEditText02;
     private CheckBox mCheckBox01;
-    private SharedPreferences pref;
-
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
     private UserInfoManager userInfoManager;
     //TODO Remove static variable
     //이걸 왜 스태틱으로
@@ -61,6 +62,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
+        editor = prefs.edit();
+
+        editor.putBoolean("Auto",false);
+        editor.putBoolean("SAVED",false);
+        editor.commit();
 
         putBitmap(R.id.login_background, R.drawable.sp_back2, 8);
         putBitmap(R.id.plane, R.drawable.icon, 1);
@@ -85,8 +93,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(mEditText01.getText().toString().matches("") || mEditText02.getText().toString().matches("")) {
                     Toast.makeText(getBaseContext(),"아이디 또는 비밀번호를 확인해주세요.",Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else {
+                    editor.putBoolean("Auto",mCheckBox01.isChecked()).commit();
+                    Log.e("CheckBox",String.valueOf(mCheckBox01.isChecked()));
+                    Log.e("Auto",String.valueOf(prefs.getBoolean("Auto",false)));
                     doLogin(mEditText01.getText().toString(), mEditText02.getText().toString());
                     //doLogin은 콜백 설정하는건데 왜.. 바로 아래에다가 메서드 호출을..
 
@@ -110,12 +120,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
     public void moveSignupActivity(){
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
         startActivity(intent);
 
         //SignUpActivity에서 LoginActivity를 종료하지말고 여기서 종료하면되는거아닌가?
-        //ㅇㅇ
+        //ㄴㄴ.. SignUpActivity에 이동하고나서 뒤로가기를 누르면 LoginActivity로 이동해야함. 아니면 SignUpActivity에서 onBackPressed를 선언하는 방법도 있음.
         //LoginActivity.this.finish();
         finish();
     }
@@ -136,19 +147,38 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
                 if(repo.isSuccess()) {
-                    userInfoManager.setEmail(email);
-                    //token = repo.getToken();
+                    /*userInfoManager.setEmail(email);
                     userInfoManager.setToken(repo.getToken());
                     Log.e("token",repo.getToken());
-                    getUsrInfo(email,userInfoManager.getToken());
-
-                    if(mCheckBox01.isChecked()) {
-                        pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = pref.edit();
-                        editor.putBoolean("Auto",false);
+                    getUsrInfo(email,userInfoManager.getToken());*/
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
+                    SharedPreferences.Editor editor = pref.edit();
+                    Log.e("auto",String.valueOf(pref.getBoolean("Auto",false)));
+                    Log.e("SAVED",String.valueOf(pref.getBoolean("SAVED",false)));
+                    Log.e("EMail",pref.getString("Email",""));
+                    //TODO if문 수정 필요
+                    if(pref.getBoolean("Auto",false)) {
+                        if(pref.getBoolean("SAVED",false)) {
+                            UserInfoManager userInfoManager = UserInfoManager.getInstance();
+                            userInfoManager.setEmail(pref.getString("Email",""));
+                            userInfoManager.setToken(pref.getString("Token",""));
+                            getUsrInfo(userInfoManager.getEmail(),userInfoManager.getToken());
+                        }
+                        else {
+                            userInfoManager.setEmail(email);
+                            userInfoManager.setToken(repo.getToken());
+                            getUsrInfo(email,userInfoManager.getToken());
+                        }
                         editor.putString("Email",email);
                         editor.putString("password",password);
+                        editor.putString("Token",repo.getToken());
+                        editor.putBoolean("SAVED",true);
                         editor.commit();
+                    }
+                    else {
+                        userInfoManager.setEmail(email);
+                        userInfoManager.setToken(repo.getToken());
+                        getUsrInfo(email,repo.getToken());
                     }
                 }
                 else{
@@ -193,10 +223,13 @@ public class LoginActivity extends AppCompatActivity {
                 UserInfoManager.getInstance().setUserName(user.get(user.size()-1).getUserName());
                 UserInfoManager.getInstance().setNumAddress(user.get(user.size()-1).getNumAddress());
                 UserInfoManager.getInstance().setJusoAddress(user.get(user.size()-1).getAddress());
-                Intent mIntent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
-                mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                ContextManager.getContext().startActivity(mIntent);
-                finish();
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
+                if(pref.getBoolean("SAVED",false)) {
+                    callNavigationFromSplash();
+                }
+                else {
+                    callNavigation();
+                }
             }
 
             @Override
@@ -206,6 +239,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+
+    private void callNavigation() {
+        Intent mIntent = new Intent(ActivityManager.getInstance().getLoginActivity(), NavigationDrawerActivity.class);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ContextManager.getContext().startActivity(mIntent);
+        finish();
+    }
+
+    private void callNavigationFromSplash() {
+        Intent mIntent = new Intent(ActivityManager.getInstance().getSplashActivity(), NavigationDrawerActivity.class);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ContextManager.getContext().startActivity(mIntent);
+        finish();
+    }
 
     @Override
     protected void onDestroy() {
