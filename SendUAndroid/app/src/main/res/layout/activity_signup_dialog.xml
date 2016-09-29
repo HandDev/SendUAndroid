@@ -17,24 +17,24 @@
     <ImageView
         app:srcCompat="@drawable/icon"
         android:id="@+id/signup_plane"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="30dp" />
 
     <ImageView
         app:srcCompat="@drawable/signup_text"
         android:id="@+id/signup_text"
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="15dp"
         android:layout_marginTop="10dp" />
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_blank_rec"
-        android:layout_width="240dp">
+        android:layout_width="220dp">
 
         <ImageView
             android:layout_height="match_parent"
@@ -57,8 +57,8 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_blank_rec">
 
@@ -83,8 +83,8 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_blank_rec">
 
@@ -109,8 +109,8 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_blank_rec">
 
@@ -137,17 +137,17 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         android:background="#60898989"
         android:layout_marginTop="20dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
             android:gravity="center_vertical|center_horizontal">
 
-            <TextView
+            <Button
                 android:text="다음으로"
                 android:layout_width="160dp"
                 android:layout_height="40dp"
