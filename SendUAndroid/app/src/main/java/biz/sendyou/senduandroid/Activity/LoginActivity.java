@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +13,11 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -40,6 +45,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends AppCompatActivity {
 
     //쓸데 없는 변수는 모두 지웁시다.ㅜㅜ
+    private View dialogView;
     private EditText mEditText01;
     private String LOGTAG = "LoginActivity";
     private EditText mEditText02;
@@ -114,7 +120,8 @@ public class LoginActivity extends AppCompatActivity {
         mTextView03.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveSignupActivity();
+                SignUpDialog signUpDialog = new SignUpDialog();
+                signUpDialog.showDialog(view);
             }
         });
 
