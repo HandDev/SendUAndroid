@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <WebView
         android:layout_width="match_parent"
-        android:layout_height="404dp"
+        android:layout_height="500dp"
         android:id="@+id/webView"
-        android:layout_x="-25dp"
-        android:layout_y="188dp"
-        android:layout_marginTop="60dp" />
+        />
 </FrameLayout>

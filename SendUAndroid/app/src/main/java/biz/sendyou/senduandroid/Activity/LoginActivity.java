@@ -2,6 +2,7 @@ package biz.sendyou.senduandroid.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -41,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEditText01;
     private String LOGTAG = "LoginActivity";
     private EditText mEditText02;
+    private CheckBox mCheckBox01;
+    private SharedPreferences pref;
 
     private UserInfoManager userInfoManager;
     //TODO Remove static variable
@@ -58,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         putBitmap(R.id.login_background, R.drawable.sp_back2, 8);
         putBitmap(R.id.plane, R.drawable.icon, 1);
 
@@ -71,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         mEditText01 = (EditText)findViewById(R.id.idedit);
         mEditText02 = (EditText)findViewById(R.id.pwedit);
         
-        final CheckBox mCheckBox01 = (CheckBox)findViewById(R.id.autoLogin);
+        mCheckBox01 = (CheckBox)findViewById(R.id.autoLogin);
 
         Button mButton = (Button)findViewById(R.id.loginButton);
         assert mButton != null;
@@ -118,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //바로 객체에서 텍스트를 가져오면 가독성도 떨어지고 메서드 재활용성이 낮아질듯
-    private void doLogin(final String email, String password) {
+    public void doLogin(final String email, final String password) {
         Log.i(LOGTAG, "doLogin Method");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URLManager.authURL)
@@ -136,9 +140,17 @@ public class LoginActivity extends AppCompatActivity {
                     userInfoManager.setEmail(email);
                     //token = repo.getToken();
                     userInfoManager.setToken(repo.getToken());
-
                     Log.e("token",repo.getToken());
                     getUsrInfo(email,userInfoManager.getToken());
+
+                    if(mCheckBox01.isChecked()) {
+                        pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putBoolean("Auto",false);
+                        editor.putString("Email",email);
+                        editor.putString("password",password);
+                        editor.commit();
+                    }
                 }
                 else{
                     Toast.makeText(ContextManager.getContext(),"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();

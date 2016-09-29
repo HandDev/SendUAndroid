@@ -45,7 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -125,7 +126,11 @@
                         android:ems="10"
                         android:id="@+id/pwedit"
                         android:layout_weight="1"
+<<<<<<< HEAD
                         android:textColor="#FFFFFF"
+=======
+                        android:textColor="@android:color/white"
+>>>>>>> 758b49b6a4059c9b87fb06a4e971b5e5b2043a75
                         android:textColorHint="#FFFFFF"
                         android:hint="비밀번호"
                         android:background="@android:color/transparent" />

@@ -72,8 +72,10 @@ public class SignupAddressActivity extends AppCompatActivity {
                 LayoutInflater inflater = (LayoutInflater)v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View layout = inflater.inflate(R.layout.activity_signup_address_dialog, null);
                 WebView webView = (WebView) layout.findViewById(R.id.webView);
-                webView.loadUrl("http://52.78.159.163:3000/test/address");
+                webView.setVerticalScrollBarEnabled(true);
                 webView.getSettings().setJavaScriptEnabled(true);
+                webView.loadUrl("http://sendu.kr:3000/test/address");
+
                 AlertDialog.Builder dialog1 = new AlertDialog.Builder(v.getContext());
 
                 dialog1.setView(layout);
