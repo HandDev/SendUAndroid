@@ -126,11 +126,7 @@
                         android:ems="10"
                         android:id="@+id/pwedit"
                         android:layout_weight="1"
-<<<<<<< HEAD
-                        android:textColor="#FFFFFF"
-=======
                         android:textColor="@android:color/white"
->>>>>>> 15f289cb0377f0c062ffb7f40185d918c3c3ef54
                         android:textColorHint="#FFFFFF"
                         android:hint="비밀번호"
                         android:background="@android:color/transparent" />
