@@ -10,12 +10,15 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
+import biz.sendyou.senduandroid.ActivityManager;
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.UserInfoManager;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
@@ -34,6 +37,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        ActivityManager.getInstance().setSplashActivity(this);
         putBitmap(R.id.background_image, R.drawable.sp_back2, 8);
 
         ActionBar actionBar = getSupportActionBar();
@@ -63,13 +67,13 @@ public class SplashActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 SharedPreferences pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
-                SharedPreferences auto = getSharedPreferences("AutoLogin",Context.MODE_PRIVATE);
-                Log.e("f",String.valueOf(pref.getBoolean("Auto",true)));
+                final SharedPreferences auto = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                Log.e("f",String.valueOf(auto.getBoolean("Auto",false)));
                 if(pref.getBoolean("activity_excuted",false)) {
-                    if(auto.getBoolean("Auto",true)) {
+                    if(auto.getBoolean("Auto",false)) {
                         LoginActivity loginActivity = new LoginActivity();
-                        Log.e("Password",pref.getString("password",""));
-                        loginActivity.doLogin(pref.getString("Email","enoxaiming@naver.com"),pref.getString("password","gkwnsgur003"));
+                        Log.e("Password",auto.getString("password",""));
+                        loginActivity.doLogin(auto.getString("Email",""),auto.getString("password",""));
                     }
                     else {
                         intentActivty(SplashActivity.this, LoginActivity.class);
