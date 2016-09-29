@@ -118,7 +118,6 @@ public class LoginActivity extends AppCompatActivity {
         //ㅇㅇ
         //LoginActivity.this.finish();
         finish();
-
     }
 
     //바로 객체에서 텍스트를 가져오면 가독성도 떨어지고 메서드 재활용성이 낮아질듯

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="40dp"
+        app:srcCompat="@drawable/close"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/close_btn" />
+
+    <ImageView
+        app:srcCompat="@drawable/icon"
+        android:id="@+id/signup_plane"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageView
+        app:srcCompat="@drawable/signup_text"
+        android:id="@+id/signup_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_blank_rec">
+
+        <ImageView
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/la_idicon"
+            android:id="@+id/signup_name_icon"
+            android:layout_gravity="center_horizontal"
+            android:padding="13dp"
+            android:layout_width="50dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/signup_name_edittext"
+            android:layout_weight="1"
+            android:hint="이름"
+            android:textSize="14sp"
+            android:layout_marginLeft="3dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_blank_rec">
+
+        <ImageView
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/la_pwicon"
+            android:id="@+id/signup_email_icon"
+            android:layout_gravity="center_horizontal"
+            android:padding="13dp"
+            android:layout_width="50dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/signup_email_edittext"
+            android:layout_weight="1"
+            android:hint="이메일"
+            android:textSize="14sp"
+            android:layout_marginLeft="3dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_blank_rec">
+
+        <ImageView
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/la_pwicon"
+            android:id="@+id/signup_password_icon"
+            android:layout_gravity="center_horizontal"
+            android:padding="13dp"
+            android:layout_width="50dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/signup_password_edittext"
+            android:layout_weight="1"
+            android:hint="비밀번호"
+            android:textSize="14sp"
+            android:layout_marginLeft="3dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_blank_rec">
+
+        <ImageView
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/la_pwicon"
+            android:id="@+id/signup_password_check_icon"
+            android:layout_gravity="center_horizontal"
+            android:padding="13dp"
+            android:layout_width="50dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/signup_password_check_edittext"
+            android:layout_weight="1"
+            android:hint="비밀번호 확인"
+            android:textSize="14sp"
+            android:layout_marginLeft="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#60898989"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal">
+
+            <TextView
+                android:text="다음으로"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:id="@+id/signup_next_btn"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/button" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
