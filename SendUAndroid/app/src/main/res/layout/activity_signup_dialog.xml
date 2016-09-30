@@ -71,7 +71,7 @@
 
             <ImageView
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/la_pwicon"
+                app:srcCompat="@drawable/su_email"
                 android:id="@+id/signup_email_icon"
                 android:layout_gravity="center_horizontal"
                 android:padding="13dp"

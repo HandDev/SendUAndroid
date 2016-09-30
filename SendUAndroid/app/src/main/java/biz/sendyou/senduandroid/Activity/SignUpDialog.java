@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +38,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SignUpDialog extends AppCompatActivity {
 
     private EditText mNameEditText,mEmailEditText,mPasswordEditText,mPasswordCheckEditText;
+    private LayoutInflater inflater;
+    private AlertDialog alertBuilder;
+    private View layout;
 
 
     @Override
@@ -43,10 +48,13 @@ public class SignUpDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
     public void showDialog(View view) {
-        LayoutInflater inflater = (LayoutInflater)view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View layout = inflater.inflate(R.layout.activity_signup_dialog, null);
+        inflater = (LayoutInflater)view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layout = inflater.inflate(R.layout.activity_signup_dialog, null);
 
-        final AlertDialog alertBuilder = new AlertDialog.Builder(view.getContext()).create();
+        Animation anim = AnimationUtils.loadAnimation(ContextManager.getContext(), R.anim.riseup);
+        layout.startAnimation(anim);
+
+        alertBuilder = new AlertDialog.Builder(view.getContext()).create();
         alertBuilder.setView(layout);
         alertBuilder.show();
 
@@ -67,13 +75,13 @@ public class SignUpDialog extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mNameEditText.getText().toString().matches("") || mEmailEditText.getText().toString().matches("") || mPasswordCheckEditText.getText().toString().matches("") || mPasswordEditText.getText().toString().matches("")) {
-                    Toast.makeText(getBaseContext(), "빈칸이 있는지 확인해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ContextManager.getContext(), "빈칸이 있는지 확인해주세요.", Toast.LENGTH_LONG).show();
                 } else if (!isValidEmail(mEmailEditText.getText().toString())) {
-                    Toast.makeText(getBaseContext(), "이메일의 형식이 아닙니다. 다시 한번 확인해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ContextManager.getContext(), "이메일의 형식이 아닙니다. 다시 한번 확인해주세요.", Toast.LENGTH_LONG).show();
                 } else if (mPasswordEditText.getText().length() < 8) {
-                    Toast.makeText(getBaseContext(), "비밀번호가 너무 짧습니다. 8자 이상으로 작성해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ContextManager.getContext(), "비밀번호가 너무 짧습니다. 8자 이상으로 작성해주세요.", Toast.LENGTH_LONG).show();
                 } else if (!mPasswordEditText.getText().toString().matches(mPasswordCheckEditText.getText().toString())) {
-                    Toast.makeText(getBaseContext(), "비밀번호가 일치하지 않습니다. 다시 확인해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ContextManager.getContext(), "비밀번호가 일치하지 않습니다. 다시 확인해주세요.", Toast.LENGTH_LONG).show();
                 } else {
                     emailck();
                 }
@@ -104,6 +112,10 @@ public class SignUpDialog extends AppCompatActivity {
                 Repo repo = response.body();
 
                 if(repo.isSuccess()){
+                    //TODO Move to another dialog
+                    final View next = inflater.inflate(R.layout.activity_signup_address_dialog, null);
+                    alertBuilder.setView(next);
+                    alertBuilder.show();
                     /*Intent mIntent = new Intent(signupInputActivity, SignupAddressActivity.class);
                     mIntent.putExtra("userName", mFirstNameEditText.getText().toString() + mNameEditText.getText().toString());
                     mIntent.putExtra("email", mEmailEditText.getText().toString());
