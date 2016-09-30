@@ -51,12 +51,17 @@ public class SignUpDialog extends AppCompatActivity {
         inflater = (LayoutInflater)view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layout = inflater.inflate(R.layout.activity_signup_dialog, null);
 
+
+
         Animation anim = AnimationUtils.loadAnimation(ContextManager.getContext(), R.anim.riseup);
         layout.startAnimation(anim);
 
         alertBuilder = new AlertDialog.Builder(view.getContext()).create();
+        alertBuilder.setCanceledOnTouchOutside(true);
         alertBuilder.setView(layout);
         alertBuilder.show();
+
+
 
         ImageView close = (ImageView)layout.findViewById(R.id.close_btn);
         mNameEditText = (EditText)layout.findViewById(R.id.signup_name_edittext);
@@ -93,7 +98,8 @@ public class SignUpDialog extends AppCompatActivity {
     }
 
     private static boolean isValidEmail(String s) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(s).matches();
+        String anim = s.toLowerCase();
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(anim).matches();
     }
 
     private void emailck() {
