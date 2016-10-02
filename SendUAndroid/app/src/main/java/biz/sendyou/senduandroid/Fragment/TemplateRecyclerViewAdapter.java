@@ -1,8 +1,11 @@
 package biz.sendyou.senduandroid.Fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,10 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.URLManager;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 import biz.sendyou.senduandroid.thread.BitmapFromURLThread;
 
@@ -31,12 +37,16 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
     private final SelectTemplateFragment.OnListFragmentInteractionListener mListener;
     private final String LOGTAG = "TemplateRecylcerAdapter";
 
-    public TemplateRecyclerViewAdapter(List<CardTemplate> items, ImageLoader imageLoader, SelectTemplateFragment.OnListFragmentInteractionListener listener) {
+    private FragmentManager fragmentManager;
+
+    public TemplateRecyclerViewAdapter(FragmentManager fragmentManager, List<CardTemplate> items, ImageLoader imageLoader, SelectTemplateFragment.OnListFragmentInteractionListener listener) {
         this.imageLoader = imageLoader;
         this.mValues = items;
 
         Log.i(LOGTAG, "mValues Length : " + mValues.size());
         mListener = listener;
+
+        this.fragmentManager = fragmentManager;
     }
 
     @Override
@@ -47,25 +57,11 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         Log.i(LOGTAG, "onBindViewHolder called");
         holder.mItem = mValues.get(position);
 
-        /*
-        Bitmap bitmap = null;
-        BitmapFromURLThread bitmapFromURLThread = new BitmapFromURLThread("https://s3.ap-northeast-2.amazonaws.com/cardbackground/" + mValues.get(position).getUrl());
-        bitmapFromURLThread.start();
-
-        try {
-            bitmapFromURLThread.join();
-
-            bitmap = bitmapFromURLThread.getBitmap();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
-        imageLoader.displayImage("https://s3.ap-northeast-2.amazonaws.com/cardbackground/" + mValues.get(position).getUrl(), holder.mImageView);
-    //    holder.mImageView.setImageDrawable(new BitmapDrawable(bitmap));
+        imageLoader.displayImage(URLManager.s3URL + mValues.get(position).getUrl(), holder.mImageView);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +70,16 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
                     // fragment is attached to one) that an item has been selected.
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
+            }
+        });
+
+        holder.mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(LOGTAG, "ImageClicked" + mValues.get(position).getUrl());
+
+                CardSelectDialogFragment cardSelectDialogFragment = CardSelectDialogFragment.newInstance(mValues.get(position).getUrl());
+                cardSelectDialogFragment.show(fragmentManager,"엽서 선택");
             }
         });
     }
@@ -97,14 +103,16 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
            // mContentView = (TextView) view.findViewById(R.id.content);
 
             mImageView = (ImageView)view.findViewById(R.id.templateimage);
+
+            /*
+            mImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            });
+            */
         }
 
-        //TODO ReWrite toString method
-        /*
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
-        */
+
     }
 }

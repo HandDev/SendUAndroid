@@ -80,7 +80,7 @@ public class SelectTemplateFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TemplateRecyclerViewAdapter(thumbImages, ImageLoader.getInstance(), mListener));
+            recyclerView.setAdapter(new TemplateRecyclerViewAdapter(getFragmentManager(), thumbImages, ImageLoader.getInstance(), mListener));
             Log.i(LOGTAG, "setRecyclerViewAdapter");
 
         ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);
