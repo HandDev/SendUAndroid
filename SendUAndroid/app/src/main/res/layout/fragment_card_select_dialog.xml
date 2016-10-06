@@ -22,19 +22,19 @@
 
         <Button
             android:text="선택하기"
-            android:layout_width="140dp"
-            android:layout_height="30dp"
+            android:layout_width="287.5dp"
+            android:layout_height="42.5dp"
             android:id="@+id/cardselect_next_btn"
             android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/button" />
+            android:background="@drawable/round_button" />
 
         <Button
             android:text="취소"
             android:layout_marginTop="10dp"
-            android:layout_width="140dp"
-            android:layout_height="30dp"
+            android:layout_width="287.5dp"
+            android:layout_height="42.5dp"
             android:id="@+id/cardselect_cancel_btn"
             android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/button" />
+            android:background="@drawable/round_button" />
     </LinearLayout>
 </LinearLayout>

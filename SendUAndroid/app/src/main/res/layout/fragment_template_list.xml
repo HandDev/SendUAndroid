@@ -25,13 +25,12 @@
     android:name="biz.sendyou.senduandroid.Fragment.SelectTemplateFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="biz.sendyou.senduandroid.Fragment.SelectTemplateFragment"
     tools:listitem="@layout/fragment_template"
     android:layout_below="@+id/card_stageone"
-    android:layout_centerHorizontal="true" />
+    android:layout_centerHorizontal="true"
+    android:background="@color/grayBackGround" />
     <ImageView
         android:id="@+id/nextstep"
         android:layout_margin="10dp"
