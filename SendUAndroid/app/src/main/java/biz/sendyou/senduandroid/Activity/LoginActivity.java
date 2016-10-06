@@ -44,7 +44,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //쓸데 없는 변수는 모두 지웁시다.ㅜㅜ
     private View dialogView;
     private EditText mEditText01;
     private String LOGTAG = "LoginActivity";
@@ -53,21 +52,12 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
     private UserInfoManager userInfoManager;
-    //TODO Remove static variable
-    //이걸 왜 스태틱으로
-    //다른 액티비티에서 참조한다고 하면 차라리 싱글톤 객체 하나만들어서 저장해야 깔끔하지
-    //토큰과 이메일은 다른 객체에서도 참조해야하는것이니..
-    public static String email,token;
     private ImageView imageView;
-
-    //안쓰는 변수아닌가?
-    //private Bitmap background_src;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         prefs = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
         editor = prefs.edit();
@@ -104,15 +94,10 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e("CheckBox",String.valueOf(mCheckBox01.isChecked()));
                     Log.e("Auto",String.valueOf(prefs.getBoolean("Auto",false)));
                     doLogin(mEditText01.getText().toString(), mEditText02.getText().toString());
-                    //doLogin은 콜백 설정하는건데 왜.. 바로 아래에다가 메서드 호출을..
-
-                    //로그인이 성공해야 그 이메일이 유효하다는 뜻이니 로그인 성공할 경우에 데이터를 저장하져
-                    //email = mEditText01.getText().toString();
                 }
             }
         });
 
-        //이건 모두 DI로 해결합시다
         //TextView mTextView01 = (TextView)findViewById(R.id.SendU);
         TextView mTextView02 = (TextView)findViewById(R.id.SignUp1);
         TextView mTextView03 = (TextView)findViewById(R.id.SignUp2);
@@ -132,13 +117,9 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
         startActivity(intent);
 
-        //SignUpActivity에서 LoginActivity를 종료하지말고 여기서 종료하면되는거아닌가?
-        //ㄴㄴ.. SignUpActivity에 이동하고나서 뒤로가기를 누르면 LoginActivity로 이동해야함. 아니면 SignUpActivity에서 onBackPressed를 선언하는 방법도 있음.
-        //LoginActivity.this.finish();
         finish();
     }
 
-    //바로 객체에서 텍스트를 가져오면 가독성도 떨어지고 메서드 재활용성이 낮아질듯
     public void doLogin(final String email, final String password) {
         Log.i(LOGTAG, "doLogin Method");
         Retrofit retrofit = new Retrofit.Builder()
@@ -154,10 +135,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
                 if(repo.isSuccess()) {
-                    /*userInfoManager.setEmail(email);
-                    userInfoManager.setToken(repo.getToken());
-                    Log.e("token",repo.getToken());
-                    getUsrInfo(email,userInfoManager.getToken());*/
                     SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
                     SharedPreferences.Editor editor = pref.edit();
                     Log.e("auto",String.valueOf(pref.getBoolean("Auto",false)));
@@ -193,7 +170,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
-            //예외 처리는 필수염
             @Override
             public void onFailure(Call<Repo> call, Throwable t) {
 
@@ -204,7 +180,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    //변수이름도 통일해야 가독성이 높아지겠네여
     public void getUsrInfo(String email, String token) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URLManager.authURL)
@@ -221,8 +196,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
                 ArrayList<User> user = response.body();
 
-                //로그로 출력하는 정보들은 태그를 통일해야 디버깅이 쉽겠져?
-                // + 로그 출력 레벨을 구분시킵시다
                 Log.i(LOGTAG,"size : " + String.valueOf(user.size()));
                 Log.i(LOGTAG,"user : " + user.get(user.size()-1).getUserName());
                 Log.i(LOGTAG,"response : " + response.raw().toString());
