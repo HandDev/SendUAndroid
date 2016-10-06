@@ -115,7 +115,7 @@ public class OrderCardFragment extends Fragment {
 
         GetUUID getUUID = retrofit.create(GetUUID.class);
 
-        Call<Repo> call = getUUID.doUUID(LoginActivity.email);
+        Call<Repo> call = getUUID.doUUID(UserInfoManager.getInstance().getEmail());
 
         call.enqueue(new Callback<Repo>() {
             @Override
