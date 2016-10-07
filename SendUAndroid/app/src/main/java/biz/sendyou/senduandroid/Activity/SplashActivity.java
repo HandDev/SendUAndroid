@@ -76,7 +76,7 @@ public class SplashActivity extends AppCompatActivity {
                         loginActivity.doLogin(auto.getString("Email",""),auto.getString("password",""));
                     }
                     else {
-                        intentActivty(SplashActivity.this, LoginActivity.class);
+                        intentActivty(SplashActivity.this, SignInActivity.class);
                     }
 
                 }

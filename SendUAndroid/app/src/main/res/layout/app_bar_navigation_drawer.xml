@@ -20,7 +20,8 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 android:titleTextColor="#FFFFFFFF"
                 app:titleTextColor="#FFFFFFFF"
-                android:contextClickable="true" />
+                android:contextClickable="true"
+                android:textAlignment="center" />
 
         <FrameLayout
             android:id="@+id/mainFrameLayout"

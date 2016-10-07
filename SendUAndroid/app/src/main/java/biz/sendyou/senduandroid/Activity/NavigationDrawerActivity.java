@@ -79,7 +79,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         navigationDrawerActivity = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("                     SendU");
+        toolbar.setTitle("SendU");
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 

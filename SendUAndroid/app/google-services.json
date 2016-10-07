@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "408826853770",
-    "project_id": "sendu-83251"
+    "project_number": "150684979941",
+    "project_id": "sendu-c5e1a"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:408826853770:android:fefc4d43c4c9af8f",
+        "mobilesdk_app_id": "1:150684979941:android:fefc4d43c4c9af8f",
         "android_client_info": {
           "package_name": "biz.sendyou.senduandroid"
         }
       },
       "oauth_client": [
         {
-          "client_id": "408826853770-lctehj3hl0fv0f9ugub62k5fa3b22gke.apps.googleusercontent.com",
+          "client_id": "150684979941-knseij3jh0g94mk4r57364174ae8k88h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "biz.sendyou.senduandroid",
-            "certificate_hash": "69943D1445FEBD6D45D6F9B127939FAD9D7743DF"
+            "certificate_hash": "90D59AFDBAACDF2670021F801C700C49F2F1F6C5"
           }
         },
         {
-          "client_id": "408826853770-rpmp3mnvj7m89c3fnv57iq4po96osb1h.apps.googleusercontent.com",
+          "client_id": "150684979941-ps6f38p1vfh01l4sblpphcr7he9n9lj3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCK4gl_vt28kHT6dGDcdTs6iYH1MEeD_10"
+          "current_key": "AIzaSyBZL_J8WYbm7hztVaC09X1fCzg21z9TBkQ"
         }
       ],
       "services": {
