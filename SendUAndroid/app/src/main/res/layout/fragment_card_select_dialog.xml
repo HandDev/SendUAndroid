@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context="biz.sendyou.senduandroid.Fragment.CardSelectDialogFragment">
+
+    <ImageView
+        android:id="@+id/templatepreview"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:gravity="center_vertical|center_horizontal">
+
+        <Button
+            android:text="선택하기"
+            android:layout_width="287.5dp"
+            android:layout_height="42.5dp"
+            android:id="@+id/cardselect_next_btn"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/round_button" />
+
+        <Button
+            android:text="취소"
+            android:layout_marginTop="10dp"
+            android:layout_width="287.5dp"
+            android:layout_height="42.5dp"
+            android:id="@+id/cardselect_cancel_btn"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/round_button" />
+    </LinearLayout>
+</LinearLayout>
