@@ -79,7 +79,7 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
                 Log.i(LOGTAG, "ImageClicked" + mValues.get(position).getUrl());
 
                 CardSelectDialogFragment cardSelectDialogFragment = CardSelectDialogFragment.newInstance(mValues.get(position).getUrl());
-                cardSelectDialogFragment.show(fragmentManager,"엽서 선택");
+                cardSelectDialogFragment.show(fragmentManager, "");
             }
         });
     }
