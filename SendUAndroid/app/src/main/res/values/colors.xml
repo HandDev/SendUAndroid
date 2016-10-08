@@ -3,10 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#F13968</color>
     <color name="colorAccent">#7EAD6A</color>
-<<<<<<< HEAD
     <color name="gray">#7c7c7c</color>
-=======
-
     <color name="grayBackGround">#d0d0d0</color>
->>>>>>> 26b2138f4e6c24fc64ed3a6451bbe46b321243a5
 </resources>
