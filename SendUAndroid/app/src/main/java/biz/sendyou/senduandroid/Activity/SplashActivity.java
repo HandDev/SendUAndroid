@@ -15,6 +15,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import biz.sendyou.senduandroid.ActivityManager;
@@ -118,6 +120,7 @@ public class SplashActivity extends AppCompatActivity {
     public void intentActivty(Context packageContext, Class cls) {
         Intent mIntent = new Intent(packageContext, cls);
         startActivity(mIntent);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         finish();
     }
 
