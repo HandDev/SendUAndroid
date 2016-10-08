@@ -1,6 +1,8 @@
 package biz.sendyou.senduandroid.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -9,10 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import biz.sendyou.senduandroid.Activity.NavigationDrawerActivity;
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.URLManager;
 
@@ -23,6 +29,7 @@ public class CardSelectDialogFragment extends DialogFragment {
     private String imageURL; //cardID is used for s3 connection
     private ImageLoader imageLoader = ImageLoader.getInstance();
 
+    private ProgressDialog mProgressDialog;
     private OnFragmentInteractionListener mListener;
 
     public CardSelectDialogFragment() {
@@ -52,11 +59,23 @@ public class CardSelectDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_card_select_dialog, container, false);
 
         final ImageView preview = (ImageView)view.findViewById(R.id.templatepreview);
-        imageLoader.displayImage(URLManager.s3URL + imageURL, preview);
+        imageLoader.displayImage(URLManager.s3URL + imageURL, preview, new SimpleImageLoadingListener(){
+            @Override
+            public void onLoadingStarted(String imageUri, View view) {
+                super.onLoadingStarted(imageUri, view);
+            }
+
+            @Override
+            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                super.onLoadingComplete(imageUri, view, loadedImage);
+            }
+        });
 
         return view;
     }
