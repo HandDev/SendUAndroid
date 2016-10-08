@@ -44,7 +44,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private View dialogView;
     private EditText mEditText01;
     private String LOGTAG = "LoginActivity";
     private EditText mEditText02;
@@ -52,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
     private UserInfoManager userInfoManager;
-    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-
 
     public void moveSignupActivity(){
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
@@ -188,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
 
         UsrInfo usrInfo = retrofit.create(UsrInfo.class);
 
-        Call<ArrayList<User>> call = usrInfo.getUsrInfo(email,token);
+        Call<ArrayList<User>> call = usrInfo.getUsrInfo(email, token);
 
         call.enqueue(new Callback<ArrayList<User>>() {
 
@@ -196,18 +193,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
                 ArrayList<User> user = response.body();
 
-                Log.i(LOGTAG,"size : " + String.valueOf(user.size()));
-                Log.i(LOGTAG,"user : " + user.get(user.size()-1).getUserName());
-                Log.i(LOGTAG,"response : " + response.raw().toString());
-                Log.i(LOGTAG,"res : " + response.message());
-                UserInfoManager.getInstance().setUserName(user.get(user.size()-1).getUserName());
-                UserInfoManager.getInstance().setNumAddress(user.get(user.size()-1).getNumAddress());
-                UserInfoManager.getInstance().setJusoAddress(user.get(user.size()-1).getAddress());
+                Log.i(LOGTAG, "size : " + String.valueOf(user.size()));
+                Log.i(LOGTAG, "user : " + user.get(user.size() - 1).getUserName());
+                Log.i(LOGTAG, "response : " + response.raw().toString());
+                Log.i(LOGTAG, "res : " + response.message());
+                UserInfoManager.getInstance().setUserName(user.get(user.size() - 1).getUserName());
+                UserInfoManager.getInstance().setNumAddress(user.get(user.size() - 1).getNumAddress());
+                UserInfoManager.getInstance().setJusoAddress(user.get(user.size() - 1).getAddress());
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
-                if(pref.getBoolean("SAVED",false)) {
+                if (pref.getBoolean("SAVED", false)) {
                     callNavigationFromSplash();
-                }
-                else {
+                } else {
                     callNavigation();
                 }
             }
@@ -218,8 +214,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     private void callNavigation() {
         Intent mIntent = new Intent(ActivityManager.getInstance().getLoginActivity(), NavigationDrawerActivity.class);
