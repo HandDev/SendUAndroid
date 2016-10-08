@@ -1,40 +1,91 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
-    tools:context="biz.sendyou.senduandroid.Fragment.CardSelectDialogFragment">
-
+    tools:context="biz.sendyou.senduandroid.Fragment.CardSelectDialogFragment"
+    android:weightSum="1">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ImageView
+        android:layout_margin="5dp"
         android:id="@+id/templatepreview"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
+
+        <LinearLayout
+            android:id="@+id/template_text"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Test"
+            android:textSize="24sp"
+            android:id="@+id/template_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textAlignment="textStart"
+            android:textStyle="normal|bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp" />
+
+
+        <TextView
+            android:text="description"
+            android:textSize="20sp"
+            android:id="@+id/template_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textAlignment="textStart"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp" />
+    </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal">
 
-        <Button
-            android:text="선택하기"
-            android:layout_width="287.5dp"
-            android:layout_height="42.5dp"
-            android:id="@+id/cardselect_next_btn"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/round_button" />
+        <LinearLayout
+            android:layout_marginRight="60dp"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:text="취소"
-            android:layout_marginTop="10dp"
-            android:layout_width="287.5dp"
-            android:layout_height="42.5dp"
-            android:id="@+id/cardselect_cancel_btn"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/round_button" />
+        <ImageView style="@style/iconAndNameImageView"
+            app:srcCompat="@drawable/checkmark"/>
+
+        <TextView style="@style/iconAndNameTextView"
+                android:text="선택하기"
+                android:textStyle="normal|bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView style="@style/iconAndNameImageView"
+            app:srcCompat="@drawable/checkmark"/>
+
+        <TextView style="@style/iconAndNameTextView"
+            android:text="취소하기"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
