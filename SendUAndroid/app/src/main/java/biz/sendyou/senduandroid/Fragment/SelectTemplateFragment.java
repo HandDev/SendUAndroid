@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 
@@ -28,10 +30,12 @@ import java.util.List;
  */
 public class SelectTemplateFragment extends Fragment {
 
+    private boolean isFirstAttach = true;
+
     private static final String ARG_COLUMN_COUNT = "column-count";
     private static final String ARG_TEMPLATE = "card-templates";
     private final String LOGTAG = "SelectTemplateFragment";
-    // TODO: Customize parameters
+    private RecyclerView recyclerView;
     private int mColumnCount = 2;
     private OnListFragmentInteractionListener mListener;
 
@@ -74,13 +78,13 @@ public class SelectTemplateFragment extends Fragment {
 
         // Set the adapter
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.templatelist);
+            recyclerView = (RecyclerView) view.findViewById(R.id.templatelist);
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TemplateRecyclerViewAdapter(getFragmentManager(), thumbImages, ImageLoader.getInstance(), mListener));
+            setImagesToRecyclerView();
             Log.i(LOGTAG, "setRecyclerViewAdapter");
 
         ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);
@@ -109,10 +113,17 @@ public class SelectTemplateFragment extends Fragment {
         return view;
     }
 
-
     @Override
     public void onAttach(Context context) {
+        Log.i(LOGTAG, "onAttach");
         super.onAttach(context);
+
+        Log.i(LOGTAG, "isFirstAttach : " + isFirstAttach);
+        if(!isFirstAttach)
+            setImagesToRecyclerView();
+        else
+         isFirstAttach = false;
+
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
         } else {
@@ -123,6 +134,7 @@ public class SelectTemplateFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        Log.i(LOGTAG, "onDetach");
         super.onDetach();
         mListener = null;
     }
@@ -147,5 +159,10 @@ public class SelectTemplateFragment extends Fragment {
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
         super.onPause();
+    }
+
+    private void setImagesToRecyclerView(){
+        Log.i(LOGTAG, "sertImagesToRecyclerView called");
+        recyclerView.setAdapter(new TemplateRecyclerViewAdapter(getFragmentManager(), thumbImages, ImageLoader.getInstance(), mListener));
     }
 }

@@ -1,4 +1,4 @@
-package biz.sendyou.senduandroid.Activity;
+/*package biz.sendyou.senduandroid.Activity;
 
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -66,3 +66,4 @@ public class BillingActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
+*/

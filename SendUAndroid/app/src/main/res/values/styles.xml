@@ -40,4 +40,21 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
+    <style name="iconAndNameLinearLayout">
+
+    </style>
+
+    <style name="iconAndNameTextView">
+        <item name="android:textColor">@color/ampm_text_color</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="iconAndNameImageView">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_width">36dp</item>
+    </style>
 </resources>
