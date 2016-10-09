@@ -1,5 +1,7 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -38,6 +41,7 @@ import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SettingFragment;
 import biz.sendyou.senduandroid.Fragment.SignInFragment;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Service.Usr;
 import biz.sendyou.senduandroid.UserInfoManager;
 import biz.sendyou.senduandroid.datatype.Address;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
@@ -125,7 +129,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
     }
 
     public void setUniversalImageLoader(){
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(ContextManager.getContext())
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(Usr.getContext())
                 .threadPriority(Thread.NORM_PRIORITY -2)
                 .denyCacheImageMultipleSizesInMemory()
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
@@ -181,6 +185,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
             changeFragmentToSendCheck();
         } else if (id == R.id.nav_settings) {
             changeFragmentToSetting();
+        } else if (id == R.id.nav_logout) {
+            LoginManager.getInstance().logOut();
+            intentActivty(NavigationDrawerActivity.this, SignInActivity.class);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -267,5 +274,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(CardTemplate item) {
 
+    }
+
+    public void intentActivty(Context packageContext, Class cls) {
+        Intent mIntent = new Intent(packageContext, cls);
+        startActivity(mIntent);
+        finish();
     }
 }
