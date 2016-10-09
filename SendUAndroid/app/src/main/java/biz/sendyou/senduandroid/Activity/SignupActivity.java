@@ -30,6 +30,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Service.Usr;
 
 public class SignupActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
@@ -45,7 +46,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(ContextManager.getContext());
+        FacebookSdk.sdkInitialize(Usr.getContext());
         setContentView(R.layout.activity_signup);
         mCallBackManager = CallbackManager.Factory.create();
 
@@ -151,7 +152,7 @@ public class SignupActivity extends AppCompatActivity implements GoogleApiClient
     public static void callSignUpInputActivity() {
         Intent mIntent = new Intent(SignupActivity.mSignupActivity, SignupInputActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ContextManager.getContext().startActivity(mIntent);
+        Usr.getContext().startActivity(mIntent);
     }
 
     private void callSignActivity() {

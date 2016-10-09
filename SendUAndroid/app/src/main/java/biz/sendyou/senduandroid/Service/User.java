@@ -11,30 +11,25 @@ public class User {
 
     private String id;
     private String address;
-
-    public String getNumAddress() {
-        return numAddress;
-    }
-
-    public void setNumAddress(String numAddress) {
-        this.numAddress = numAddress;
-    }
-
     private String numAddress;
     private String birth;
     private String email;
     private String password;
+    private String userName;
+    private String facebookToken;
 
+    public String getNumAddress() {
+        return numAddress;
+    }
+    public void setNumAddress(String numAddress) {
+        this.numAddress = numAddress;
+    }
     public String getUserName() {
         return userName;
     }
-
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    private String userName;
-
     public void setId(String id){
         this.id = id;
     }
@@ -65,6 +60,11 @@ public class User {
     public String getPassword(){
         return this.password;
     }
-
+    public String getFacebookToken() {
+        return facebookToken;
+    }
+    public void setFacebookToken(String facebookToken) {
+        this.facebookToken = facebookToken;
+    }
 }
 

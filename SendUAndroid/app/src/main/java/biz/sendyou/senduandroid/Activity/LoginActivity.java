@@ -33,6 +33,7 @@ import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.LoginService;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.User;
+import biz.sendyou.senduandroid.Service.Usr;
 import biz.sendyou.senduandroid.Service.UsrInfo;
 import biz.sendyou.senduandroid.URLManager;
 import biz.sendyou.senduandroid.UserInfoManager;
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
+        prefs = PreferenceManager.getDefaultSharedPreferences(Usr.getContext());
         editor = prefs.edit();
 
         editor.putBoolean("Auto",false);
@@ -135,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 Repo repo = response.body();
                 if(repo.isSuccess()) {
-                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Usr.getContext());
                     SharedPreferences.Editor editor = pref.edit();
                     Log.e("auto",String.valueOf(pref.getBoolean("Auto",false)));
                     Log.e("SAVED",String.valueOf(pref.getBoolean("SAVED",false)));
@@ -166,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(ContextManager.getContext(),"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Usr.getContext(),"로그인에 실패하였습니다. 다시 확인해주세요.",Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -174,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<Repo> call, Throwable t) {
 
                     Log.e(LOGTAG, "Login on Failure");
-                    Toast.makeText(ContextManager.getContext(),"Login On Failure.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Usr.getContext(),"Login On Failure.",Toast.LENGTH_LONG).show();
 
             }
         });
@@ -203,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
                 UserInfoManager.getInstance().setUserName(user.get(user.size()-1).getUserName());
                 UserInfoManager.getInstance().setNumAddress(user.get(user.size()-1).getNumAddress());
                 UserInfoManager.getInstance().setJusoAddress(user.get(user.size()-1).getAddress());
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Usr.getContext());
                 if(pref.getBoolean("SAVED",false)) {
                     callNavigationFromSplash();
                 }
@@ -224,14 +225,14 @@ public class LoginActivity extends AppCompatActivity {
     private void callNavigation() {
         Intent mIntent = new Intent(ActivityManager.getInstance().getLoginActivity(), NavigationDrawerActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ContextManager.getContext().startActivity(mIntent);
+        Usr.getContext().startActivity(mIntent);
         finish();
     }
 
     private void callNavigationFromSplash() {
         Intent mIntent = new Intent(ActivityManager.getInstance().getSplashActivity(), NavigationDrawerActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ContextManager.getContext().startActivity(mIntent);
+        Usr.getContext().startActivity(mIntent);
         finish();
     }
 

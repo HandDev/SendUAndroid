@@ -24,6 +24,7 @@ import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.Repo;
 import biz.sendyou.senduandroid.Service.SignUpService;
+import biz.sendyou.senduandroid.Service.Usr;
 import biz.sendyou.senduandroid.URLManager;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -107,7 +108,7 @@ public class SignupAddressActivity extends AppCompatActivity {
     private void callLoginActivity() {
         Intent mIntent = new Intent(SignupAddressActivity.signupAddressActivity, LoginActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ContextManager.getContext().startActivity(mIntent);
+        Usr.getContext().startActivity(mIntent);
         ActivityManager.getInstance().getSignupInputActivity().finish();
         ActivityManager.getInstance().getLoginActivity().finish();
         finish();

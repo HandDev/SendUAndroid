@@ -15,20 +15,26 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+
 import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Service.User;
+import biz.sendyou.senduandroid.Service.Usr;
 import biz.sendyou.senduandroid.UserInfoManager;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 
 public class SplashActivity extends AppCompatActivity {
 
     private final String LOGTAG = "SplashActivity";
-
+    private View container;
     public static Activity activity;
     public SplashActivity splashActivity;
     public static Context splashActivityContext;
@@ -37,7 +43,10 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_splash);
+
+        container = findViewById(R.id.splash_background);
 
         ActivityManager.getInstance().setSplashActivity(this);
         putBitmap(R.id.background_image, R.drawable.sp_back2, 8);
@@ -48,8 +57,8 @@ public class SplashActivity extends AppCompatActivity {
         splashActivity = this;
         splashActivityContext = getApplicationContext();
 
-        boolean isFirstStart = false;
-        SharedPreferences pref;
+        /*boolean isFirstStart = false;
+        final SharedPreferences pref;
         pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
 
         if(!pref.getBoolean("isFirst", false)){
@@ -62,13 +71,49 @@ public class SplashActivity extends AppCompatActivity {
             edit.putBoolean("workCheckBox", true);
             edit.putBoolean("isFirst", true);
             edit.commit();
-        }
+        }*/
 
         Handler mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                SharedPreferences pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
+
+                SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
+                if(AccessToken.getCurrentAccessToken() != null) {
+                    Log.w(LOGTAG, "Auto login with facebook");
+                    Log.w(LOGTAG, AccessToken.getCurrentAccessToken().getUserId());
+                    Log.w(LOGTAG, AccessToken.getCurrentAccessToken().getToken());
+                    Usr user = (Usr) getApplicationContext();
+                    user.setId(AccessToken.getCurrentAccessToken().getUserId());
+                    user.setFacebookToken(AccessToken.getCurrentAccessToken().getToken());
+
+                    user.doLogin(user.getId(), "", container);
+                    //user.getUserInfo(user.getId(), user.getToken());
+                    // 페이스북 첫 로그인시 자동 회원가입 만든 후 해제
+
+                    intentActivty(SplashActivity.this, NavigationDrawerActivity.class);
+                }
+
+                else if(pref.getBoolean("autoLogin", false)) {
+                    Log.w(LOGTAG, "Auto login with email");
+
+                    Usr user = (Usr) getApplicationContext();
+                    user.setId(pref.getString("userId", null));
+                    user.setPw(pref.getString("userPw", null));
+
+                    user.doLogin(user.getId(), user.getPw(), container);
+                    user.getUserInfo(user.getId(), user.getToken());
+
+                    intentActivty(SplashActivity.this, NavigationDrawerActivity.class);
+                }
+
+                else {
+                    Log.w(LOGTAG, "No Auto Login");
+
+                    intentActivty(SplashActivity.this, SignInActivity.class);
+                }
+
+                /*SharedPreferences pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);
                 final SharedPreferences auto = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                 Log.e("f",String.valueOf(auto.getBoolean("Auto",false)));
                 if(pref.getBoolean("activity_excuted",false)) {
@@ -87,7 +132,7 @@ public class SplashActivity extends AppCompatActivity {
                     SharedPreferences.Editor ed = pref.edit();
                     ed.putBoolean("activity_excuted",true);
                     ed.commit();
-                }
+                }*/
             }
         };
 

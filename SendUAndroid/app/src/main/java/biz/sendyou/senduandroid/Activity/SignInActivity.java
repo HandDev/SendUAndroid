@@ -1,13 +1,22 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -46,8 +55,13 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login_test);
 
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
+        ActionBar mActionBar = getSupportActionBar();
+        mActionBar.hide();
 
+        putBitmap(R.id.login_background, R.drawable.sp_back2, 8);
+        putBitmap(R.id.login_plain, R.drawable.icon, 1);
+
+        // Google Login
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -57,13 +71,14 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-        signInButton.setScopes(gso.getScopeArray());
+        Button facebook_btn = (Button)findViewById(R.id.facebook_signin_button);
+        Button google_btn = (Button)findViewById(R.id.google_signin_button);
+
+        facebook_btn.setOnClickListener(this);
+        google_btn.setOnClickListener(this);
     }
 
-    public void facebookLoginOnClick(View v) {
-        FacebookSdk.sdkInitialize(getApplicationContext());
+    private void facebookLogin() {
         callbackManager = CallbackManager.Factory.create();
 
         LoginManager.getInstance().logInWithReadPermissions(SignInActivity.this, Arrays.asList("public_profile", "email"));
@@ -72,6 +87,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
             public void onSuccess(LoginResult loginResult) {
                 Log.i(TAG, "User ID: " + loginResult.getAccessToken().getUserId());
                 Log.i(TAG, "Auth Token: " + loginResult.getAccessToken().getToken());
+                intentActivty(SignInActivity.this, NavigationDrawerActivity.class);
             }
 
             @Override
@@ -81,9 +97,29 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
 
             @Override
             public void onError(FacebookException error) {
-                Log.e(TAG, "Error", error);
+                error.printStackTrace();
             }
         });
+    }
+
+    private void googleLogin() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+        intentActivty(SignInActivity.this, NavigationDrawerActivity.class);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.google_signin_button :
+                Log.w(TAG, "Google signin button clicked");
+                googleLogin();
+                break;
+            case R.id.facebook_signin_button :
+                Log.w(TAG, "Facebook signin button clicked");
+                facebookLogin();
+                break;
+        }
     }
 
     @Override
@@ -92,18 +128,11 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.sign_in_button :
-                signIn();
-                break;
-        }
+    public void intentActivty(Context packageContext, Class cls) {
+        Intent mIntent = new Intent(packageContext, cls);
+        startActivity(mIntent);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+        finish();
     }
 
     @Override
@@ -114,5 +143,30 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        recycleView(R.id.login_background);
+        recycleView(R.id.login_plain);
+    }
+
+    private void putBitmap(int imageViewId, int drawableId, int scale) {
+        ImageView imageView = (ImageView)findViewById(imageViewId);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = scale;
+
+        imageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), drawableId, options));
+    }
+
+    private void recycleView(int id) {
+        ImageView view = (ImageView)findViewById(id);
+
+        Drawable d = view.getDrawable();
+        if(d instanceof BitmapDrawable) {
+            Bitmap b = ((BitmapDrawable) d).getBitmap();
+            view.setImageBitmap(null);
+            b.recycle();
+            b = null;
+        }
+        d.setCallback(null);
+        System.gc();
+        Runtime.getRuntime().gc();
     }
 }

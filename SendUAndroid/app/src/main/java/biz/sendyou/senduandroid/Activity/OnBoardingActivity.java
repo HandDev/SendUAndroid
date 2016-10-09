@@ -12,6 +12,7 @@ import android.view.Window;
 
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Service.Usr;
 
 public class OnBoardingActivity extends Activity {
 
@@ -59,13 +60,13 @@ public class OnBoardingActivity extends Activity {
     public void callNavigationDrawerActivity() {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, NavigationDrawerActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        ContextManager.getContext().startActivity(mIntent);
+        Usr.getContext().startActivity(mIntent);
         finish();
     }
 
     public void callLoginActivity() {
         Intent mIntent = new Intent(OnBoardingActivity.onBoardingActivity, LoginActivity.class);
-        ContextManager.getContext().startActivity(mIntent);
+        Usr.getContext().startActivity(mIntent);
         finish();
     }
 

@@ -22,6 +22,7 @@ import java.util.Calendar;
 import biz.sendyou.senduandroid.Activity.LoginActivity;
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Service.Usr;
 import biz.sendyou.senduandroid.Service.doOrder;
 import biz.sendyou.senduandroid.Service.GetUUID;
 import biz.sendyou.senduandroid.Service.Repo;
@@ -125,7 +126,7 @@ public class OrderCardFragment extends Fragment {
                     doOrder();
                 }
                 else {
-                    Toast.makeText(ContextManager.getContext(),"error",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Usr.getContext(),"error",Toast.LENGTH_SHORT).show();
                 }
 
             }

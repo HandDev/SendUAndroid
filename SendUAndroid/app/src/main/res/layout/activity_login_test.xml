@@ -1,33 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:gravity="center_horizontal">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="visible"
-        tools:visibility="gone"
-        android:layout_weight="0.00" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:id="@+id/login_background"/>
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="100dp">
 
-    <Button
-        android:text="Button"
+        <ImageView
+            android:layout_width="87.5dp"
+            android:layout_height="87.5dp"
+            android:id="@+id/login_plain"/>
+
+        <TextView
+            android:text="SENDU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/google_signin_button"
+            android:text="구글 계정으로 로그인"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.00"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/google_login_button" />
+
+        <Button
+            android:text="페이스북 계정으로 로그인"
+            android:layout_height="wrap_content"
+            android:id="@+id/facebook_signin_button"
+            android:layout_weight="0.00"
+            android:layout_width="240dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/facebook_login_button" />
+
+        <Button
+            android:text="SENDU 계정으로 로그인"
+            android:layout_height="wrap_content"
+            android:id="@+id/email_signin_button"
+            android:layout_weight="0.00"
+            android:layout_width="240dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/email_login_button" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="SENDU가 처음이신가요?"
+                android:id="@+id/SignUp1"
+                android:textColor="#FFFFFF"
+                android:textSize="12.8225sp"
+                android:letterSpacing="0"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginRight="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="가입하기"
+                android:id="@+id/SignUp2"
+                android:letterSpacing="0"
+                android:textSize="12.8225sp"
+                android:textColor="#F13968"
+                android:src="@drawable/sp_logo"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical|center_horizontal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:text="Copyright(c) 2016 SendU All rights reserved. "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_weight="0.00"
-        android:onClick="facebookLoginOnClick" />
+        android:id="@+id/copyright"
+        android:allowUndo="false"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true" />
 
-</LinearLayout>
+</RelativeLayout>
