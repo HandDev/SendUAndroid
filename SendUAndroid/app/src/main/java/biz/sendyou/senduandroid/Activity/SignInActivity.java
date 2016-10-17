@@ -26,16 +26,21 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Service.Usr;
 
 /**
  * Created by pyh42 on 2016-10-06.
@@ -45,7 +50,8 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
 
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
-    private GoogleApiClient mGoogleApiClient;
+    public static GoogleApiClient mGoogleApiClient;
+    private int status = 0;
 
     CallbackManager callbackManager;
 
@@ -63,7 +69,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
 
         // Google Login
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
+                .requestId()
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -71,11 +77,15 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        mGoogleApiClient.connect();
+
         Button facebook_btn = (Button)findViewById(R.id.facebook_signin_button);
         Button google_btn = (Button)findViewById(R.id.google_signin_button);
+        Button email_btn = (Button)findViewById(R.id.email_signin_button);
 
         facebook_btn.setOnClickListener(this);
         google_btn.setOnClickListener(this);
+        email_btn.setOnClickListener(this);
     }
 
     private void facebookLogin() {
@@ -105,7 +115,6 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     private void googleLogin() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
-        intentActivty(SignInActivity.this, NavigationDrawerActivity.class);
     }
 
     @Override
@@ -113,19 +122,59 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         switch (v.getId()) {
             case R.id.google_signin_button :
                 Log.w(TAG, "Google signin button clicked");
+                status = 1;
                 googleLogin();
                 break;
             case R.id.facebook_signin_button :
                 Log.w(TAG, "Facebook signin button clicked");
+                status = 2;
                 facebookLogin();
                 break;
+            case R.id.email_signin_button :
+                status = 3;
+                break;
+        }
+    }
+
+    private void googleResult(GoogleSignInResult result) {
+        GoogleSignInAccount acct = result.getSignInAccount();
+
+        if(result.isSuccess()) {
+            Log.w(TAG, "Google Login Success");
+            Log.w(TAG, "User Id : " + acct.getId());
+
+            Usr user = (Usr) getApplicationContext();
+            user.setId(acct.getId());
+
+            NavigationDrawerActivity.mGoogleApiClient = mGoogleApiClient;
+            intentActivty(SignInActivity.this, NavigationDrawerActivity.class);
+        }
+        else {
+            Log.w(TAG, "Google Login Failed");
+            Log.w(TAG, result.toString());
+
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                @Override
+                public void onResult(Status status) {
+                    Log.w(TAG, "Google Logout");
+                }
+            });
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+        switch (status) {
+            case 1 :
+                googleResult(Auth.GoogleSignInApi.getSignInResultFromIntent(data));
+                break;
+            case 2 :
+                callbackManager.onActivityResult(requestCode, resultCode, data);
+                break;
+            case 3 :
+                break;
+        }
     }
 
     public void intentActivty(Context packageContext, Class cls) {
