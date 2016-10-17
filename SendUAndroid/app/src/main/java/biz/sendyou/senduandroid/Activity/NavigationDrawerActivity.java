@@ -21,6 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -34,8 +38,10 @@ import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.CardSelectDialogFragment;
 import biz.sendyou.senduandroid.Fragment.CashFragment;
 import biz.sendyou.senduandroid.Fragment.CreateCardFragment;
+import biz.sendyou.senduandroid.Fragment.DrawFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
 import biz.sendyou.senduandroid.Fragment.OrderCardFragment;
+
 import biz.sendyou.senduandroid.Fragment.SelectTemplateFragment;
 import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SettingFragment;
@@ -48,13 +54,14 @@ import biz.sendyou.senduandroid.datatype.CardTemplate;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener,CashFragment.OnFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener, CardSelectDialogFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener,CashFragment.OnFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener, CardSelectDialogFragment.OnFragmentInteractionListener, DrawFragment.OnFragmentInteractionListener {
 
     private final String TAG = "NavigationDrawer";
     final int DEFAULT_LODING_COUNT = 12;
     private long backKeyPressedTime = 0;
     private Toast toast;
     private NavigationDrawerActivity navigationDrawerActivity;
+    public static GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,8 +193,20 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
             changeFragmentToSetting();
         } else if (id == R.id.nav_logout) {
-            LoginManager.getInstance().logOut();
-            intentActivty(NavigationDrawerActivity.this, SignInActivity.class);
+            Usr user = (Usr) getApplicationContext();
+            if (user.getFacebookToken() != null) {
+                LoginManager.getInstance().logOut();
+                intentActivty(NavigationDrawerActivity.this, SignInActivity.class);
+            }
+            else if (user.getId() != null) {
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        Log.w(TAG, "Google Logout");
+                        intentActivty(NavigationDrawerActivity.this, SignInActivity.class);
+                    }
+                });
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

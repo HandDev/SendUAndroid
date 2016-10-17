@@ -5,7 +5,7 @@ apply plugin: 'android-apt'
 
 android {
 
-    lintOptions{
+    lintOptions {
         abortOnError false
     }
 

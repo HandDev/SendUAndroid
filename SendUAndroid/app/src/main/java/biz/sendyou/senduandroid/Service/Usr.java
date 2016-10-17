@@ -32,6 +32,7 @@ public class Usr extends Application {
     private String address;
     private String numAddress;
     private String facebookToken;
+    private String googleToken;
     private String token;
     public static Context context;
 
@@ -45,6 +46,7 @@ public class Usr extends Application {
         address = null;
         numAddress = null;
         facebookToken = null;
+        googleToken = null;
         token = null;
         context = this;
         super.onCreate();
@@ -111,6 +113,12 @@ public class Usr extends Application {
     }
     public static Context getContext() {
         return context;
+    }
+    public String getGoogleToken() {
+        return googleToken;
+    }
+    public void setGoogleToken(String googleToken) {
+        this.googleToken = googleToken;
     }
 
     public void doLogin(final String email, final String password, final View view) {

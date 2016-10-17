@@ -87,9 +87,11 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OrderCardFragment orderCardFragment = OrderCardFragment.newInstance();
+                //OrderCardFragment orderCardFragment = OrderCardFragment.newInstance();
 
-                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, orderCardFragment).commit();
+                DrawFragment drawFragment = DrawFragment.newInstance();
+
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, drawFragment).commit();
 
                 letterText = card_text.getText().toString();
             }
