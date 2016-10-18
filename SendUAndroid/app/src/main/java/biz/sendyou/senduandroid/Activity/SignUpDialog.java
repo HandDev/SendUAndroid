@@ -132,7 +132,7 @@ public class SignUpDialog extends AppCompatActivity {
                 }
 
                 else {
-                    //Toast.makeText(signupInputActivity, "이미 가입된 이메일입니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpDialog.this, "이미 가입된 이메일입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 

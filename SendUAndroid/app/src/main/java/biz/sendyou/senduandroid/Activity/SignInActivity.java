@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -66,6 +67,15 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
 
         putBitmap(R.id.login_background, R.drawable.sp_back2, 8);
         putBitmap(R.id.login_plain, R.drawable.icon, 1);
+
+        TextView signup = (TextView) findViewById(R.id.SignUp2);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SignUpDialog signUpDialog = new SignUpDialog();
+                signUpDialog.showDialog(v);
+            }
+        });
 
         // Google Login
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
