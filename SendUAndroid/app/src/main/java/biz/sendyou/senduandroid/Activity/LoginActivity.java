@@ -202,8 +202,7 @@ public class LoginActivity extends AppCompatActivity {
                 UserInfoManager.getInstance().setUserName(user.get(user.size() - 1).getUserName());
                 UserInfoManager.getInstance().setNumAddress(user.get(user.size() - 1).getNumAddress());
                 UserInfoManager.getInstance().setJusoAddress(user.get(user.size() - 1).getAddress());
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ContextManager.getContext());
-                if (pref.getBoolean("SAVED", false)) {
+                if (prefs.getBoolean("SAVED", false)) {
                     callNavigationFromSplash();
                 } else {
                     callNavigation();
