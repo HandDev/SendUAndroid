@@ -132,6 +132,8 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                 break;
             case R.id.email_signin_button :
                 status = 3;
+                startActivity(new Intent(SignInActivity.this, LoginActivity.class));
+                finish();
                 break;
         }
     }
