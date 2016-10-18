@@ -33,10 +33,8 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import java.util.ArrayList;
 import java.util.List;
 
-import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.CardSelectDialogFragment;
-import biz.sendyou.senduandroid.Fragment.CashFragment;
 import biz.sendyou.senduandroid.Fragment.CreateCardFragment;
 import biz.sendyou.senduandroid.Fragment.DrawFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
@@ -54,7 +52,7 @@ import biz.sendyou.senduandroid.datatype.CardTemplate;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener,CashFragment.OnFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener, CardSelectDialogFragment.OnFragmentInteractionListener, DrawFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener, CardSelectDialogFragment.OnFragmentInteractionListener, DrawFragment.OnFragmentInteractionListener {
 
     private final String TAG = "NavigationDrawer";
     final int DEFAULT_LODING_COUNT = 12;
@@ -196,14 +194,14 @@ public class NavigationDrawerActivity extends AppCompatActivity
             Usr user = (Usr) getApplicationContext();
             if (user.getFacebookToken() != null) {
                 LoginManager.getInstance().logOut();
-                intentActivty(NavigationDrawerActivity.this, SignInActivity.class);
+                intentActivty(NavigationDrawerActivity.this, LoginActivity.class);
             }
             else if (user.getId() != null) {
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {
                         Log.w(TAG, "Google Logout");
-                        intentActivty(NavigationDrawerActivity.this, SignInActivity.class);
+                        intentActivty(NavigationDrawerActivity.this, LoginActivity.class);
                     }
                 });
             }

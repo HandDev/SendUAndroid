@@ -1,6 +1,7 @@
 package biz.sendyou.senduandroid.Fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import biz.sendyou.senduandroid.Activity.DrawCanvasView;
 import biz.sendyou.senduandroid.R;
@@ -42,8 +45,31 @@ public class DrawFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        // return inflater.inflate(R.layout.fragment_draw, container, false);
-        return new DrawCanvasView(this.getContext());
+        View view = inflater.inflate(R.layout.fragment_draw, container, false);
+        //return new DrawCanvasView(this.getContext());
+
+        final DrawCanvasView drawCanvasView = new DrawCanvasView(getContext());
+
+        LinearLayout rootLayout = (LinearLayout)view.findViewById(R.id.drawer_layout);
+        rootLayout.addView(drawCanvasView);
+
+        Button clear_btn = (Button)view.findViewById(R.id.clear_btn);
+        clear_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawCanvasView.clear();
+            }
+        });
+
+        Button done_btn = (Button)view.findViewById(R.id.done_btn);
+        done_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap bitmap = drawCanvasView.getCanvasBitmap();
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

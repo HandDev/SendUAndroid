@@ -110,7 +110,7 @@ public class SplashActivity extends AppCompatActivity {
                 else {
                     Log.w(LOGTAG, "No Auto Login");
 
-                    intentActivty(SplashActivity.this, SignInActivity.class);
+                    intentActivty(SplashActivity.this, LoginActivity.class);
                 }
 
                 /*SharedPreferences pref = getSharedPreferences("ActivityPREF",Context.MODE_PRIVATE);

@@ -26,13 +26,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.OnBoardingActivity" android:noHistory="true"
             android:screenOrientation="portrait"/>
+
         <activity android:name=".Activity.LoginActivity"
-            android:theme="@style/checkBoxStyle"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".Activity.SignInActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
@@ -53,9 +48,6 @@
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <activity
-            android:name=".Activity.SignupActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SignupInputActivity"
             android:screenOrientation="portrait" />
