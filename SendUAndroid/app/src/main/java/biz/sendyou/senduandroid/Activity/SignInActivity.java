@@ -22,6 +22,8 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -37,11 +39,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.Usr;
+import biz.sendyou.senduandroid.UserInfoManager;
 
 /**
  * Created by pyh42 on 2016-10-06.
@@ -53,6 +59,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     private static final int RC_SIGN_IN = 9001;
     public static GoogleApiClient mGoogleApiClient;
     private int status = 0;
+    private UserInfoManager userInfoManager;
 
     CallbackManager callbackManager;
 
@@ -104,9 +111,34 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         LoginManager.getInstance().logInWithReadPermissions(SignInActivity.this, Arrays.asList("public_profile", "email"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.i(TAG, "User ID: " + loginResult.getAccessToken().getUserId());
-                Log.i(TAG, "Auth Token: " + loginResult.getAccessToken().getToken());
+            public void onSuccess(final LoginResult result) {
+
+                final GraphRequest request;
+
+                request = GraphRequest.newMeRequest(result.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+
+                    @Override
+                    public void onCompleted(JSONObject user, GraphResponse response) {
+                        if (response.getError() != null) {
+
+                        } else {
+                            Log.e("TAG", "user: " + user.toString());
+                            Log.e("TAG", "AccessToken: " + result.getAccessToken().getToken());
+                            Log.i("ID", "ID : " + result.getAccessToken().getUserId());
+                            Log.e("Name",user.toString());
+                            setResult(RESULT_OK);
+                            try {
+                                userInfoManager.setUserName(user.getString("Name"));
+                                userInfoManager.setEmail(user.getString("Email"));
+                            } catch (JSONException e) {
+                                //TODO 이름확인
+                            }
+                        }
+                    }
+                });
+
+                Log.e(TAG, "User ID: " + result.getAccessToken().getUserId());
+                Log.e(TAG, "Auth Token: " + result.getAccessToken().getToken());
                 intentActivty(SignInActivity.this, NavigationDrawerActivity.class);
             }
 
