@@ -6,8 +6,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +37,7 @@ import biz.sendyou.senduandroid.datatype.CardTemplate;
  */
 public class CreateCardFragment extends Fragment implements View.OnClickListener {
 
-    private TextView card_text;
+
     private EditText edt;
     public static String letterText;
 
@@ -60,6 +65,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
 
         ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);
         ImageView nextButton = (ImageView)view.findViewById(R.id.nextstep);
+        final TextInputEditText textInputEditText = (TextInputEditText) view.findViewById(R.id.create_card_hint);
 
         //Event handling
         previousButton.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +92,8 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
 
                 getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, drawFragment).commit();
 
-                letterText = card_text.getText().toString();
+                letterText = textInputEditText.getText().toString();
+                Log.e("text",letterText);
             }
         });
 
