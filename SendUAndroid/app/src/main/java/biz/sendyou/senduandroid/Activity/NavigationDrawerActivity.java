@@ -35,6 +35,7 @@ import java.util.List;
 
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.CardSelectDialogFragment;
+import biz.sendyou.senduandroid.Fragment.CashFragment;
 import biz.sendyou.senduandroid.Fragment.CreateCardFragment;
 import biz.sendyou.senduandroid.Fragment.DrawFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
@@ -53,7 +54,7 @@ import biz.sendyou.senduandroid.datatype.CardTemplate;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements OrderFinishFragment.OnFragmentInteractionListener,NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener, CardSelectDialogFragment.OnFragmentInteractionListener, DrawFragment.OnFragmentInteractionListener {
+        implements CashFragment.OnFragmentInteractionListener,OrderFinishFragment.OnFragmentInteractionListener,NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener, CardSelectDialogFragment.OnFragmentInteractionListener, DrawFragment.OnFragmentInteractionListener {
 
     private final String TAG = "NavigationDrawer";
     final int DEFAULT_LODING_COUNT = 12;
@@ -67,6 +68,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
         setUniversalImageLoader();
+
+        UserInfoManager.getInstance().setEmail("enoxaiming@naver.com");
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);

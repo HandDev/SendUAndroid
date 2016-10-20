@@ -65,7 +65,8 @@
             android:layout_height="wrap_content">
 
         <ImageView style="@style/iconAndNameImageView"
-            app:srcCompat="@drawable/checkmark"/>
+            app:srcCompat="@drawable/checkmark"
+            android:id="@+id/choosebtn" />
 
         <TextView style="@style/iconAndNameTextView"
                 android:text="선택하기"
@@ -79,7 +80,8 @@
         android:layout_height="wrap_content">
 
         <ImageView style="@style/iconAndNameImageView"
-            app:srcCompat="@drawable/checkmark"/>
+            app:srcCompat="@drawable/checkmark"
+            android:id="@+id/nobtn" />
 
         <TextView style="@style/iconAndNameTextView"
             android:text="취소하기"
