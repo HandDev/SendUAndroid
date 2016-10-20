@@ -82,7 +82,7 @@ public class OrderCardFragment extends Fragment {
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateCardFragment createCardFragment = CreateCardFragment.newInstance();
+                DrawFragment createCardFragment = DrawFragment.newInstance();
 
                 getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_right_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, createCardFragment).commit();
             }
