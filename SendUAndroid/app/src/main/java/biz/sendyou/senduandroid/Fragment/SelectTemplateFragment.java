@@ -2,6 +2,10 @@ package biz.sendyou.senduandroid.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -89,6 +93,8 @@ public class SelectTemplateFragment extends Fragment {
 
         ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);
         ImageView nextButton = (ImageView)view.findViewById(R.id.nextstep);
+
+
 
         //Evnet handling
         previousButton.setOnClickListener(new View.OnClickListener() {

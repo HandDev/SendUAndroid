@@ -96,7 +96,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:layout_below="@id/card_stagetwo"
+        android:layout_below="@id/stage"
         android:id="@+id/order_input_relativelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -17,36 +17,28 @@
             android:background="@drawable/center_horizontal_line"
             android:gravity="center_horizontal"
             android:layout_height="20dp">
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:id="@+id/stage1"
-                android:adjustViewBounds="true"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:src="@drawable/cic_green" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/cic_gray"
                 android:id="@+id/stage2"
-                android:adjustViewBounds="true"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/cic_gray"
                 android:id="@+id/stage3"
-                android:adjustViewBounds="true"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp" />
 

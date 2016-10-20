@@ -67,7 +67,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
-        setContentView(R.layout.activity_login_test);
+        setContentView(R.layout.activity_login);
 
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.hide();

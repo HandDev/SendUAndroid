@@ -6,7 +6,6 @@ import android.content.Context;
 import biz.sendyou.senduandroid.Activity.LoginActivity;
 import biz.sendyou.senduandroid.Activity.NavigationDrawerActivity;
 import biz.sendyou.senduandroid.Activity.OnBoardingActivity;
-import biz.sendyou.senduandroid.Activity.SignupActivity;
 import biz.sendyou.senduandroid.Activity.SignupAddressActivity;
 import biz.sendyou.senduandroid.Activity.SignupInputActivity;
 import biz.sendyou.senduandroid.Activity.SplashActivity;

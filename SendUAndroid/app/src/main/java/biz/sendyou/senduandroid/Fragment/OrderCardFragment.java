@@ -19,8 +19,6 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import biz.sendyou.senduandroid.Activity.LoginActivity;
-import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.Usr;
 import biz.sendyou.senduandroid.Service.doOrder;

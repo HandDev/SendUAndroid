@@ -30,10 +30,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.Service.User;
 import biz.sendyou.senduandroid.Service.Usr;
+import biz.sendyou.senduandroid.UserInfoManager;
 
 /**
  * Created by pyh42 on 2016-10-06.
@@ -136,7 +139,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             Log.w(TAG, "Google Login Success");
             Log.w(TAG, "User Id : " + acct.getId());
 
-<<<<<<< HEAD
             Usr user = (Usr) getApplicationContext();
             user.setId(acct.getId());
 
@@ -151,24 +153,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 @Override
                 public void onResult(Status status) {
                     Log.w(TAG, "Google Logout");
-=======
-            @Override
-            public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
-
-                ArrayList<User> user = response.body();
-
-                Log.i(LOGTAG, "size : " + String.valueOf(user.size()));
-                Log.i(LOGTAG, "user : " + user.get(user.size() - 1).getUserName());
-                Log.i(LOGTAG, "response : " + response.raw().toString());
-                Log.i(LOGTAG, "res : " + response.message());
-                UserInfoManager.getInstance().setUserName(user.get(user.size() - 1).getUserName());
-                UserInfoManager.getInstance().setNumAddress(user.get(user.size() - 1).getNumAddress());
-                UserInfoManager.getInstance().setJusoAddress(user.get(user.size() - 1).getAddress());
-                if (prefs.getBoolean("SAVED", false)) {
-                    callNavigationFromSplash();
-                } else {
-                    callNavigation();
->>>>>>> d27815715be23e256946c6c6e8eaf9c9cb7c45ee
                 }
             });
         }
