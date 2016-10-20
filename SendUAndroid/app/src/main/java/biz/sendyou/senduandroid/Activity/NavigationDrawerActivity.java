@@ -40,6 +40,7 @@ import biz.sendyou.senduandroid.Fragment.DrawFragment;
 import biz.sendyou.senduandroid.Fragment.FrontFragment;
 import biz.sendyou.senduandroid.Fragment.OrderCardFragment;
 
+import biz.sendyou.senduandroid.Fragment.OrderFinishFragment;
 import biz.sendyou.senduandroid.Fragment.SelectTemplateFragment;
 import biz.sendyou.senduandroid.Fragment.SendCheckFragment;
 import biz.sendyou.senduandroid.Fragment.SettingFragment;
@@ -52,7 +53,7 @@ import biz.sendyou.senduandroid.datatype.CardTemplate;
 import biz.sendyou.senduandroid.thread.TemplateDownloadThread;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener, CardSelectDialogFragment.OnFragmentInteractionListener, DrawFragment.OnFragmentInteractionListener {
+        implements OrderFinishFragment.OnFragmentInteractionListener,NavigationView.OnNavigationItemSelectedListener,SignInFragment.OnFragmentInteractionListener,FrontFragment.OnFragmentInteractionListener, AddressBookFragment.OnListFragmentInteractionListener, CreateCardFragment.OnFragmentInteractionListener,SelectTemplateFragment.OnListFragmentInteractionListener, OrderCardFragment.OnFragmentInteractionListener, CardSelectDialogFragment.OnFragmentInteractionListener, DrawFragment.OnFragmentInteractionListener {
 
     private final String TAG = "NavigationDrawer";
     final int DEFAULT_LODING_COUNT = 12;

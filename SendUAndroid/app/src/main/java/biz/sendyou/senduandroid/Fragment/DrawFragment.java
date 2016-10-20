@@ -66,6 +66,9 @@ public class DrawFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Bitmap bitmap = drawCanvasView.getCanvasBitmap();
+                OrderCardFragment orderFinishFragment = OrderCardFragment.newInstance();
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, orderFinishFragment).commit();
+
             }
         });
 
