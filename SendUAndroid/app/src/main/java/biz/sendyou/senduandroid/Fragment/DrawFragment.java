@@ -7,11 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import biz.sendyou.senduandroid.Activity.DrawCanvasView;
 import biz.sendyou.senduandroid.R;
@@ -50,10 +53,10 @@ public class DrawFragment extends Fragment {
 
         final DrawCanvasView drawCanvasView = new DrawCanvasView(getContext());
 
-        LinearLayout rootLayout = (LinearLayout)view.findViewById(R.id.drawer_layout);
+        RelativeLayout rootLayout = (RelativeLayout) view.findViewById(R.id.draw);
         rootLayout.addView(drawCanvasView);
 
-        Button clear_btn = (Button)view.findViewById(R.id.clear_btn);
+        Button clear_btn = (Button)view.findViewById(R.id.button2);
         clear_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,13 +64,22 @@ public class DrawFragment extends Fragment {
             }
         });
 
-        Button done_btn = (Button)view.findViewById(R.id.done_btn);
-        done_btn.setOnClickListener(new View.OnClickListener() {
+        ImageView imageView = (ImageView) view.findViewById(R.id.nextstep);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bitmap bitmap = drawCanvasView.getCanvasBitmap();
                 OrderCardFragment orderFinishFragment = OrderCardFragment.newInstance();
                 getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, orderFinishFragment).commit();
+
+            }
+        });
+        ImageView imageView2 = (ImageView) view.findViewById(R.id.previousstep);
+        imageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateCardFragment createCardFragment = CreateCardFragment.newInstance();
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, createCardFragment).commit();
 
             }
         });
