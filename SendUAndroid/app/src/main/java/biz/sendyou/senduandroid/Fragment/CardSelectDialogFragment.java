@@ -77,6 +77,23 @@ public class CardSelectDialogFragment extends DialogFragment {
             }
         });
 
+        ImageView choose = (ImageView)view.findViewById(R.id.choosebtn);
+        ImageView no = (ImageView)view.findViewById(R.id.nobtn);
+
+        choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
+            }
+        });
+
         return view;
     }
 

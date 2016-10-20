@@ -10,12 +10,20 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+<<<<<<< HEAD
 import android.support.v7.app.ActionBar;
+=======
+import android.support.v7.view.menu.ActionMenuItemView;
+>>>>>>> origin/master
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.FrameLayout;
+=======
+import android.widget.ImageView;
+>>>>>>> origin/master
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -58,22 +66,42 @@ public class DrawFragment extends Fragment {
         final DrawCanvasView drawCanvasView = new DrawCanvasView(getContext());
         drawCanvasView.setBackgroundResource(R.drawable.draw_background);
 
+<<<<<<< HEAD
         FrameLayout rootLayout = (FrameLayout)view.findViewById(R.id.drawer_layout);
         rootLayout.addView(drawCanvasView);
 
         FloatingActionButton refresh_btn = (FloatingActionButton)view.findViewById(R.id.clear_btn);
         refresh_btn.setOnClickListener(new View.OnClickListener() {
+=======
+        RelativeLayout rootLayout = (RelativeLayout) view.findViewById(R.id.draw);
+        rootLayout.addView(drawCanvasView);
+
+        Button clear_btn = (Button)view.findViewById(R.id.button2);
+        clear_btn.setOnClickListener(new View.OnClickListener() {
+>>>>>>> origin/master
             @Override
             public void onClick(View v) {
                 drawCanvasView.clear();
             }
         });
 
-        Button done_btn = (Button)view.findViewById(R.id.done_btn);
-        done_btn.setOnClickListener(new View.OnClickListener() {
+        ImageView imageView = (ImageView) view.findViewById(R.id.nextstep);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bitmap bitmap = drawCanvasView.getCanvasBitmap();
+                OrderCardFragment orderFinishFragment = OrderCardFragment.newInstance();
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, orderFinishFragment).commit();
+
+            }
+        });
+        ImageView imageView2 = (ImageView) view.findViewById(R.id.previousstep);
+        imageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateCardFragment createCardFragment = CreateCardFragment.newInstance();
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, createCardFragment).commit();
+
             }
         });
 
