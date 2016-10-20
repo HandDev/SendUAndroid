@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="biz.sendyou.senduandroid.Activity.LoginActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@android:color/white"
+                android:id="@+id/login_background"
+                android:scaleType="fitXY" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_height="87.5dp"
+                app:srcCompat="@android:color/white"
+                android:id="@+id/plane"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="87.5dp" />
+
+            <TextView
+                android:text="SendU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="300dp"
+                android:id="@+id/id_layout"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="5dp">
+
+                    <ImageView
+                        android:id="@+id/id_icon"
+                        app:srcCompat="@drawable/lg_id"
+                        android:layout_weight="1"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:ems="10"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:hint="아이디"
+                        android:id="@+id/idedit"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    app:srcCompat="@drawable/underline"
+                    android:id="@+id/imageView26"
+                    android:layout_weight="1"
+                    android:layout_width="280dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="1dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/pw_layout"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_width="300dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="5dp">
+
+                    <ImageView
+                        android:id="@+id/pw_icon"
+                        app:srcCompat="@drawable/lg_lock"
+                        android:layout_weight="1"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="20dp"
+                        android:layout_width="20dp"
+                        android:layout_marginLeft="10dp" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:ems="10"
+                        android:id="@+id/pwedit"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:hint="비밀번호"
+                        android:background="@android:color/transparent" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="280dp"
+                    app:srcCompat="@drawable/underline"
+                    android:id="@+id/imageView27"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="1dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="80dp">
+
+                <TextView
+                    android:text="자동 로그인"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView5"
+                    android:layout_weight="1" />
+
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:buttonTint="#F13968"
+                    android:id="@+id/autoLogin" />
+
+            </LinearLayout>
+
+            <Button
+                android:text="로그인"
+                android:layout_width="287.5dp"
+                android:layout_height="42.5dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="10dp"
+                android:layout_above="@+id/SignUp1"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/loginButton"
+                android:onClick="loginBtn"
+                android:background="@drawable/round_button"
+                android:layout_marginTop="20dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="SENDU가 처음이신가요?"
+                    android:id="@+id/SignUp1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12.8225sp"
+                    android:letterSpacing="0"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginRight="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="가입하기"
+                    android:id="@+id/SignUp2"
+                    android:letterSpacing="0"
+                    android:textSize="12.8225sp"
+                    android:textColor="#F13968"
+                    android:src="@drawable/sp_logo"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -2,6 +2,7 @@ package biz.sendyou.senduandroid.Fragment;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.graphics.Bitmap;
@@ -57,6 +58,7 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -77,7 +79,6 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
                 SelectTemplateFragment selectTemplateFragment = SelectTemplateFragment.newInstance(templates,2);
 
                 getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_right_enter, R.anim.fragment_slide_right_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, selectTemplateFragment).commit();
-
             }
         });
 
