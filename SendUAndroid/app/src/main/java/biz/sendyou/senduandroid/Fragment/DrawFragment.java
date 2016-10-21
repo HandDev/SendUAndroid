@@ -10,20 +10,14 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-<<<<<<< HEAD
 import android.support.v7.app.ActionBar;
-=======
 import android.support.v7.view.menu.ActionMenuItemView;
->>>>>>> origin/master
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-<<<<<<< HEAD
 import android.widget.FrameLayout;
-=======
 import android.widget.ImageView;
->>>>>>> origin/master
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -52,8 +46,9 @@ public class DrawFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        if(getActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     @Override
@@ -66,19 +61,11 @@ public class DrawFragment extends Fragment {
         final DrawCanvasView drawCanvasView = new DrawCanvasView(getContext());
         drawCanvasView.setBackgroundResource(R.drawable.draw_background);
 
-<<<<<<< HEAD
         FrameLayout rootLayout = (FrameLayout)view.findViewById(R.id.drawer_layout);
         rootLayout.addView(drawCanvasView);
 
         FloatingActionButton refresh_btn = (FloatingActionButton)view.findViewById(R.id.clear_btn);
         refresh_btn.setOnClickListener(new View.OnClickListener() {
-=======
-        RelativeLayout rootLayout = (RelativeLayout) view.findViewById(R.id.draw);
-        rootLayout.addView(drawCanvasView);
-
-        Button clear_btn = (Button)view.findViewById(R.id.button2);
-        clear_btn.setOnClickListener(new View.OnClickListener() {
->>>>>>> origin/master
             @Override
             public void onClick(View v) {
                 drawCanvasView.clear();
@@ -153,5 +140,10 @@ public class DrawFragment extends Fragment {
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
         super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

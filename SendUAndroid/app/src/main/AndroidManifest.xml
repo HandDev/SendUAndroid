@@ -23,16 +23,20 @@
         <activity
             android:name=".Activity.NavigationDrawerActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.OnBoardingActivity" android:noHistory="true"
+            android:configChanges="keyboardHidden|orientation|"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".Activity.LoginActivity"
+            android:configChanges="keyboardHidden|orientation|"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".Activity.SplashActivity"
             android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,9 +54,11 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity
             android:name=".Activity.SignupInputActivity"
+            android:configChanges="keyboardHidden|orientation|"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.SignupAddressActivity"
+            android:configChanges="keyboardHidden|orientation|"
             android:screenOrientation="portrait" />
 
         <service
@@ -60,6 +66,7 @@
             android:enabled="true" />
 
         <activity android:name=".Activity.BillingActivity"
+            android:configChanges="keyboardHidden|orientation|"
             android:theme="@style/Theme.AppCompat"/>
 
     </application>

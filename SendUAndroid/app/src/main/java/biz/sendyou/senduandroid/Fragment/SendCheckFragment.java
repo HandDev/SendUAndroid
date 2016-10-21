@@ -1,6 +1,8 @@
 package biz.sendyou.senduandroid.Fragment;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -46,6 +48,13 @@ public class SendCheckFragment extends Fragment {
 
     public static SendCheckFragment newInstance(){
         return new SendCheckFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(getActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override

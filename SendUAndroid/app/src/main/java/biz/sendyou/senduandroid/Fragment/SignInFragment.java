@@ -2,6 +2,7 @@ package biz.sendyou.senduandroid.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
@@ -70,6 +71,8 @@ public class SignInFragment extends Fragment implements View.OnClickListener, Go
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
         mCallBackManager = CallbackManager.Factory.create();

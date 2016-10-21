@@ -38,6 +38,7 @@ import biz.sendyou.senduandroid.datatype.CardTemplate;
  */
 public class CreateCardFragment extends Fragment implements View.OnClickListener {
 
+    private static final String TAG = "CreateCardFragment";
 
     private EditText edt;
     public static String letterText;
@@ -57,8 +58,10 @@ public class CreateCardFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if(getActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
         super.onCreate(savedInstanceState);
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
