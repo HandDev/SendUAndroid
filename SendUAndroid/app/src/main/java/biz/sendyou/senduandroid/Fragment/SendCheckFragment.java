@@ -111,7 +111,7 @@ public class SendCheckFragment extends Fragment {
                 Log.e("Log",String.valueOf(response.isSuccessful()));
                 Log.e("URL",response.raw().toString());
                 Log.e("Size",String.valueOf(response.body().size()));
-                for(int i = 0; i < response.body().size(); i++) {
+                for(int i = response.body().size()-1; i >= 0; i--) {
                     int image;
                     if(arrayList.get(i).getOrderStatus().equals("Ordered")) {
                         image = R.drawable.todo;
