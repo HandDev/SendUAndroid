@@ -46,8 +46,6 @@ public class DrawFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        if(getActivity().getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
     }
 
@@ -63,14 +61,6 @@ public class DrawFragment extends Fragment {
 
         FrameLayout rootLayout = (FrameLayout)view.findViewById(R.id.drawer_layout);
         rootLayout.addView(drawCanvasView);
-
-        FloatingActionButton refresh_btn = (FloatingActionButton)view.findViewById(R.id.clear_btn);
-        refresh_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawCanvasView.clear();
-            }
-        });
 
         ImageView imageView = (ImageView) view.findViewById(R.id.nextstep);
         imageView.setOnClickListener(new View.OnClickListener() {
