@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.youth.banner.Banner;
 
 import biz.sendyou.senduandroid.Activity.NavigationDrawerActivity;
@@ -23,37 +24,21 @@ import biz.sendyou.senduandroid.R;
  * create an instance of this fragment.
  */
 public class FrontFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
+    private ImageLoader imageLoader = ImageLoader.getInstance();
     public FrontFragment() {
         // Required empty public constructor
     }
 
-
-    // TODO: Rename and change types and number of parameters
     public static FrontFragment newInstance() {
         FrontFragment fragment = new FrontFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -61,13 +46,12 @@ public class FrontFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_front, container, false);
-        //Banner mBanner;
+        Banner mBanner;
 
-
-        /*String[] images = getResources().getStringArray(R.array.url);
+        String[] images = getResources().getStringArray(R.array.url);
         mBanner = (Banner) view.findViewById(R.id.Banner);
         mBanner.setImages(images);
-        mBanner.setDelayTime(3000);*/
+        mBanner.setDelayTime(3000);
 
         //mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);  API 고장남 ㅅㅂ
         return view;
