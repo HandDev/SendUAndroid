@@ -10,6 +10,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -185,9 +186,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
             // Handle the camera action
             changeFragmentToSelectTemplate();
         } else if (id == R.id.nav_address) {
-            changeFragmentToAddressBook();
+            DialogHtmlView();
         } else if (id == R.id.nav_storage) {
-
+            DialogHtmlView();
         } else if (id == R.id.nav_sendcheck) {
             changeFragmentToSendCheck();
         } else if (id == R.id.nav_settings) {
@@ -302,5 +303,12 @@ public class NavigationDrawerActivity extends AppCompatActivity
         Intent mIntent = new Intent(packageContext, cls);
         startActivity(mIntent);
         finish();
+    }
+
+    private void DialogHtmlView() {
+        AlertDialog.Builder ab = new AlertDialog.Builder(NavigationDrawerActivity.this);
+        ab.setMessage("준비중인 기능입니다!");
+        ab.setPositiveButton("ok", null);
+        ab.show();
     }
 }
