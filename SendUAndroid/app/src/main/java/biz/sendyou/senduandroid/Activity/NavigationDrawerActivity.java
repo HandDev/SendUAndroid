@@ -103,8 +103,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-
-
         navigationView.setNavigationItemSelectedListener(this);
 
         if(savedInstanceState == null) {

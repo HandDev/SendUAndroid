@@ -97,8 +97,6 @@ public class SelectTemplateFragment extends Fragment {
         ImageView previousButton = (ImageView)view.findViewById(R.id.previousstep);
         ImageView nextButton = (ImageView)view.findViewById(R.id.nextstep);
 
-
-
         //Evnet handling
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
