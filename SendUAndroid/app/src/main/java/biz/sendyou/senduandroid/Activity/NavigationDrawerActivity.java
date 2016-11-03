@@ -266,10 +266,13 @@ public class NavigationDrawerActivity extends AppCompatActivity
         //String[][] parsedData = jsonParserList(result);
 
         for(int i =0; i <thumbUrls.size(); i++){
+
+            if(thumbUrls.get(i).contains(".jpg") || thumbUrls.get(i).contains("png")){
             CardTemplate cardTemplate = new CardTemplate();
             cardTemplate.setUrl(thumbUrls.get(i));
 
             templates.add(cardTemplate);
+            }
         }
 
         SelectTemplateFragment mSelectTemplateFragment = SelectTemplateFragment.newInstance(templates ,2);
