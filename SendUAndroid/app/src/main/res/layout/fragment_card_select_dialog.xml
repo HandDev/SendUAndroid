@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:text="Test"
+            android:text="캘리그래피 엽서"
             android:textSize="24sp"
             android:id="@+id/template_name"
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
 
 
         <TextView
-            android:text="description"
+            android:text="캘리그래피가 포함된 엽서 배경입니다."
             android:textSize="20sp"
             android:id="@+id/template_description"
             android:layout_width="wrap_content"
@@ -51,43 +51,42 @@
             android:layout_marginLeft="15dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal">
-
         <LinearLayout
-            android:layout_marginRight="60dp"
-            android:layout_margin="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal">
+
+            <LinearLayout
+                android:layout_margin="60dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <ImageView style="@style/iconAndNameImageView"
+                app:srcCompat="@drawable/checkmark"
+                android:id="@+id/choosebtn" />
+
+            <TextView style="@style/iconAndNameTextView"
+                    android:text="선택하기"
+                    android:textStyle="normal|bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="60dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-        <ImageView style="@style/iconAndNameImageView"
-            app:srcCompat="@drawable/checkmark"
-            android:id="@+id/choosebtn" />
+            <ImageView style="@style/iconAndNameImageView"
+                app:srcCompat="@drawable/close"
+                android:id="@+id/nobtn" />
 
-        <TextView style="@style/iconAndNameTextView"
-                android:text="선택하기"
-                android:textStyle="normal|bold"/>
+            <TextView style="@style/iconAndNameTextView"
+                android:text="취소하기"
+                android:textStyle="normal|bold" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_margin="20dp"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView style="@style/iconAndNameImageView"
-            app:srcCompat="@drawable/checkmark"
-            android:id="@+id/nobtn" />
-
-        <TextView style="@style/iconAndNameTextView"
-            android:text="취소하기"
-            android:textStyle="normal|bold" />
+        </LinearLayout>
     </LinearLayout>
-
-    </LinearLayout>
-</LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
