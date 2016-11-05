@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.youth.banner.Banner;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
@@ -39,6 +41,8 @@ public class FrontFragment extends Fragment {
     private ListView mListView;
     private ListViewAdapter mAdapter;
     private boolean[] check;
+    private TextView answer_tv;
+    private LinearLayout listItem;
 
     private OnFragmentInteractionListener mListener;
     private ImageLoader imageLoader = ImageLoader.getInstance();
@@ -85,6 +89,7 @@ public class FrontFragment extends Fragment {
                     TextView answer_tv = new TextView(getContext());
                     answer_tv.setText(getResources().getString(mData.answer));
                     answer_tv.setTextSize(18);
+                    answer_tv.setId(R.id.answer_tv);
 
                     LinearLayout.LayoutParams lv = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -93,6 +98,31 @@ public class FrontFragment extends Fragment {
                     answer_tv.startAnimation(slide_down);
 
                     check[position] = true;
+                }
+                else {
+                    answer_tv = (TextView)view.findViewById(R.id.answer_tv);
+                    listItem = (LinearLayout)view.findViewById(R.id.list_item);
+
+                    Animation slide_up = AnimationUtils.loadAnimation(getContext(), R.anim.slide_up);
+                    slide_up.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            listItem.removeView(answer_tv);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+                    answer_tv.startAnimation(slide_up);
+                    check[position] = false;
+
                 }
             }
         });
