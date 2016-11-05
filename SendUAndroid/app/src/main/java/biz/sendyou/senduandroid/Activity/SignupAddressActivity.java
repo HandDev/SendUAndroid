@@ -50,8 +50,6 @@ public class SignupAddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup_address);
         getInfo();
 
-
-
         mImageView02 = (ImageView)findViewById(R.id.signup_address_search_button_imageview);
         mTextView01 = (TextView)findViewById(R.id.signup_auto_address_num_textview);
         mTextView02 = (TextView)findViewById(R.id.signup_auto_address_textview);

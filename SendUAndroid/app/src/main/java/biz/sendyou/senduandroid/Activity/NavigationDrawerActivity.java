@@ -34,6 +34,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import java.util.ArrayList;
 import java.util.List;
 
+import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.Fragment.AddressBookFragment;
 import biz.sendyou.senduandroid.Fragment.CardSelectDialogFragment;
 import biz.sendyou.senduandroid.Fragment.CashFragment;
@@ -92,6 +93,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
         */
 
         navigationDrawerActivity = this;
+
+        ActivityManager.getInstance().setNavigationDrawerAcitivity(navigationDrawerActivity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("SendU");

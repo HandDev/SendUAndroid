@@ -14,9 +14,18 @@ public class ActivityManager {
     private Activity loginActivity;
     private Activity signupInputActivity;
     private Activity splashActivity;
+    private Activity navigationDrawerAcitivity;
 
     private ActivityManager() {
 
+    }
+
+    public Activity getNavigationDrawerAcitivity() {
+        return navigationDrawerAcitivity;
+    }
+
+    public void setNavigationDrawerAcitivity(Activity navigationDrawerAcitivity) {
+        this.navigationDrawerAcitivity = navigationDrawerAcitivity;
     }
 
     public Activity getSplashActivity() {
