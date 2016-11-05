@@ -109,7 +109,9 @@
             tools:listitem="@layout/fragment_template"
             android:layout_below="@+id/card_stageone"
             android:layout_centerHorizontal="true"
-            android:background="@color/grayBackGround" />
+            android:background="@drawable/border"
+            android:layout_marginBottom="65dp" />
+
         <ImageView
             android:id="@+id/nextstep"
             android:layout_margin="10dp"

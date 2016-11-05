@@ -18,11 +18,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
+import biz.sendyou.senduandroid.UserInfoManager;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 
 import java.util.List;
@@ -110,10 +112,16 @@ public class SelectTemplateFragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(LOGTAG, "nextButton Clicked");
-                CreateCardFragment createCardFragment = CreateCardFragment.newInstance();
+                if(UserInfoManager.getInstance().getTemplateid() == 1000) {
+                    //Toast.makeText(ContextManager.getContext(), "템플릿을 설정해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Log.i(LOGTAG, "nextButton Clicked");
+                    CreateCardFragment createCardFragment = CreateCardFragment.newInstance();
 
-                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, createCardFragment).commit();
+                    getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, createCardFragment).commit();
+
+                }
             }
         });
 

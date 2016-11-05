@@ -153,6 +153,7 @@ public class OrderCardFragment extends Fragment {
             jsonParams.put("numAddress",numAddress.getText().toString());
             jsonParams.put("text",CreateCardFragment.letterText);
             jsonParams.put("image","s3");
+            jsonParams.put("templateID",UserInfoManager.getInstance().getTemplateid());
 
             body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),jsonParams.toString());
             Log.e("str",jsonParams.toString());

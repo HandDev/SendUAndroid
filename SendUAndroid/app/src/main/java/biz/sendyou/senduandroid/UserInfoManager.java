@@ -16,6 +16,7 @@ public class UserInfoManager {
     private String userName;
     private String numAddress;
     private String jusoAddress;
+    private int templateid = 1000;
 
 
     private UserInfoManager(){
@@ -24,6 +25,14 @@ public class UserInfoManager {
 
     public static UserInfoManager getInstance(){
         return instance;
+    }
+
+    public int getTemplateid() {
+        return templateid;
+    }
+
+    public void setTemplateid(int templateid) {
+        this.templateid = templateid;
     }
 
     public String getEmail() {

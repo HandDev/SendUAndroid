@@ -20,6 +20,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import biz.sendyou.senduandroid.ContextManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.URLManager;
+import biz.sendyou.senduandroid.UserInfoManager;
 import biz.sendyou.senduandroid.datatype.CardTemplate;
 import biz.sendyou.senduandroid.thread.BitmapFromURLThread;
 
@@ -77,8 +78,9 @@ public class TemplateRecyclerViewAdapter extends RecyclerView.Adapter<TemplateRe
             @Override
             public void onClick(View v) {
                 Log.i(LOGTAG, "ImageClicked" + mValues.get(position).getUrl());
-
                 CardSelectDialogFragment cardSelectDialogFragment = CardSelectDialogFragment.newInstance(mValues.get(position).getUrl());
+                Log.e("Position",String.valueOf(position));
+                UserInfoManager.getInstance().setTemplateid(position);
                 cardSelectDialogFragment.show(fragmentManager, "");
             }
         });

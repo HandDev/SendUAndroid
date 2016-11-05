@@ -26,6 +26,7 @@ public class CardSelectDialogFragment extends DialogFragment {
 
     private final String LOGTAG = "CardDialogFragment";
 
+    private int position;
     private String imageURL; //cardID is used for s3 connection
     private ImageLoader imageLoader = ImageLoader.getInstance();
 
@@ -83,6 +84,7 @@ public class CardSelectDialogFragment extends DialogFragment {
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 getDialog().dismiss();
             }
         });
@@ -121,6 +123,9 @@ public class CardSelectDialogFragment extends DialogFragment {
         super.onDetach();
         mListener = null;
     }
+
+
+
 
     /**
      * This interface must be implemented by activities that contain this
