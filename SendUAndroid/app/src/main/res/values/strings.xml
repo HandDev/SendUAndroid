@@ -16,5 +16,13 @@
 
     <string name="calendar_date_picker_result_values">%1$s%2$s%3$s</string>
 
+    <!-- Q&A -->
+    <string name="q1">Q. 엽서는 어떻게 배송되나요?</string>
+    <string name="q2">Q. 어떤 종이를 사용하나요?</string>
+    <string name="q3">Q. 문제가 생겼을 경우 어디에서 도움을 받을 수 있나요?</string>
+    <string name="a1">SendU의 엽서는 잉크젯 프린터기를 통해 인쇄된 후, 당일 우체국으로 보내져 배송이 진행됩니다. 이 과정은 배송조회 기능을 통해 확인하실 수 있습니다.</string>
+    <string name="a2">흰색 백상지 180g을 사용하고 있습니다.</string>
+    <string name="a3">페이스북 SendU 페이지나 sendukor@gmail.com으로 메세지를 남겨주시면 빠르게 답변해드리겠습니다.</string>
+
 
 </resources>

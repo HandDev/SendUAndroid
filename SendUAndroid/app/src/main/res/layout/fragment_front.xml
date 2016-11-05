@@ -59,106 +59,12 @@
             android:layout_marginRight="10dp" />
     </FrameLayout>
 
-    <RelativeLayout
-        android:layout_below="@+id/frame"
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/qna_listview"
+        android:layout_below="@id/frame">
 
-        <TextView
-            android:id="@+id/qna"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text = "자주하는 질문"
-            android:textColor="#F13968"
-            android:textSize="32sp"
-            android:gravity="center_horizontal" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/qna"
-            android:background="@drawable/border"
-            android:id="@+id/how">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/howtosend"
-                android:layout_height="wrap_content"
-                android:background="#dedede"
-                android:text="  Q. 엽서는 어떻게 배송되나요?"
-                android:textSize="24sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/howtosendans"
-                android:layout_height="wrap_content"
-                android:text="  SendU의 엽서는 잉크젯 프린터기를 통해 인쇄된 후, 당일 우체국으로 보내져 배송이 진행됩니다. 이 과정은 배송조회 기능을 통해 확인하실 수 있습니다."
-                android:textSize="15sp"
-                android:layout_below="@+id/howtosend"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/what"
-            android:background="@drawable/border"
-            android:layout_below="@+id/how"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/whatpaper"
-                android:layout_height="wrap_content"
-                android:background="#dedede"
-                android:text="  Q. 어떤 종이를 사용하나요?"
-                android:textSize="24sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/whatpaperans"
-                android:layout_height="wrap_content"
-                android:text="  흰색 백상지 180g을 사용하고 있습니다. "
-                android:textSize="15sp"
-                android:layout_below="@+id/whatpaper"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@drawable/border"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/where"
-            android:layout_below="@+id/what"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/wheretohelp"
-                android:layout_height="wrap_content"
-                android:background="#dedede"
-                android:text="  Q. 문제가 생겼을 경우 어디에서 도움을 받을 수 있나요?"
-                android:textSize="24sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/wheretohelpans"
-                android:layout_height="wrap_content"
-                android:text="  페이스북 SendU 페이지나 sendukor@gmail.com 으로 메세지를 남겨주시면 빠르게 답변해드리겠습니다. "
-                android:textSize="15sp"
-                android:layout_below="@+id/wheretohelp"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp" />
-
-        </RelativeLayout>
-
-
-
-    </RelativeLayout>
+    </ListView>
 
 </RelativeLayout>
