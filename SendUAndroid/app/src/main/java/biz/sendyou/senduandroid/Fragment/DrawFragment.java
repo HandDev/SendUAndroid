@@ -6,12 +6,14 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.view.menu.ActionMenuItemView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import biz.sendyou.senduandroid.Activity.DrawCanvasView;
+import biz.sendyou.senduandroid.BitmapManager;
 import biz.sendyou.senduandroid.R;
 
 /**
@@ -51,15 +59,16 @@ public class DrawFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_draw, container, false);
         //return new DrawCanvasView(this.getContext());
 
         final DrawCanvasView drawCanvasView = new DrawCanvasView(getContext());
+        drawCanvasView.setId(R.id.drawer_canvas_view);
         drawCanvasView.setBackgroundResource(R.drawable.draw_background);
 
-        FrameLayout rootLayout = (FrameLayout)view.findViewById(R.id.drawer_layout);
+        final FrameLayout rootLayout = (FrameLayout)view.findViewById(R.id.drawer_layout);
         rootLayout.addView(drawCanvasView);
 
         ImageView imageView = (ImageView) view.findViewById(R.id.nextstep);
@@ -67,6 +76,9 @@ public class DrawFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Bitmap bitmap = drawCanvasView.getCanvasBitmap();
+
+                //save bitmap to file
+                BitmapManager.getInstance().setBitmap(bitmap);
                 OrderCardFragment orderFinishFragment = OrderCardFragment.newInstance();
                 getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit,R.anim.fragment_slide_right_enter,R.anim.fragment_slide_right_exit).replace(R.id.mainFrameLayout, orderFinishFragment).commit();
 
@@ -136,4 +148,6 @@ public class DrawFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
     }
+
+
 }

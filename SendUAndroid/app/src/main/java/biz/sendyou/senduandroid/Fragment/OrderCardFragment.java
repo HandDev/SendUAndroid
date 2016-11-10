@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -25,11 +27,16 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.AddressWebViewInterface;
+import biz.sendyou.senduandroid.BitmapManager;
 import biz.sendyou.senduandroid.R;
 import biz.sendyou.senduandroid.Service.Usr;
 import biz.sendyou.senduandroid.Service.doOrder;
@@ -229,8 +236,10 @@ public class OrderCardFragment extends Fragment {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.e("Body",response.message());
                 Log.e("raw", response.raw().toString());
-                CashFragment cashFragment = CashFragment.newInstance();
-                getFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,cashFragment).commit();
+                //CashFragment cashFragment = CashFragment.newInstance();
+                //getFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,cashFragment).commit();
+                OrderFinishFragment orderFinishFragment = OrderFinishFragment.newInstance();
+                getFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,orderFinishFragment).commit();
             }
 
             @Override
@@ -238,6 +247,9 @@ public class OrderCardFragment extends Fragment {
                 Log.e("C",t.getMessage());
             }
         });
+
+        //save bitmap to jpeg
+        saveBitmaptoJpeg(BitmapManager.getInstance().getBitmap(), "cardOrder", uuid);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -309,6 +321,31 @@ public class OrderCardFragment extends Fragment {
         assert addressWebViewDialog != null;
 
         addressWebViewDialog.dismiss();
+    }
+
+    public void saveBitmaptoJpeg(Bitmap bitmap, String folder, String name){
+        // Get Absolute Path in External Sdcard
+        String foler_name = Environment.getExternalStorageDirectory().getPath() + "/"+folder+"/";
+        Log.w("order", foler_name);
+        String file_name = name+".jpg";
+        String string_path = foler_name;
+
+        File file_path;
+        try{
+            file_path = new File(string_path);
+            if(!file_path.isDirectory()){
+                file_path.mkdirs();
+            }
+            FileOutputStream out = new FileOutputStream(string_path+file_name);
+
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            out.close();
+
+        }catch(FileNotFoundException exception){
+            Log.e("FileNotFoundException", exception.getMessage());
+        }catch(IOException exception){
+            Log.e("IOException", exception.getMessage());
+        }
     }
 
 }

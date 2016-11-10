@@ -1,13 +1,68 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="biz.sendyou.senduandroid.Fragment.OrderFinishFragment">
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="biz.sendyou.senduandroid.Fragment.OrderFinishFragment"
+    android:weightSum="100">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitCenter"
+        android:layout_weight="20"
+        android:src="@drawable/order_finish"/>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        android:text="주문 및 결제가 완료되었습니다."
+        android:textSize="26sp"
+        android:layout_weight="10"
+        android:textColor="#000000"
+        android:id="@+id/textView4" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        android:text="편지발송은 주문 후 약 1~2일 이후 이루어지며, \n진행상황은 발송 조회 탭에서 확인하실 수 있습니다."
+        android:textSize="12sp"
+        android:layout_weight="10"
+        android:textColor="#000000"
+        android:id="@+id/textView5" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="horizontal">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/la_enter"
+            android:layout_weight="60"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"/>
+    </LinearLayout>
+</LinearLayout>

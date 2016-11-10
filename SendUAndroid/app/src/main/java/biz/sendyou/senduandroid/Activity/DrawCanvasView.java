@@ -35,6 +35,8 @@ public class DrawCanvasView extends View implements View.OnTouchListener{
 
         this.setOnTouchListener(this);
 
+        Bitmap mBitmap = Bitmap.createBitmap(this.getWidth(), this.getHeight(), Bitmap.Config.ARGB_8888);
+
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
@@ -43,7 +45,7 @@ public class DrawCanvasView extends View implements View.OnTouchListener{
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setStrokeWidth(6);
-        mCanvas = new Canvas();
+        mCanvas = new Canvas(mBitmap);
         mPath = new Path();
         paths.add(mPath);
     }
@@ -117,6 +119,8 @@ public class DrawCanvasView extends View implements View.OnTouchListener{
     }
 
     public Bitmap getCanvasBitmap() {
+        this.setDrawingCacheEnabled(true);
         return this.getDrawingCache();
+
     }
 }
