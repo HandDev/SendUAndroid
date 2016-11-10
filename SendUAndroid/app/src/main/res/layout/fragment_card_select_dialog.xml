@@ -6,6 +6,7 @@
     android:orientation="vertical"
     tools:context="biz.sendyou.senduandroid.Fragment.CardSelectDialogFragment"
     android:weightSum="1">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
         <LinearLayout
             android:id="@+id/template_text"
         android:orientation="vertical"
-        android:background="@color/colorPrimaryDark"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -32,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
+            android:textColor="#000000"
             android:textAlignment="textStart"
             android:textStyle="normal|bold"
             android:layout_marginTop="20dp"
@@ -46,6 +48,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:textAlignment="textStart"
+            android:textColor="#000000"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="15dp" />
@@ -58,33 +61,39 @@
             android:gravity="center_vertical|center_horizontal">
 
             <LinearLayout
-                android:layout_margin="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-            <ImageView style="@style/iconAndNameImageView"
-                app:srcCompat="@drawable/checkmark"
-                android:id="@+id/choosebtn" />
+                <ImageView style="@style/iconAndNameImageView"
+                    app:srcCompat="@drawable/checkmark"
+                    android:id="@+id/choosebtn" />
 
-            <TextView style="@style/iconAndNameTextView"
-                    android:text="선택하기"
-                    android:textStyle="normal|bold"/>
+                <TextView style="@style/iconAndNameTextView"
+                        android:text="선택하기"
+                        android:textStyle="normal|bold"/>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_margin="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView style="@style/iconAndNameImageView"
-                app:srcCompat="@drawable/close"
-                android:id="@+id/nobtn" />
+                <ImageView style="@style/iconAndNameImageView"
+                    app:srcCompat="@drawable/close"
+                    android:id="@+id/nobtn" />
 
-            <TextView style="@style/iconAndNameTextView"
-                android:text="취소하기"
-                android:textStyle="normal|bold" />
+                <TextView style="@style/iconAndNameTextView"
+                    android:text="취소"
+                    android:textStyle="normal|bold" />
         </LinearLayout>
 
         </LinearLayout>

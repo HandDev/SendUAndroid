@@ -229,8 +229,10 @@ public class OrderCardFragment extends Fragment {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.e("Body",response.message());
                 Log.e("raw", response.raw().toString());
-                CashFragment cashFragment = CashFragment.newInstance();
-                getFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,cashFragment).commit();
+                //CashFragment cashFragment = CashFragment.newInstance();
+                //getFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,cashFragment).commit();
+                OrderFinishFragment orderFinishFragment = OrderFinishFragment.newInstance();
+                getFragmentManager().beginTransaction().replace(R.id.mainFrameLayout,orderFinishFragment).commit();
             }
 
             @Override

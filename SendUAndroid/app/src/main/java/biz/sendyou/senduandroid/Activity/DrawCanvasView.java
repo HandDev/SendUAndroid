@@ -117,6 +117,7 @@ public class DrawCanvasView extends View implements View.OnTouchListener{
     }
 
     public Bitmap getCanvasBitmap() {
+        this.setDrawingCacheEnabled(true);
         return this.getDrawingCache();
     }
 }
