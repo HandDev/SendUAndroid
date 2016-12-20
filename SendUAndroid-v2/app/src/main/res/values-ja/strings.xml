@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SendU</string>
+    <string name="permission_granted">許可完了</string>
+    <string name="permission_denied">許可拒否</string>
+    <string name="denied_message">権限を拒否すると、いくつかの機能を使用できません.\n\n[設定] > [権限]でアクセスを許可してください.</string>
+
+    <string name="google_login">Google で ログイン</string>
+    <string name="facebook_login">Facebook で ログイン</string>
+    <string name="email_login">SendU アカウント で ログイン</string>
+
+    <string name="login_signup_q">Sendu は 初めて ですか？</string>
+    <string name="login_signup_t">登録</string>
+
+    <string name="order">注文</string>
+    <string name="contacts">コンタクト</string>
+    <string name="track">配送照会</string>
+    <string name="settings">設定</string>
+    <string name="logout">ログアウト</string>
+</resources>
