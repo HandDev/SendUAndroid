@@ -16,9 +16,22 @@
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
-        android:id="@+id/order_group"
+        android:id="@+id/home_group"
         style="@style/LinearLayout.GuillotineItem"
         android:layout_marginTop="@dimen/guillotine_medium_margin">
+
+        <ImageView
+            style="@style/ImageView.GuillotineItem"
+            android:src="@drawable/ic_home_white_24dp" />
+
+        <TextView
+            style="@style/TextView.GuillotineItem"
+            android:text="@string/order" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/order_group"
+        style="@style/LinearLayout.GuillotineItem">
 
         <ImageView
             style="@style/ImageView.GuillotineItem"
@@ -26,7 +39,7 @@
 
         <TextView
             style="@style/TextView.GuillotineItem"
-            android:text="@string/order" />
+            android:text="@string/contacts" />
     </LinearLayout>
 
     <LinearLayout

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">SendU</string>
+    <string name="app_name_up">SENDU</string>
     <string name="permission_granted">許可完了</string>
-    <string name="permission_denied">許可拒否</string>
+    <string name="permission_denied">許可拒否                   </string>
     <string name="denied_message">権限を拒否すると、いくつかの機能を使用できません.\n\n[設定] > [権限]でアクセスを許可してください.</string>
 
     <string name="google_login">Google で ログイン</string>

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sendyou.biz.senduandroid.R;
@@ -32,6 +33,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.google_login_button) Button google_login_btn;
     @BindView(R.id.facebook_login_button) Button facebook_login_btn;
     @BindView(R.id.email_login_button) Button email_login_btn;
+
+    @BindString(R.string.exit_q) String exit_q;
+    @BindString(R.string.confirm) String confirm;
+    @BindString(R.string.cancel) String cancel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -103,15 +108,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("앱을 종료하시겠습니까?")
+        builder.setMessage(exit_q)
                 .setCancelable(false)
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                .setPositiveButton(confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         System.exit(0);
                     }
                 })
-                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                .setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();

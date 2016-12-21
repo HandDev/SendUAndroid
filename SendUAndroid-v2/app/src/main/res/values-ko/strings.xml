@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">SendU</string>
+    <string name="app_name_up">SENDU</string>
     <string name="permission_granted">권한 허용</string>
     <string name="permission_denied">권한 거부</string>
     <string name="denied_message">권한을 거부하면 일부 기능을 사용 못합니다.\n\n[설정] > [권한]에서 권한을 허용시켜 주십시오.</string>

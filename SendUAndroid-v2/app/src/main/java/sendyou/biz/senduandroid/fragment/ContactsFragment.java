@@ -3,6 +3,8 @@ package sendyou.biz.senduandroid.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,4 +30,12 @@ public class ContactsFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        Log.w(TAG, "Destory MainFragment");
+        Fragment mFragment = getFragmentManager().findFragmentByTag("ContactsFragment");
+        FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
+        FragTsaction.remove(mFragment);
+        super.onDestroy();
+    }
 }
