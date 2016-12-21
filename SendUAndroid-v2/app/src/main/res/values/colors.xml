@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#444153</color>
-    <color name="colorPrimaryDark">#383547</color>
+    <color name="colorPrimary">#ffdef2</color>
+    <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="magenta">#f13968</color>
+    <color name="light_magenta">#ff7296</color>
 
-    <color name="guillotine_background">#444153</color>
-    <color name="guillotine_background_dark">#383547</color>
+    <color name="guillotine_background">#ffdef2</color>
+    <color name="guillotine_background_dark">#ffffff</color>
     <color name="selected_item_color">#30d1d5</color>
+
+    <color name="guillotine">#444153</color>
+    <color name="guillotine_dark">#383547</color>
 </resources>

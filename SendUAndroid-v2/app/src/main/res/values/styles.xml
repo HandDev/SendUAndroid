@@ -39,7 +39,7 @@
         <item name="android:layout_marginLeft">@dimen/guillotine_small_margin</item>
         <item name="android:textSize">@dimen/guillotine_item_text_size</item>
         <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/magenta</item>
     </style>
 
     <style name="TextView.GuillotineItem.Selected">

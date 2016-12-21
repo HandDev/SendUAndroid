@@ -14,6 +14,7 @@ import sendyou.biz.senduandroid.R;
  */
 public class TrackFragment extends Fragment {
 
+    private static final String TAG = "TrackFragment";
 
     public TrackFragment() {
         // Required empty public constructor
@@ -23,8 +24,8 @@ public class TrackFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_track, container, false);
+        View view = inflater.inflate(R.layout.fragment_track, container, false);
+        return view;
     }
 
 }

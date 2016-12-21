@@ -16,4 +16,8 @@
     <string name="track">配送照会</string>
     <string name="settings">設定</string>
     <string name="logout">ログアウト</string>
+
+    <string name="exit_q">アプリを閉じる？</string>
+    <string name="confirm">確認</string>
+    <string name="cancel">キャンセル</string>
 </resources>

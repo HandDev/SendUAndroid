@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@color/guillotine_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
@@ -22,7 +22,7 @@
 
         <ImageView
             style="@style/ImageView.GuillotineItem"
-            android:src="@drawable/ic_exit_to_app_white_24dp" />
+            android:src="@drawable/ic_shopping_cart_white_24dp" />
 
         <TextView
             style="@style/TextView.GuillotineItem"
@@ -35,7 +35,7 @@
 
         <ImageView
             style="@style/ImageView.GuillotineItem"
-            android:src="@drawable/ic_exit_to_app_white_24dp" />
+            android:src="@drawable/ic_people_white_24dp" />
 
         <TextView
             style="@style/TextView.GuillotineItem"
@@ -48,7 +48,8 @@
 
         <ImageView
             style="@style/ImageView.GuillotineItem"
-            android:src="@drawable/ic_exit_to_app_white_24dp" />
+            android:src="@drawable/ic_local_shipping_white_24dp"
+            android:id="@+id/imageView" />
 
         <TextView
             style="@style/TextView.GuillotineItem"
@@ -78,7 +79,7 @@
 
         <ImageView
             style="@style/ImageView.GuillotineItem"
-            android:src="@drawable/ic_exit_to_app_white_24dp" />
+            android:src="@drawable/ic_settings_white_24dp" />
 
         <TextView
             style="@style/TextView.GuillotineItem"

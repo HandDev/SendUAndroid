@@ -16,4 +16,8 @@
     <string name="track">Track Delivery</string>
     <string name="settings">Settings</string>
     <string name="logout">Logout</string>
+
+    <string name="exit_q">Close app?</string>
+    <string name="confirm">Yes</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -59,14 +59,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.google_login_button :
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.facebook_login_button :
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.email_login_button :
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

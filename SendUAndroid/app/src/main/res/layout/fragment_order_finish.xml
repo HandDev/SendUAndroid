@@ -65,8 +65,4 @@
             android:layout_height="match_parent"
             android:layout_weight="20"/>
     </LinearLayout>
-<<<<<<< HEAD
 </LinearLayout>
-=======
-</LinearLayout>
->>>>>>> origin/master

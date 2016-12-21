@@ -1,5 +1,6 @@
 package biz.sendyou.senduandroid.Activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,9 +20,14 @@ import android.view.View;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
+import java.util.ArrayList;
 
 import biz.sendyou.senduandroid.ActivityManager;
 import biz.sendyou.senduandroid.ContextManager;
@@ -56,6 +62,24 @@ public class SplashActivity extends AppCompatActivity {
 
         splashActivity = this;
         splashActivityContext = getApplicationContext();
+
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Toast.makeText(SplashActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                Toast.makeText(SplashActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        new TedPermission(this)
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.INTERNET, Manifest.permission.SYSTEM_ALERT_WINDOW)
+                .check();
 
         /*boolean isFirstStart = false;
         final SharedPreferences pref;
@@ -158,7 +182,6 @@ public class SplashActivity extends AppCompatActivity {
             b = null;
         }
         d.setCallback(null);
-        System.gc();
         Runtime.getRuntime().gc();
     }
 

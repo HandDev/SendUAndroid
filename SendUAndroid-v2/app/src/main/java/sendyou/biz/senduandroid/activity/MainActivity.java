@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
+import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sendyou.biz.senduandroid.R;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.root_main) FrameLayout root;
     @BindView(R.id.content_hamburger) View contentHamburger;
     @BindView(R.id.content) FrameLayout content;
+    @BindColor(R.color.light_magenta) int light_magenta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        init();
+    }
+
+    private void init() {
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(light_magenta);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);

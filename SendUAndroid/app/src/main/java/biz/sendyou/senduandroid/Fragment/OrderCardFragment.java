@@ -325,17 +325,15 @@ public class OrderCardFragment extends Fragment {
 
     public void saveBitmaptoJpeg(Bitmap bitmap, String folder, String name){
         // Get Absolute Path in External Sdcard
-        String foler_name = Environment.getExternalStorageDirectory().getPath() + "/"+folder+"/";
+        String foler_name = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/" + folder + "/";
         Log.w("order", foler_name);
-        String file_name = name+".jpg";
+        String file_name = name+".png";
         String string_path = foler_name;
 
         File file_path;
         try{
             file_path = new File(string_path);
-            if(!file_path.isDirectory()){
-                file_path.mkdirs();
-            }
+            file_path.mkdirs();
             FileOutputStream out = new FileOutputStream(string_path+file_name);
 
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);

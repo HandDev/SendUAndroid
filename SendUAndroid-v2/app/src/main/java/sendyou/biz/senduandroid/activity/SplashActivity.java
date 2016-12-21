@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import com.gun0912.tedpermission.TedPermission;
 
 import java.util.ArrayList;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sendyou.biz.senduandroid.R;
@@ -29,8 +32,16 @@ import sendyou.biz.senduandroid.R;
 public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG = "SplashActivity";
+
     @BindView(R.id.splash_background) ImageView splash_background;
     @BindView(R.id.splash_logo) ImageView splash_logo;
+
+    @BindString(R.string.denied_message) String denied_message;
+    @BindString(R.string.permission_granted) String permission_granted;
+    @BindString(R.string.permission_denied) String permission_denied;
+    @BindString(R.string.exit_q) String exit_q;
+    @BindString(R.string.confirm) String confirm;
+    @BindString(R.string.cancel) String cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +62,19 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onPermissionGranted() {
                 Log.w(TAG, "Permission Granted");
-                Toast.makeText(SplashActivity.this, getResources().getString(R.string.permission_granted), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SplashActivity.this, permission_granted, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
                 Log.w(TAG, "Permission Denied");
-                Toast.makeText(SplashActivity.this, getResources().getString(R.string.permission_denied) + "\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SplashActivity.this, permission_denied + "\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
             }
         };
 
         new TedPermission(this)
                 .setPermissionListener(permissionlistener)
-                .setDeniedMessage(getResources().getString(R.string.denied_message))
+                .setDeniedMessage(denied_message)
                 .setPermissions(Manifest.permission.INTERNET)
                 .check();
 
@@ -114,15 +125,15 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("앱을 종료하시겠습니까?")
+        builder.setMessage(exit_q)
                 .setCancelable(false)
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                .setPositiveButton(confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         System.exit(0);
                     }
                 })
-                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                .setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();

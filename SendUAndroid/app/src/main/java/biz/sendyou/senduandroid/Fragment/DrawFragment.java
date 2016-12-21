@@ -65,7 +65,6 @@ public class DrawFragment extends Fragment {
         //return new DrawCanvasView(this.getContext());
 
         final DrawCanvasView drawCanvasView = new DrawCanvasView(getContext());
-        drawCanvasView.setId(R.id.drawer_canvas_view);
         drawCanvasView.setBackgroundResource(R.drawable.draw_background);
 
         final FrameLayout rootLayout = (FrameLayout)view.findViewById(R.id.drawer_layout);

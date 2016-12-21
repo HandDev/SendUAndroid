@@ -21,8 +21,12 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/draw_background">
-
+        android:background="@color/bpWhite">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/draw_background">
+        </FrameLayout>
     </FrameLayout>
 
     <!-- TODO: Update blank fragment layout -->
