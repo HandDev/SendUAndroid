@@ -18,11 +18,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
+import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,6 +36,7 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sendyou.biz.senduandroid.R;
+import sendyou.biz.senduandroid.data.URLManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,8 +78,8 @@ public class MainFragment extends Fragment implements ViewPagerEx.OnPageChangeLi
         for(String url : images){
             TextSliderView textSliderView = new TextSliderView(getContext());
             textSliderView
-                    .image(url)
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
+                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .image(url);
 
             slider.addSlider(textSliderView);
         }
@@ -104,16 +107,13 @@ public class MainFragment extends Fragment implements ViewPagerEx.OnPageChangeLi
     }
 
     @Override
-    public void onPause() {
+    public void onDestroy() {
+        super.onDestroy();
         Log.w(TAG, "Destory MainFragment");
         Fragment mFragment = getFragmentManager().findFragmentByTag("MainFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+        slider.removeAllSliders();
+        Runtime.getRuntime().gc();
     }
 }

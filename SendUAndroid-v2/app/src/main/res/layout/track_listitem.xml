@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/track"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:gravity="center">
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="20" >
+        <ImageView
+            android:id="@+id/track_state_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/track_state_making"
+            android:scaleType="centerInside"/>
+        <TextView
+            android:id="@+id/track_state_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/making"
+            android:textSize="14sp"
+            android:textColor="@color/light_orange" />
+    </FrameLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="77">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_weight="45"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <sendyou.biz.senduandroid.widget.NanumTextView
+                    android:id="@+id/sendcheck_date"
+                    android:text="주문일:"
+                    android:textColor="#f13968"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <sendyou.biz.senduandroid.widget.NanumBoldTextView
+                    android:id="@+id/sendcheck_date_num"
+                    android:text="2016.07.25"
+                    android:textColor="#aaaaaa"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="55"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <sendyou.biz.senduandroid.widget.NanumTextView
+                    android:id="@+id/sendcheck_due_date"
+                    android:text="발송예정일:"
+                    android:textColor="#f13968"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <sendyou.biz.senduandroid.widget.NanumBoldTextView
+                    android:id="@+id/sendcheck_due_date_num"
+                    android:text="2016.07.26"
+                    android:textColor="#aaaaaa"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <sendyou.biz.senduandroid.widget.NanumLightTextView
+            android:id="@+id/target_address"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:background="@drawable/track_list"
+            android:textColor="#565656"
+            android:text="(15255) 경기도 안산시 단원구 사세충열로 94 한국디지털미디어고등학교"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+            <sendyou.biz.senduandroid.widget.NanumTextView
+                android:id="@+id/traget_name"
+                android:text="김수아"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textColor="#565656" />
+            <sendyou.biz.senduandroid.widget.NanumLightTextView
+                android:id="@+id/sendcheck_receiver_regular"
+                android:textColor="#565656"
+                android:text=" 님께 보내는 편지"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

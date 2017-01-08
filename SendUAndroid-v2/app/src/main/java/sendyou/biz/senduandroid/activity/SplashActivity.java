@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -19,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -55,8 +57,9 @@ public class SplashActivity extends AppCompatActivity {
 
     private void init() {
         Log.w(TAG, "Set image resources in views");
-        splash_background.setImageResource(R.drawable.background);
-        splash_logo.setImageResource(R.drawable.logo);
+        Glide.with(this).load(R.drawable.background).into(splash_background);
+        Glide.with(this).load(R.drawable.logo).into(splash_logo);
+        splash_logo.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.logo));
 
         PermissionListener permissionlistener = new PermissionListener() {
             @Override

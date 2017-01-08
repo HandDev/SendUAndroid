@@ -26,7 +26,7 @@
 
         <TextView
             style="@style/TextView.GuillotineItem"
-            android:text="@string/order" />
+            android:text="@string/home" />
     </LinearLayout>
 
     <LinearLayout
@@ -39,7 +39,7 @@
 
         <TextView
             style="@style/TextView.GuillotineItem"
-            android:text="@string/contacts" />
+            android:text="@string/order" />
     </LinearLayout>
 
     <LinearLayout

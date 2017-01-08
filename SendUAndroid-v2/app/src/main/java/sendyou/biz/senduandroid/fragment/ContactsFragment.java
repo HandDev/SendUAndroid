@@ -32,10 +32,10 @@ public class ContactsFragment extends Fragment {
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         Log.w(TAG, "Destory MainFragment");
         Fragment mFragment = getFragmentManager().findFragmentByTag("ContactsFragment");
         FragmentTransaction FragTsaction = getFragmentManager().beginTransaction();
         FragTsaction.remove(mFragment);
-        super.onDestroy();
     }
 }

@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import sendyou.biz.senduandroid.R;
+
 /**
  * Created by pyh42 on 2016-12-20.
  */

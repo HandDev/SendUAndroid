@@ -7,17 +7,20 @@
 
     <string name="google_login">Google で ログイン</string>
     <string name="facebook_login">Facebook で ログイン</string>
-    <string name="email_login">SendU アカウント で ログイン</string>
+    <string name="twitter_login">Twitter で ログイン</string>
+    <string name="line_login">Line で ログイン</string>
 
     <string name="login_signup_q">Sendu は 初めて ですか？</string>
     <string name="login_signup_t">登録</string>
 
+    <string name="home">メイン</string>
     <string name="order">注文</string>
     <string name="contacts">コンタクト</string>
     <string name="track">配送照会</string>
     <string name="settings">設定</string>
     <string name="logout">ログアウト</string>
 
+    <string name="logout_q">あなた は 本当に ログアウト しますか？</string>
     <string name="exit_q">アプリを閉じる？</string>
     <string name="confirm">確認</string>
     <string name="cancel">キャンセル</string>
