@@ -3,7 +3,6 @@ package sendyou.biz.senduandroid.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -42,14 +41,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.TwitterAuthProvider;
-import com.google.gson.Gson;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 
-import java.net.URL;
 import java.util.Arrays;
 
 import butterknife.BindString;
@@ -64,8 +61,9 @@ import sendyou.biz.senduandroid.R;
 import sendyou.biz.senduandroid.data.Data;
 import sendyou.biz.senduandroid.data.Response;
 import sendyou.biz.senduandroid.data.URLManager;
-import sendyou.biz.senduandroid.service.CheckAccount;
+import sendyou.biz.senduandroid.data.UserProfile;
 import sendyou.biz.senduandroid.service.Login;
+import sendyou.biz.senduandroid.service.Profile;
 
 /**
  * Created by pyh42 on 2016-12-20.
@@ -278,19 +276,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        CheckAccount checkAccount = retrofit.create(CheckAccount.class);
+        Profile profile = retrofit.create(Profile.class);
 
-        Call<Response> call = checkAccount.checkAccount(uid);
-
-        call.enqueue(new Callback<Response>() {
+        Call<UserProfile> call = profile.getProfile(uid);
+        call.enqueue(new Callback<UserProfile>() {
             @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                final Response res = response.body();
-                Log.w(TAG, res.isSuccess() + "");
+            public void onResponse(Call<UserProfile> call, retrofit2.Response<UserProfile> response) {
+                final UserProfile res = response.body();
+                Log.w(TAG, response.code() + "");
+                if(response.code() == 200) {
+                    mData.getUserInfo().setUid(res.getEmail());
+                    mData.getUserInfo().setJusoAddress(res.getAddress());
+                    mData.getUserInfo().setNumAddress(res.getNumAddress());
+                    mData.getUserInfo().setUserName(res.getUserName());
+                    mData.getUserInfo().setPhone(res.getPhone());
 
-                if(res.isSuccess()) {
-                    startActivity(new Intent(LoginActivity.this, SignupActivity.class));
-                } else {
                     Retrofit retrofit1 = new Retrofit.Builder()
                             .baseUrl(URLManager.authURL)
                             .addConverterFactory(GsonConverterFactory.create())
@@ -306,6 +306,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Response res1 = response.body();
 
                             Log.w(TAG, "Login success " + res1.toString());
+                            mData.getUserInfo().setToken(res1.getToken());
 
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
@@ -316,11 +317,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Log.w(TAG, "Login failed" + t.getStackTrace());
                         }
                     });
+                } else if (response.code() == 404) {
+                    startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+                } else if (response.code() == 400) {
+                    Log.w(TAG, "Id check failed");
                 }
             }
 
             @Override
-            public void onFailure(Call<Response> call, Throwable t) {
+            public void onFailure(Call<UserProfile> call, Throwable t) {
                 Log.w(TAG, "Login failed" + t.getStackTrace());
             }
         });

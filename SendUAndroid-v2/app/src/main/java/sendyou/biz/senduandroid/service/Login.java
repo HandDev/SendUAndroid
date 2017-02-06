@@ -10,7 +10,7 @@ import sendyou.biz.senduandroid.data.Response;
  */
 
 public interface Login {
-    @GET("userAuth/authenticate")
+    @GET("users/signin")
     Call<Response> doLogin(@Query("email")String x,
                            @Query("password") String key);
 }

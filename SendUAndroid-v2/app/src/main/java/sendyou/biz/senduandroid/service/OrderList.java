@@ -8,7 +8,7 @@ import retrofit2.http.Path;
 import sendyou.biz.senduandroid.data.Orders;
 
 /**
- * Created by JunHyeok on 2016. 9. 26..
+ * Created by pyh42 on 2017-01-03.
  */
 
 public interface OrderList {

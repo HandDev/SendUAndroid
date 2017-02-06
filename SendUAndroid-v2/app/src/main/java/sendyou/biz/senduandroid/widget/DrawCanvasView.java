@@ -1,4 +1,4 @@
-package biz.sendyou.senduandroid.Activity;
+package sendyou.biz.senduandroid.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -15,12 +16,14 @@ import java.util.LinkedList;
  * Created by pyh42 on 2016-10-17.
  */
 
-public class DrawCanvasView extends View implements View.OnTouchListener{
+public class DrawCanvasView extends View implements View.OnTouchListener {
 
     private static final String TAG = "DrawCanvasView";
 
     private static final float MINP = 0.25f;
     private static final float MAXP = 0.75f;
+
+    public static int tool_state;
 
     private Canvas  mCanvas;
     private Path mPath;
@@ -30,12 +33,9 @@ public class DrawCanvasView extends View implements View.OnTouchListener{
     public DrawCanvasView(Context context) {
         super(context);
 
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-
         this.setOnTouchListener(this);
 
-        Bitmap mBitmap = Bitmap.createBitmap(this.getWidth(), this.getHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap mBitmap = Bitmap.createBitmap(1240, 1780, Bitmap.Config.ARGB_8888);
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -94,21 +94,34 @@ public class DrawCanvasView extends View implements View.OnTouchListener{
         float x = event.getX();
         float y = event.getY();
 
+        Log.w(TAG, event.getAction() + "");
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                touch_start(x, y);
-                invalidate();
+                if(tool_state == 1) {
+                    touch_start(x, y);
+                    invalidate();
+                } else if(tool_state == 2) {
+
+                }
                 break;
             case MotionEvent.ACTION_MOVE:
-                touch_move(x, y);
-                invalidate();
+                if(tool_state == 1) {
+                    touch_move(x, y);
+                    invalidate();
+                } else if(tool_state == 2) {
+
+                }
                 break;
             case MotionEvent.ACTION_UP:
-                touch_up();
-                invalidate();
+                if(tool_state == 1) {
+                    touch_up();
+                    invalidate();
+                } else if(tool_state == 2) {
+
+                }
                 break;
         }
-
         return true;
     }
 
@@ -116,10 +129,5 @@ public class DrawCanvasView extends View implements View.OnTouchListener{
         paths.clear();
         invalidate();
         paths.add(mPath);
-    }
-
-    public Bitmap getCanvasBitmap() {
-        this.setDrawingCacheEnabled(true);
-        return this.getDrawingCache();
     }
 }

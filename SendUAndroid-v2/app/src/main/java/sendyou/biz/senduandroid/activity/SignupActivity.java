@@ -4,9 +4,9 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -36,7 +36,6 @@ import sendyou.biz.senduandroid.R;
 import sendyou.biz.senduandroid.data.Data;
 import sendyou.biz.senduandroid.data.Response;
 import sendyou.biz.senduandroid.data.URLManager;
-import sendyou.biz.senduandroid.service.Login;
 import sendyou.biz.senduandroid.service.SignUp;
 import sendyou.biz.senduandroid.widget.TermDialog;
 
@@ -216,7 +215,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         SignUp signUp = retrofit.create(SignUp.class);
 
-        Call<Response> call = signUp.doSignup(mData.getUserInfo().getUserName(), "sendu1234", mData.getUserInfo().getUid(), address_num.getText().toString(), first_address.getText().toString() + " " + second_address.getText().toString(), birthday);
+        Call<Response> call = signUp.doSignup(mData.getUserInfo().getUserName(), "sendu1234", mData.getUserInfo().getUid(), address_num.getText().toString(), first_address.getText().toString() + " " + second_address.getText().toString(), birthday, phone_num.getText().toString());
 
         call.enqueue(new Callback<Response>() {
             @Override

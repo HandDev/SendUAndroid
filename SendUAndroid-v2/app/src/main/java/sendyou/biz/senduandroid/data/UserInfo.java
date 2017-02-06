@@ -11,6 +11,7 @@ public class UserInfo {
     private String userName;
     private String numAddress;
     private String jusoAddress;
+    private String phone;
     private int status;
     private int templateid = 1000;
 
@@ -76,5 +77,13 @@ public class UserInfo {
 
     public void setTemplateid(int templateid) {
         this.templateid = templateid;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

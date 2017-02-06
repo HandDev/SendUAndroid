@@ -147,6 +147,4 @@ public class DrawFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
     }
-
-
 }

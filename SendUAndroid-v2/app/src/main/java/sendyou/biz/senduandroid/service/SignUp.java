@@ -7,17 +7,18 @@ import retrofit2.http.POST;
 import sendyou.biz.senduandroid.data.Response;
 
 /**
- * Created by JunHyeok on 2016. 9. 8..
+ * Created by pyh42 on 2017-01-03.
  */
 
 public interface SignUp {
     @FormUrlEncoded
-    @POST("user/signup/insertData")
+    @POST("users/signup/")
     Call<Response> doSignup(
             @Field("username") String userName,
             @Field("password") String password,
             @Field("email") String uid,
             @Field("numaddress") String numadd,
             @Field("address") String address,
-            @Field("birth") String birth);
+            @Field("birth") String birth,
+            @Field("phone") String phonenum);
 }
