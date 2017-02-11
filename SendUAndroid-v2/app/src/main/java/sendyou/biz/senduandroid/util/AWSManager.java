@@ -2,11 +2,16 @@ package sendyou.biz.senduandroid.util;
 
 import android.content.Context;
 
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.S3ClientOptions;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+
+import java.io.File;
 
 /**
  * Created by parkjaesung on 2016. 9. 22..
@@ -16,6 +21,9 @@ public class AWSManager {
     private static AWSManager instance = null;
     private AmazonS3 s3 = null;
     private CognitoCachingCredentialsProvider credentialsProvider = null;
+
+    private final String ACCESS_KEY = "AKIAJM7LH7XHXLERUS7A";
+    private final String SECRET_KEY = "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";
 
     private AWSManager(Context context){
         this.credentialsProvider = new CognitoCachingCredentialsProvider(
@@ -43,4 +51,21 @@ public class AWSManager {
     public AmazonS3 getS3() {
         return s3;
     }
+
+    public void uploadFile(File file) {
+        if (s3 != null) {
+            try {
+                PutObjectRequest putObjectRequest =
+                        new PutObjectRequest("cardbackground" + "/sub_dir_name"/*sub directory*/, file.getName(), file);
+                putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead); // file permission
+                s3.putObject(putObjectRequest); // upload file
+
+            } catch (AmazonServiceException ase) {
+                ase.printStackTrace();
+            } finally {
+                s3 = null;
+            }
+        }
+    }
+
 }
