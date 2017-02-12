@@ -172,7 +172,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (fragment.getClass().getName()) {
             case "sendyou.biz.senduandroid.fragment.SelectTemplateFragment":
-            case "sendyou.biz.senduandroid.fragment.SelectModeFragment":
             case "sendyou.biz.senduandroid.fragment.EditFragment":
                 message = "편지 작성을 취소하겠습니까?";
                 break;
@@ -186,8 +185,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (fragment.getClass().getName()) {
                             case "sendyou.biz.senduandroid.fragment.SelectTemplateFragment":
-                            case "sendyou.biz.senduandroid.fragment.SelectModeFragment":
                             case "sendyou.biz.senduandroid.fragment.EditFragment":
+                                title.setText(getString(R.string.home));
                                 getSupportFragmentManager().beginTransaction().replace(R.id.content, new MainFragment()).commit();
                                 break;
                             default:

@@ -6,128 +6,243 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pyh42 on 2016-10-17.
  */
 
-public class DrawCanvasView extends View implements View.OnTouchListener {
+public class DrawCanvasView extends View {
 
     private static final String TAG = "DrawCanvasView";
 
-    private static final float MINP = 0.25f;
-    private static final float MAXP = 0.75f;
+    public enum Mode {
+        DRAW,
+        ERASER,
+        TEXT
+    }
 
-    public static int tool_state;
+    private Context mContext = null;
+    private Canvas mCanvas = null;
+    private Bitmap mBitmap = null;
+    private Paint mPaint = null;
 
-    private Canvas  mCanvas;
-    private Path mPath;
-    private Paint mPaint;
-    private LinkedList<Path> paths = new LinkedList<Path>();
+    private List<Path> paths = new ArrayList<>();
+    private List<Paint> paints = new ArrayList<>();
 
-    public DrawCanvasView(Context context) {
+    private float brushSize;
+    private float eraserSize;
+    private int paintColor = 0xFF000000, paintAlpha = 255;
+    private int historyPointer = 0;
+    private int maxHistoryPointer = 0;
+    private float mX, mY;
+    private Mode mode = Mode.TEXT;
+
+    public DrawCanvasView(Context context){
         super(context);
+        this.setupDrawing(context);
+    }
 
-        this.setOnTouchListener(this);
+    public DrawCanvasView(Context context, AttributeSet attrs){
+        super(context, attrs);
+        this.setupDrawing(context);
+    }
 
-        Bitmap mBitmap = Bitmap.createBitmap(1240, 1780, Bitmap.Config.ARGB_8888);
+    private void setupDrawing(Context context){
+        this.mContext = context;
 
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setDither(true);
-        mPaint.setColor(Color.BLACK);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeWidth(6);
-        mCanvas = new Canvas(mBitmap);
-        mPath = new Path();
-        paths.add(mPath);
+        brushSize = 5;
+        eraserSize = 50;
+        reset();
+
+        mPaint = new Paint(Paint.DITHER_FLAG);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+
+        mBitmap = Bitmap.createBitmap(1440, 2042, Bitmap.Config.ARGB_8888);
+        mCanvas = new Canvas(mBitmap);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        for (Path p : paths){
-            canvas.drawPath(p, mPaint);
+        canvas.drawBitmap(mBitmap, 0, 0, mPaint);
+        if(historyPointer > 0) {
+            if (this.mode == Mode.DRAW) {
+                canvas.drawPath(paths.get(historyPointer - 1), paints.get(historyPointer - 1));
+            } else if (this.mode == Mode.ERASER) {
+                mCanvas.drawPath(paths.get(historyPointer - 1), paints.get(historyPointer - 1));
+            } else if(this.mode == Mode.TEXT) {
+
+            }
         }
-    }
-
-    private float mX, mY;
-    private static final float TOUCH_TOLERANCE = 4;
-
-    private void touch_start(float x, float y) {
-        mPath.reset();
-        mPath.moveTo(x, y);
-        mX = x;
-        mY = y;
-    }
-
-    private void touch_move(float x, float y) {
-        float dx = Math.abs(x - mX);
-        float dy = Math.abs(y - mY);
-        if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
-            mPath.quadTo(mX, mY, (x + mX)/2, (y + mY)/2);
-            mX = x;
-            mY = y;
-        }
-    }
-
-    private void touch_up() {
-        mPath.lineTo(mX, mY);
-        mCanvas.drawPath(mPath, mPaint);
-        mPath = new Path();
-        paths.add(mPath);
     }
 
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        float x = event.getX();
-        float y = event.getY();
-
-        Log.w(TAG, event.getAction() + "");
+    public boolean onTouchEvent(MotionEvent event) {
+        float touchX = event.getX();
+        float touchY = event.getY();
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if(tool_state == 1) {
-                    touch_start(x, y);
-                    invalidate();
-                } else if(tool_state == 2) {
+                if(this.mode == Mode.DRAW || this.mode == Mode.ERASER) {
+                    reset();
+                    setPressure(event.getPressure());
+                    paths.get(historyPointer - 1).moveTo(touchX, touchY);
+                    mX = touchX;
+                    mY = touchY;
+                } else if(this.mode == Mode.TEXT) {
 
                 }
                 break;
+
             case MotionEvent.ACTION_MOVE:
-                if(tool_state == 1) {
-                    touch_move(x, y);
-                    invalidate();
-                } else if(tool_state == 2) {
+                if(this.mode == Mode.DRAW || this.mode == Mode.ERASER) {
+                    setPressure(event.getPressure());
+                    paths.get(historyPointer - 1).quadTo(mX, mY, (mX + touchX) / 2, (mY + touchY) / 2);
+                    mX = touchX;
+                    mY = touchY;
+                } else if(this.mode == Mode.TEXT) {
 
                 }
                 break;
+
             case MotionEvent.ACTION_UP:
-                if(tool_state == 1) {
-                    touch_up();
-                    invalidate();
-                } else if(tool_state == 2) {
+                if(this.mode == Mode.DRAW || this.mode == Mode.ERASER) {
+                    setPressure(event.getPressure());
+                    paths.get(historyPointer - 1).quadTo(mX, mY, (mX + touchX) / 2, (mY + touchY) / 2);
+                    mCanvas.drawPath(paths.get(historyPointer - 1), paints.get(historyPointer - 1));
+                } else if(this.mode == Mode.TEXT) {
 
                 }
                 break;
+
+            default:
+                return false;
         }
+
+        invalidate();
         return true;
     }
 
-    public void clear() {
-        paths.clear();
+    public void reset() {
+        paths.add(historyPointer, new Path());
+        paints.add(historyPointer, new Paint());
+
+        historyPointer++;
+        maxHistoryPointer = historyPointer;
+        setPaint();
+    }
+
+    public void undo() {
+        if(historyPointer > 1) {
+            historyPointer--;
+
+            mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+
+            for(int i = 0 ; i < historyPointer ; i++) {
+                mCanvas.drawPath(paths.get(i), paints.get(i));
+            }
+            invalidate();
+        }
+    }
+
+    public void redo() {
+        if(maxHistoryPointer > historyPointer) {
+            historyPointer++;
+
+            mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+
+            for(int i = 0 ; i < historyPointer ; i++) {
+                mCanvas.drawPath(paths.get(i), paints.get(i));
+            }
+            invalidate();
+        }
+    }
+
+    public void setPaint() {
+        if(mode == Mode.DRAW) {
+            paints.get(historyPointer - 1).setColor(paintColor);
+            paints.get(historyPointer - 1).setXfermode(null);
+            paints.get(historyPointer - 1).setAntiAlias(true);
+            paints.get(historyPointer - 1).setStrokeWidth(brushSize);
+            paints.get(historyPointer - 1).setStyle(Paint.Style.STROKE);
+            paints.get(historyPointer - 1).setStrokeJoin(Paint.Join.ROUND);
+            paints.get(historyPointer - 1).setStrokeCap(Paint.Cap.ROUND);
+        } else if(mode == Mode.ERASER) {
+            paints.get(historyPointer - 1).setColor(Color.TRANSPARENT);
+            paints.get(historyPointer - 1).setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            paints.get(historyPointer - 1).setAntiAlias(true);
+            paints.get(historyPointer - 1).setStrokeWidth(eraserSize);
+            paints.get(historyPointer - 1).setStyle(Paint.Style.STROKE);
+            paints.get(historyPointer - 1).setStrokeJoin(Paint.Join.ROUND);
+            paints.get(historyPointer - 1).setStrokeCap(Paint.Cap.ROUND);
+        } else if(this.mode == Mode.TEXT) {
+
+        }
+    }
+
+    public void setPressure(float pressure) {
+        Log.w(TAG, "Pressure : " + pressure);
+//        if(mode == Mode.DRAW) {
+//            paints.get(historyPointer - 1).setStrokeWidth(brushSize * pressure);
+//        } else if(mode == Mode.ERASER) {
+//            paints.get(historyPointer - 1).setStrokeWidth(eraserSize * pressure);
+//        }
+    }
+
+    public void setMode(Mode mode) {
+        this.mode = mode;
+        reset();
+    }
+
+    public Mode getMode() {
+        return mode;
+    }
+
+    public void setColor(String newColor){
         invalidate();
-        paths.add(mPath);
+        //check whether color value or pattern name
+        if(newColor.startsWith("#")){
+            paintColor = Color.parseColor(newColor);
+        } else {
+            paintColor = Color.parseColor("#" + newColor);
+        }
+        reset();
+    }
+
+    public void setColor(int newColor) {
+        paintColor = newColor;
+        reset();
+    }
+
+    public int getCurrentColor() {
+        return paints.get(historyPointer - 1).getColor();
+    }
+
+    public void setBrushSize(float brushSize) {
+        this.brushSize = brushSize;
+    }
+
+    public float getBrushSize() {
+        return brushSize;
+    }
+
+    public void setEraserSize(float eraserSize) {
+        this.eraserSize = eraserSize;
+    }
+
+    public float getEraserSize() {
+        return eraserSize;
     }
 }

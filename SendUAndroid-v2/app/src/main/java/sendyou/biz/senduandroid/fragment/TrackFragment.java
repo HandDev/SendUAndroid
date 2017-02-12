@@ -2,8 +2,6 @@ package sendyou.biz.senduandroid.fragment;
 
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -62,7 +59,7 @@ public class TrackFragment extends Fragment {
             @Override
             public void onRefresh(SwipyRefreshLayoutDirection direction) {
                 if(direction == SwipyRefreshLayoutDirection.TOP) {
-
+                    loadList();
                 } else if(direction == SwipyRefreshLayoutDirection.BOTTOM) {
 
                 }
@@ -112,7 +109,9 @@ public class TrackFragment extends Fragment {
                     Log.e("Log", String.valueOf(response.isSuccessful()));
                     Log.e("URL", response.raw().toString());
                     Log.e("Size", String.valueOf(response.body().size()));
+                    Log.e("Response", response.body().get(0).toString());
 
+                    cleanList();
                     for (int i = response.body().size() - 1; i >= 0; i--) {
                         int state = 1;
                         switch (arrayList.get(i).getOrderStatus()) {
@@ -129,6 +128,7 @@ public class TrackFragment extends Fragment {
                         mAdapter.addItem(arrayList.get(i).getAddress(), arrayList.get(i).getReceiverName(), arrayList.get(i).getOrderDate(), arrayList.get(i).getOrderDate(), state);
                     }
                 }
+                refreshLayout.setRefreshing(false);
             }
 
             @Override
@@ -240,6 +240,7 @@ public class TrackFragment extends Fragment {
             addInfo.setState(state);
 
             mListData.add(addInfo);
+            dataChange();
         }
 
         public void remove(int position){

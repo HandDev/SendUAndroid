@@ -12,6 +12,6 @@ import sendyou.biz.senduandroid.data.Orders;
  */
 
 public interface OrderList {
-    @GET("{Uid}/orders")
+    @GET("orders/{Uid}")
     Call<ArrayList<Orders>> getOrderList(@Path("Uid") String Uid);
 }

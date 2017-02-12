@@ -4,6 +4,12 @@
 
     <style name="AppTheme" parent="Theme.Guillotine"/>
 
+    <style name="ToolButton">
+        <item name="android:padding">10dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+    
     <style name="CustomDialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>

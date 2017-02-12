@@ -14,7 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gun0912.tedpermission.PermissionListener;
@@ -60,13 +59,11 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onPermissionGranted() {
                 Log.w(TAG, "Permission Granted");
-                Toast.makeText(SplashActivity.this, permission_granted, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
                 Log.w(TAG, "Permission Denied");
-                Toast.makeText(SplashActivity.this, permission_denied + "\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
             }
         };
 

@@ -1,59 +1,108 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:id="@+id/edit_fragment"
     tools:context="sendyou.biz.senduandroid.fragment.EditFragment">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/pen_tool"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="펜"/>
-        <Button
-            android:id="@+id/text_tool"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="텍스트"/>
-        <Button
-            android:id="@+id/move_tool"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이동/줌"/>
-        <Button
-            android:id="@+id/complete_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="완료"/>
-    </LinearLayout>
+        android:background="@drawable/blank_template"
+        android:layout_margin="5dp"
+        android:layout_alignParentTop="true">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:id="@+id/drawer_layout"
+        <EditText
+            android:id="@+id/text_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-        </LinearLayout>
+            android:gravity="top|left"
+            android:padding="10dp"
+            android:background="#00ffffff"
+            android:hint="편지 내용을 작성해주세요."
+            android:inputType="textMultiLine"/>
     </FrameLayout>
-    <EditText
-        android:id="@+id/edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="top|left"
-        android:inputType="textMultiLine"
-        android:scrollHorizontally="false"/>
 
-    <sendyou.biz.senduandroid.widget.ZoomLayout
-        android:id="@+id/zoomlayout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </sendyou.biz.senduandroid.widget.ZoomLayout>
+        android:layout_height="38dp"
+        android:gravity="center_vertical"
+        android:layout_margin="3dp"
+        android:layout_alignParentBottom="true"
+        android:padding="0.5dp"
+        android:background="@drawable/toolbox"
+        android:id="@+id/toolbox">
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-</LinearLayout>
+                <ImageView
+                    android:id="@+id/color_tool"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:src="#000000"
+                    style="@style/ToolButton" />
+                <ImageView
+                    android:id="@+id/text_tool"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightgray"
+                    android:src="@drawable/generic_text_filled_100"
+                    style="@style/ToolButton" />
+                <ImageView
+                    android:id="@+id/pen_tool"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:src="@drawable/pen_filled_100"
+                    style="@style/ToolButton" />
+                <ImageView
+                    android:id="@+id/erase_tool"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:src="@drawable/eraser_filled_100"
+                    style="@style/ToolButton" />
+                <ImageView
+                    android:id="@+id/width_tool"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:src="@drawable/line_width_104"
+                    style="@style/ToolButton" />
+                <ImageView
+                    android:id="@+id/undo_tool"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:src="@drawable/undo_104"
+                    style="@style/ToolButton" />
+                <ImageView
+                    android:id="@+id/redo_tool"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:src="@drawable/redo_104"
+                    style="@style/ToolButton" />
+            </LinearLayout>
+        </HorizontalScrollView>
+        <Button
+            android:id="@+id/complete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/white"
+            android:text="완료"
+            android:textColor="#FFA500"
+            style="@style/ToolButton" />
+    </RelativeLayout>
+
+</RelativeLayout>
