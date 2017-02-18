@@ -1,14 +1,15 @@
 package sendyou.biz.senduandroid.util;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.S3ClientOptions;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import java.io.File;
@@ -21,6 +22,7 @@ public class AWSManager {
     private static AWSManager instance = null;
     private AmazonS3 s3 = null;
     private CognitoCachingCredentialsProvider credentialsProvider = null;
+    private File file = null;
 
     private final String ACCESS_KEY = "AKIAJM7LH7XHXLERUS7A";
     private final String SECRET_KEY = "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";
@@ -33,6 +35,7 @@ public class AWSManager {
         );
 
         s3 = new AmazonS3Client(credentialsProvider);
+        s3.setRegion(Region.getRegion(Regions.AP_NORTHEAST_2));
         s3.setS3ClientOptions(new S3ClientOptions().withPathStyleAccess(true));
     }
 
@@ -53,19 +56,35 @@ public class AWSManager {
     }
 
     public void uploadFile(File file) {
-        if (s3 != null) {
-            try {
-                PutObjectRequest putObjectRequest =
-                        new PutObjectRequest("cardbackground" + "/sub_dir_name"/*sub directory*/, file.getName(), file);
-                putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead); // file permission
-                s3.putObject(putObjectRequest); // upload file
-
-            } catch (AmazonServiceException ase) {
-                ase.printStackTrace();
-            } finally {
-                s3 = null;
-            }
-        }
+        this.file = file;
+        new ProcessFacebookTask().execute(null,null,null);
     }
 
+    private class ProcessFacebookTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try
+            {
+                if (s3 != null && file != null) {
+                    try {
+                        PutObjectRequest putObjectRequest =
+                                new PutObjectRequest("cardbackground" + "/sub_dir_name"/*sub directory*/, file.getName(), file);
+                        //putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead); // file permission
+                        s3.putObject(putObjectRequest); // upload file
+
+                    } catch (AmazonServiceException ase) {
+                        ase.printStackTrace();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+
+    }
 }

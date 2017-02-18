@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -24,7 +25,12 @@ import java.util.ArrayList;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import sendyou.biz.senduandroid.R;
+import sendyou.biz.senduandroid.data.URLManager;
+import sendyou.biz.senduandroid.service.RegisterToken;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -55,25 +61,8 @@ public class SplashActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.background).into(splash_background);
         Glide.with(this).load(R.drawable.logo).into(splash_logo);
 
-        PermissionListener permissionlistener = new PermissionListener() {
-            @Override
-            public void onPermissionGranted() {
-                Log.w(TAG, "Permission Granted");
-            }
 
-            @Override
-            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                Log.w(TAG, "Permission Denied");
-            }
-        };
-
-        new TedPermission(this)
-                .setPermissionListener(permissionlistener)
-                .setDeniedMessage(denied_message)
-                .setPermissions(Manifest.permission.INTERNET)
-                .check();
-
-        Handler mHandler = new Handler() {
+        final Handler mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -85,7 +74,24 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
 
-        mHandler.sendEmptyMessageDelayed(0, 3000);
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Log.w(TAG, "Permission Granted");
+                mHandler.sendEmptyMessageDelayed(0, 2000);
+            }
+
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                Log.w(TAG, "Permission Denied");
+            }
+        };
+
+        new TedPermission(this)
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage(denied_message)
+                .setPermissions(Manifest.permission.INTERNET, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                .check();
     }
 
     @Override

@@ -2,10 +2,6 @@ package sendyou.biz.senduandroid.fragment;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,6 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sendyou.biz.senduandroid.R;
+import sendyou.biz.senduandroid.data.OrderData;
 import sendyou.biz.senduandroid.data.TemplateListData;
 import sendyou.biz.senduandroid.data.URLManager;
 import sendyou.biz.senduandroid.service.ResultCallback;
@@ -209,7 +205,7 @@ public class SelectTemplateFragment extends Fragment implements TemplateDownload
             holder.imageView1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    selectDialog(mData.getImage_url1());
+                    selectDialog(mData.getImage_url1(), URLManager.s3URL + thumbUrls.get(mData.getImage_url1()));
                 }
             });
 
@@ -218,7 +214,7 @@ public class SelectTemplateFragment extends Fragment implements TemplateDownload
                 holder.imageView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        selectDialog(mData.getImage_url2());
+                        selectDialog(mData.getImage_url2(), URLManager.s3URL + thumbUrls.get(mData.getImage_url2()));
                     }
                 });
             }
@@ -226,11 +222,14 @@ public class SelectTemplateFragment extends Fragment implements TemplateDownload
             return convertView;
         }
 
-        private void selectDialog(final int num) {
+        private void selectDialog(final int num, final String imageUrl) {
             SelectTemplateDialog selectTemplateDialog = new SelectTemplateDialog(getContext(), URLManager.s3URL + rawUrls.get(num), new ResultCallback() {
                 @Override
                 public void finishProcess() {
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content, new EditFragment(num)).commit();
+                    OrderData orderData = new OrderData();
+                    orderData.setImageNum(num);
+                    orderData.setImageUrl(imageUrl);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content, EditFragment.newInstance(orderData)).commit();
                 }
             });
             Log.w(TAG, URLManager.s3URL + rawUrls.get(num));

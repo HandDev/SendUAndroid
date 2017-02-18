@@ -12,6 +12,7 @@ public class UserInfo {
     private String numAddress;
     private String jusoAddress;
     private String phone;
+    private String firebase_token;
     private int status;
     private int templateid = 1000;
 
@@ -85,5 +86,13 @@ public class UserInfo {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getFirebase_token() {
+        return firebase_token;
+    }
+
+    public void setFirebase_token(String firebase_token) {
+        this.firebase_token = firebase_token;
     }
 }

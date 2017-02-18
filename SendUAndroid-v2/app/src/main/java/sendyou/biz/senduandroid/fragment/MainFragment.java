@@ -27,6 +27,13 @@ public class MainFragment extends Fragment implements ViewPagerEx.OnPageChangeLi
 
     @BindView(R.id.slider) SliderLayout slider;
 
+    public static MainFragment newInstance() {
+        MainFragment fragment = new MainFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public MainFragment() {
     }
 

@@ -2,8 +2,10 @@ package sendyou.biz.senduandroid.fragment;
 
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -24,9 +26,15 @@ import com.flask.colorpicker.OnColorSelectedListener;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sendyou.biz.senduandroid.R;
+import sendyou.biz.senduandroid.data.Data;
+import sendyou.biz.senduandroid.data.OrderData;
 import sendyou.biz.senduandroid.widget.DrawCanvasView;
 
 /**
@@ -36,7 +44,8 @@ public class EditFragment extends Fragment {
 
     private static final String TAG = "EditFragment";
     public static boolean flag = false;
-    private int num;
+    private Data mData;
+    private OrderData orderData;
 
     @BindView(R.id.drawer_layout) FrameLayout rootlayout;
     @BindView(R.id.text_tool) ImageView text_tool;
@@ -46,7 +55,7 @@ public class EditFragment extends Fragment {
     @BindView(R.id.redo_tool) ImageView redo_tool;
     @BindView(R.id.color_tool) ImageView color_tool;
     @BindView(R.id.width_tool) ImageView width_tool;
-    @BindView(R.id.complete_button) Button complete_btn;
+    @BindView(R.id.preview_btn) Button preview_btn;
     @BindView(R.id.toolbox) RelativeLayout toolbox;
     @BindView(R.id.text_edit) EditText textEdit;
 
@@ -57,12 +66,15 @@ public class EditFragment extends Fragment {
 
     private DrawCanvasView drawCanvasView;
 
-    public EditFragment() {
-        // Required empty public constructor
+    public static EditFragment newInstance(OrderData orderData) {
+        EditFragment fragment = new EditFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("orderdata", orderData);
+        fragment.setArguments(args);
+        return fragment;
     }
 
-    public EditFragment(int num) {
-        this.num = num;
+    public EditFragment() {
     }
 
     @Override
@@ -70,8 +82,10 @@ public class EditFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit, container, false);
         ButterKnife.bind(this, view);
+        mData = (Data) getActivity().getApplication();
+        this.orderData = (OrderData)getArguments().getSerializable("orderdata");
 
-        DisplayMetrics mDisplay = new DisplayMetrics();
+        final DisplayMetrics mDisplay = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(mDisplay);
 
         drawCanvasView = new DrawCanvasView(getContext());
@@ -230,7 +244,35 @@ public class EditFragment extends Fragment {
             }
         });
 
+        preview_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textEdit.setHint("");
+                rootlayout.buildDrawingCache();
+                Bitmap captureView = rootlayout.getDrawingCache();
+                FileOutputStream fos;
+
+                String fileName = reverseString(mData.getUserInfo().getUid()) + "_" + System.currentTimeMillis() + ".jpeg";
+                try {
+                    File fileDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/SendU/OrderTemp/");
+                    fileDirectory.mkdirs();
+
+                    File outputFile = new File(fileDirectory, fileName);
+                    fos = new FileOutputStream(outputFile);
+                    captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                orderData.setContentsName(fileName);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content, AddressFragment.newInstance(orderData)).commit();
+            }
+        });
+
         return view;
+    }
+
+    public static String reverseString(String s) {
+        return ( new StringBuffer(s) ).reverse().toString();
     }
 
     @Override

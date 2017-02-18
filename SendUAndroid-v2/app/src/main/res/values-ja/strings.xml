@@ -1,4 +1,6 @@
 <resources>
+    <string name="facebook_app_id">1798518337095257</string>
+
     <string name="app_name">SendU</string>
     <string name="app_name_up">SENDU</string>
     <string name="permission_granted">許可完了</string>
@@ -24,4 +26,12 @@
     <string name="exit_q">アプリを閉じる？</string>
     <string name="confirm">確認</string>
     <string name="cancel">キャンセル</string>
+
+    <string name="making">Making</string>
+    <string name="moving">Moving</string>
+    <string name="arrive">Complete</string>
+
+    <string name="term1"></string>
+    <string name="term2"></string>
+    <string name="term3"></string>
 </resources>

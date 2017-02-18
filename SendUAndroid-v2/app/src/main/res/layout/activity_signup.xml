@@ -24,351 +24,363 @@
             android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/name_group"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-            <EditText
-                android:id="@+id/name_edit"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="90"
-                android:padding="15dp"
-                android:textSize="16sp"
-                android:textColor="@color/gray"
-                android:background="@drawable/edit_background"
-                android:hint="이름"
-                android:textColorHint="@color/gray"/>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-        
-        <LinearLayout
-            android:id="@+id/birthday_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="90"
-                android:orientation="horizontal">
-                <EditText
-                    android:id="@+id/birthday_edit"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
+                android:gravity="center"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/name_group"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/gray"
-                    android:background="@drawable/edit_background"
-                    android:hint="생년월일"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"/>
-            </LinearLayout>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/first_address_group">
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="90"
-                android:orientation="horizontal">
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="8"
-                    android:padding="15dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray"
-                    android:background="@drawable/edit_background"
-                    android:hint="주소"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:id="@+id/first_address"/>
+                    android:orientation="horizontal">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                    <EditText
+                        android:id="@+id/name_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="90"
+                        android:padding="15dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/gray"
+                        android:background="@drawable/edit_background"
+                        android:hint="이름"
+                        android:textColorHint="@color/gray"/>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                </LinearLayout>
 
                 <Space
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
-                <EditText
+                <LinearLayout
+                    android:id="@+id/birthday_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="90"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/birthday_edit"
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/gray"
+                            android:background="@drawable/edit_background"
+                            android:hint="생년월일"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"/>
+                    </LinearLayout>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/first_address_group">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="90"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="8"
+                            android:padding="15dp"
+                            android:textSize="14sp"
+                            android:textColor="@color/gray"
+                            android:background="@drawable/edit_background"
+                            android:hint="주소"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:id="@+id/first_address"/>
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:padding="15dp"
+                            android:textSize="14sp"
+                            android:textColor="@color/gray"
+                            android:background="@drawable/edit_background"
+                            android:hint="지번"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:id="@+id/address_num"/>
+                    </LinearLayout>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/second_address_group">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="90"
+                        android:padding="15dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/gray"
+                        android:background="@drawable/edit_background"
+                        android:hint="추가 주소"
+                        android:id="@+id/second_address"/>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <LinearLayout
+                    android:id="@+id/phonenum_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+
+                    <EditText
+                        android:id="@+id/phone_num"
+                        android:layout_width="0dp"
+                        android:layout_weight="90"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:padding="15dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/gray"
+                        android:hint="휴대폰 번호"
+                        android:background="@drawable/edit_background"/>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="90">
+                        <CheckBox
+                            android:id="@+id/check_all_terms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"/>
+                        <sendyou.biz.senduandroid.widget.NanumLightTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="SENDU 약관 등 전체 동의"/>
+                    </LinearLayout>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="90"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        android:background="@drawable/checkbox_background">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <CheckBox
+                                android:id="@+id/check_terms1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"/>
+                            <sendyou.biz.senduandroid.widget.NanumLightTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="전자금융거래 이용약관"/>
+                            <sendyou.biz.senduandroid.widget.NanumLightTextView
+                                android:id="@+id/terms_detail1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right|center_vertical"
+                                android:text="상세보기  >"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <CheckBox
+                                android:id="@+id/check_terms2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"/>
+                            <sendyou.biz.senduandroid.widget.NanumLightTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="개인정보 수집/이용 동의"/>
+                            <sendyou.biz.senduandroid.widget.NanumLightTextView
+                                android:id="@+id/terms_detail2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right|center_vertical"
+                                android:text="상세보기  >"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <CheckBox
+                                android:id="@+id/check_terms3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"/>
+                            <sendyou.biz.senduandroid.widget.NanumLightTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="SENDU 서비스 약관"/>
+                            <sendyou.biz.senduandroid.widget.NanumLightTextView
+                                android:id="@+id/terms_detail3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right|center_vertical"
+                                android:text="상세보기  >"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <Space
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray"
-                    android:background="@drawable/edit_background"
-                    android:hint="지번"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:id="@+id/address_num"/>
-            </LinearLayout>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/second_address_group">
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="90"
-                android:padding="15dp"
-                android:textSize="16sp"
-                android:textColor="@color/gray"
-                android:background="@drawable/edit_background"
-                android:hint="추가 주소"
-                android:id="@+id/second_address"/>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <LinearLayout
-            android:id="@+id/phonenum_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-
-            <EditText
-                android:id="@+id/phone_num"
-                android:layout_width="0dp"
-                android:layout_weight="90"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:padding="15dp"
-                android:textSize="16sp"
-                android:textColor="@color/gray"
-                android:hint="휴대폰 번호"
-                android:background="@drawable/edit_background"/>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="30"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="90">
-                <CheckBox
-                    android:id="@+id/check_all_terms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"/>
-                <sendyou.biz.senduandroid.widget.NanumLightTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="SENDU 약관 등 전체 동의"/>
-            </LinearLayout>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="90"
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:background="@drawable/checkbox_background">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_weight="20"/>
+                <Button
+                    android:id="@+id/signup_btn"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-                    <CheckBox
-                        android:id="@+id/check_terms1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"/>
-                    <sendyou.biz.senduandroid.widget.NanumLightTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="전자금융거래 이용약관"/>
-                    <sendyou.biz.senduandroid.widget.NanumLightTextView
-                        android:id="@+id/terms_detail1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="right|center_vertical"
-                        android:text="상세보기  >"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_weight="60"
+                    android:background="@color/light_magenta"
+                    android:text="가입"
+                    android:textSize="18sp"
+                    android:textColor="#ffffff"/>
+                <Space
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-                    <CheckBox
-                        android:id="@+id/check_terms2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"/>
-                    <sendyou.biz.senduandroid.widget.NanumLightTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="개인정보 수집/이용 동의"/>
-                    <sendyou.biz.senduandroid.widget.NanumLightTextView
-                        android:id="@+id/terms_detail2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="right|center_vertical"
-                        android:text="상세보기  >"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-                    <CheckBox
-                        android:id="@+id/check_terms3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"/>
-                    <sendyou.biz.senduandroid.widget.NanumLightTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="SENDU 서비스 약관"/>
-                    <sendyou.biz.senduandroid.widget.NanumLightTextView
-                        android:id="@+id/terms_detail3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="right|center_vertical"
-                        android:text="상세보기  >"/>
-                </LinearLayout>
+                    android:layout_weight="20"/>
             </LinearLayout>
+
             <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="5"/>
         </LinearLayout>
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:gravity="center">
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"/>
-        <Button
-            android:id="@+id/signup_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="60"
-            android:background="@color/light_magenta"
-            android:text="가입"
-            android:textSize="18sp"
-            android:textColor="#ffffff"/>
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"/>
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"/>
+    </ScrollView>
 
 </LinearLayout>

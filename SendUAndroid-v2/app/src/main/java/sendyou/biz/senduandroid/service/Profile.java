@@ -10,6 +10,6 @@ import sendyou.biz.senduandroid.data.UserProfile;
  */
 
 public interface Profile {
-    @GET("/users/")
+    @GET("users/")
     Call<UserProfile> getProfile(@Query("q") String uid);
 }
